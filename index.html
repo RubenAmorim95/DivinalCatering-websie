@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Divinal Catering — Catering de Luxo para Casamentos e Eventos | Barcelos</title>
+  <meta name="description" content="Divinal Catering — Charme, elegância e bom gosto em cada evento. Catering especializado em casamentos e eventos desde 2010. Barcelos, Braga, Porto, Vila Nova de Famalicão.">
+  <meta property="og:title" content="Divinal Catering — O Catering que torna o seu dia Divinal">
+  <meta property="og:description" content="Charme, elegância e bom gosto em cada evento. Catering especializado em casamentos desde 2010.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://divinalcatering.com">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=1200&auto=format&fit=crop&q=80">
+  <meta property="og:locale" content="pt_PT">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Divinal Catering">
+  <meta name="twitter:description" content="Charme, elegância e bom gosto em cada evento.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FoodEstablishment",
+    "name": "Divinal Catering",
+    "description": "Catering especializado em casamentos e eventos desde 2010",
+    "url": "https://divinalcatering.com",
+    "telephone": "+351919698505",
+    "email": "divinalcatering@gmail.com",
+    "foundingDate": "2010",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Zona Industrial 13",
+      "postalCode": "4755-481",
+      "addressLocality": "Rio Covo (Santa Eulália)",
+      "addressRegion": "Barcelos",
+      "addressCountry": "PT"
+    },
+    "areaServed": ["Barcelos", "Vila Nova de Famalicão", "Braga", "Porto"],
+    "priceRange": "€€€",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "reviewCount": "500"
+    }
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    /* === RESET === */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg-light: #FAFAF7;
+      --bg-dark: #0F0E0C;
+      --gold: #B8973A;
+      --text-dark: #1C1B18;
+      --text-muted: #7A7168;
+      --border: rgba(184,151,58,0.2);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Jost', sans-serif; font-weight: 300; color: var(--text-dark); background: var(--bg-light); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+    button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+    /* === SCROLL REVEAL === */
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } .hero-scroll-line { animation: none !important; } }
+
+    /* === EYEBROW === */
+    .eyebrow { font-family: 'Jost', sans-serif; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); font-weight: 500; display: block; }
+
+    /* === NAV === */
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 0 48px; height: 72px; display: flex; align-items: center; justify-content: space-between; transition: background 0.3s, border-color 0.3s; border-bottom: 1px solid transparent; }
+    .nav.scrolled { background: #fff; border-bottom-color: var(--border); }
+    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 400; color: #fff; letter-spacing: 1px; transition: color 0.3s; white-space: nowrap; }
+    .nav.scrolled .nav-logo { color: var(--text-dark); }
+    .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+    .nav-links a { font-family: 'Jost', sans-serif; font-size: 11px; font-weight: 400; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.8); transition: color 0.3s; }
+    .nav-links a:hover { color: #fff; }
+    .nav.scrolled .nav-links a { color: var(--text-muted); }
+    .nav.scrolled .nav-links a:hover { color: var(--text-dark); }
+    .nav-cta { font-family: 'Jost', sans-serif; font-size: 11px; font-weight: 400; letter-spacing: 2px; text-transform: uppercase; padding: 10px 22px; border: 1px solid var(--gold); color: var(--gold); transition: background 0.3s; position: relative; overflow: hidden; }
+    .nav-cta::after { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(184,151,58,0.15), transparent); transition: left 0.4s; }
+    .nav-cta:hover::after { left: 100%; }
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; width: 28px; cursor: pointer; padding: 4px 0; }
+    .nav-hamburger span { display: block; width: 100%; height: 1px; background: #fff; transition: background 0.3s, transform 0.3s, opacity 0.3s; }
+    .nav.scrolled .nav-hamburger span { background: var(--text-dark); }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+    .nav-overlay { position: fixed; inset: 0; background: var(--bg-light); z-index: 999; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 36px; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+    .nav-overlay.open { opacity: 1; pointer-events: all; }
+    .nav-overlay a { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 300; color: var(--text-dark); transition: color 0.2s; }
+    .nav-overlay a:hover { color: var(--gold); }
+    .nav-overlay .overlay-cta { font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; padding: 14px 36px; border: 1px solid var(--gold); color: var(--gold); margin-top: 8px; }
+
+    /* === HERO === */
+    .hero { position: relative; height: 100vh; min-height: 600px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .hero-bg { position: absolute; inset: 0; background-color: #1E1B14; background-image: url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=1920&auto=format&fit=crop&q=85'); background-size: cover; background-position: center; }
+    .hero-overlay { position: absolute; inset: 0; background: rgba(10,9,7,0.58); }
+    .hero-content { position: relative; z-index: 1; text-align: center; padding: 0 24px; max-width: 780px; }
+    .hero-label { font-family: 'Jost', sans-serif; font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); font-weight: 500; margin-bottom: 24px; }
+    .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(40px, 6vw, 76px); font-weight: 300; color: #fff; line-height: 1.1; margin-bottom: 20px; letter-spacing: 0.5px; }
+    .hero-subtitle { font-family: 'Jost', sans-serif; font-size: 15px; font-weight: 300; color: rgba(255,255,255,0.72); letter-spacing: 1px; margin-bottom: 44px; }
+    .hero-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn-gold { font-family: 'Jost', sans-serif; font-size: 11px; font-weight: 400; letter-spacing: 2px; text-transform: uppercase; padding: 16px 36px; background: var(--gold); color: #fff; position: relative; overflow: hidden; display: inline-block; }
+    .btn-gold::after { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); transition: left 0.4s; }
+    .btn-gold:hover::after { left: 100%; }
+    .btn-outline-white { font-family: 'Jost', sans-serif; font-size: 11px; font-weight: 400; letter-spacing: 2px; text-transform: uppercase; padding: 16px 36px; border: 1px solid rgba(255,255,255,0.5); color: #fff; transition: border-color 0.3s, background 0.3s; display: inline-block; }
+    .btn-outline-white:hover { border-color: #fff; background: rgba(255,255,255,0.07); }
+    .hero-scroll-line { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 1px; height: 60px; background: var(--gold); animation: scrollPulse 2s ease-in-out infinite; }
+    @keyframes scrollPulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
+
+    /* === SOBRE === */
+    .sobre { background: #fff; padding: 120px 48px; }
+    .sobre-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1px 1fr; gap: 0 64px; align-items: stretch; }
+    .sobre-photo { width: 100%; height: 100%; min-height: 540px; object-fit: cover; display: block; background-color: #EDE8DF; }
+    .sobre-divider { background: var(--border); }
+    .sobre-text { display: flex; flex-direction: column; justify-content: center; padding: 40px 0; }
+    .sobre-text .eyebrow { margin-bottom: 20px; }
+    .sobre-text h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(32px, 3.5vw, 48px); font-weight: 300; color: var(--text-dark); margin-bottom: 28px; line-height: 1.15; }
+    .sobre-text p { font-size: 15px; line-height: 1.8; color: var(--text-muted); margin-bottom: 18px; }
+    .sobre-stats { display: flex; align-items: center; margin-top: 40px; border-top: 1px solid var(--border); padding-top: 36px; }
+    .sobre-stat { flex: 1; text-align: center; padding: 0 16px; }
+    .sobre-stat + .sobre-stat { border-left: 1px solid var(--border); }
+    .sobre-stat-n { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 300; color: var(--gold); display: block; line-height: 1; margin-bottom: 6px; }
+    .sobre-stat-l { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); font-weight: 400; }
+
+    /* === SERVIÇOS === */
+    .servicos { background: var(--bg-light); padding: 120px 48px; }
+    .sec-hdr { text-align: center; margin-bottom: 72px; }
+    .sec-hdr .eyebrow { margin-bottom: 16px; }
+    .sec-hdr h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 4vw, 56px); font-weight: 300; color: var(--text-dark); margin-bottom: 16px; }
+    .sec-hdr p { font-size: 15px; color: var(--text-muted); max-width: 480px; margin: 0 auto; line-height: 1.7; }
+    .serv-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); }
+    .serv-card { background: #fff; overflow: hidden; position: relative; }
+    .serv-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--gold); transform: scaleX(0); transition: transform 0.3s; }
+    .serv-card:hover::after { transform: scaleX(1); }
+    .serv-img { overflow: hidden; height: 200px; background-color: #EDE8DF; }
+    .serv-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+    .serv-card:hover .serv-img img { transform: scale(1.03); }
+    .serv-body { padding: 24px 28px 32px; }
+    .serv-name { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 400; color: var(--text-dark); margin-bottom: 8px; }
+    .serv-desc { font-size: 13px; color: var(--text-muted); line-height: 1.65; }
+
+    /* === ESPAÇOS === */
+    .espacos { background: var(--bg-dark); padding: 120px 0; overflow: hidden; }
+    .esp-hdr { padding: 0 48px; margin-bottom: 56px; }
+    .esp-hdr .eyebrow { margin-bottom: 16px; }
+    .esp-hdr h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 4vw, 56px); font-weight: 300; color: #fff; }
+    .esp-track { display: flex; gap: 20px; overflow-x: auto; scroll-behavior: smooth; padding: 0 48px; scrollbar-width: none; -ms-overflow-style: none; }
+    .esp-track::-webkit-scrollbar { display: none; }
+    .esp-card { flex: 0 0 300px; height: 480px; position: relative; overflow: hidden; }
+    .esp-bg { position: absolute; inset: 0; background-color: #2A2520; background-size: cover; background-position: center; transition: transform 0.5s; }
+    .esp-card:hover .esp-bg { transform: scale(1.04); }
+    .esp-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,9,7,0.88) 0%, rgba(10,9,7,0.1) 55%, transparent 100%); }
+    .esp-info { position: absolute; bottom: 0; left: 0; right: 0; padding: 28px 24px; }
+    .esp-name { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 400; color: #fff; margin-bottom: 6px; line-height: 1.2; }
+    .esp-loc { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; font-weight: 500; }
+    .esp-link { font-size: 12px; color: var(--gold); letter-spacing: 1px; transition: letter-spacing 0.2s; }
+    .esp-card:hover .esp-link { letter-spacing: 2px; }
+    .esp-nav { display: flex; gap: 12px; padding: 32px 48px 0; }
+    .esp-arrow { width: 44px; height: 44px; border: 1px solid var(--border); color: var(--gold); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: border-color 0.3s, background 0.3s; font-size: 20px; line-height: 1; }
+    .esp-arrow:hover { border-color: var(--gold); background: rgba(184,151,58,0.08); }
+
+    /* === DEPOIMENTOS === */
+    .depos { background: #fff; padding: 120px 48px; }
+    .depos-inner { max-width: 720px; margin: 0 auto; }
+    .dep-item { display: none; text-align: center; }
+    .dep-item.active { display: block; animation: fadeIn 0.4s ease; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .dep-stars { color: var(--gold); font-size: 14px; letter-spacing: 4px; margin-bottom: 28px; }
+    .dep-quote { font-family: 'Cormorant Garamond', serif; font-size: clamp(20px, 2.5vw, 28px); font-style: italic; font-weight: 300; color: var(--text-dark); line-height: 1.55; margin-bottom: 32px; }
+    .dep-author { font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); font-weight: 500; }
+    .dep-dots { display: flex; gap: 10px; justify-content: center; margin-top: 48px; }
+    .dep-dot { width: 6px; height: 6px; border-radius: 50%; background: transparent; border: 1px solid var(--gold); cursor: pointer; transition: background 0.3s; }
+    .dep-dot.active { background: var(--gold); }
+
+    /* === GALERIA === */
+    .galeria { background: var(--bg-dark); padding: 120px 48px; }
+    .galeria .sec-hdr .eyebrow { color: var(--gold); }
+    .galeria .sec-hdr h2 { color: #fff; }
+    .galeria .sec-hdr p { color: rgba(255,255,255,0.45); }
+    .gal-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+    .gal-item { aspect-ratio: 1; overflow: hidden; position: relative; cursor: pointer; background-color: #1a1917; }
+    .gal-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+    .gal-ov { position: absolute; inset: 0; background: rgba(10,9,7,0.5); opacity: 0; transition: opacity 0.3s; display: flex; align-items: center; justify-content: center; }
+    .gal-ov span { color: var(--gold); font-size: 32px; font-family: 'Cormorant Garamond', serif; font-weight: 300; line-height: 1; }
+    .gal-item:hover img { transform: scale(1.04); }
+    .gal-item:hover .gal-ov { opacity: 1; }
+    .gal-cta { text-align: center; margin-top: 48px; }
+    .gal-cta a { font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); font-weight: 400; border-bottom: 1px solid var(--border); padding-bottom: 4px; transition: border-color 0.3s; }
+    .gal-cta a:hover { border-color: var(--gold); }
+
+    /* === LIGHTBOX === */
+    .lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 2000; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+    .lightbox.open { opacity: 1; pointer-events: all; }
+    .lightbox img { max-width: 90vw; max-height: 85vh; object-fit: contain; }
+    .lb-close { position: absolute; top: 24px; right: 32px; color: #fff; font-size: 36px; cursor: pointer; opacity: 0.6; transition: opacity 0.2s; font-family: 'Cormorant Garamond', serif; line-height: 1; }
+    .lb-close:hover { opacity: 1; }
+    .lb-prev, .lb-next { position: absolute; top: 50%; transform: translateY(-50%); color: var(--gold); font-size: 48px; cursor: pointer; padding: 16px; opacity: 0.7; transition: opacity 0.2s; font-family: 'Cormorant Garamond', serif; line-height: 1; }
+    .lb-prev { left: 16px; }
+    .lb-next { right: 16px; }
+    .lb-prev:hover, .lb-next:hover { opacity: 1; }
+
+    /* === CONTACTO === */
+    .contacto { display: grid; grid-template-columns: 1fr 1fr; }
+    .ct-left { background: var(--bg-dark); padding: 100px 64px; display: flex; flex-direction: column; justify-content: center; }
+    .ct-left .eyebrow { margin-bottom: 20px; }
+    .ct-left h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(30px, 3vw, 46px); font-weight: 300; color: #fff; margin-bottom: 48px; line-height: 1.15; }
+    .ct-items { display: flex; flex-direction: column; }
+    .ct-item { display: flex; gap: 16px; align-items: flex-start; padding: 16px 0; border-bottom: 1px solid rgba(184,151,58,0.12); }
+    .ct-item:first-child { border-top: 1px solid rgba(184,151,58,0.12); }
+    .ct-dash { color: var(--gold); font-size: 18px; font-family: 'Cormorant Garamond', serif; line-height: 1.4; flex-shrink: 0; }
+    .ct-txt { font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.65; }
+    .ct-txt strong { display: block; color: rgba(255,255,255,0.88); font-weight: 400; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 3px; }
+    .ct-txt a { color: rgba(255,255,255,0.6); transition: color 0.2s; }
+    .ct-txt a:hover { color: var(--gold); }
+    .btn-wa { margin-top: 40px; display: inline-flex; align-items: center; gap: 12px; background: #25D366; color: #fff; padding: 16px 28px; font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; font-weight: 400; transition: opacity 0.3s; align-self: flex-start; }
+    .btn-wa:hover { opacity: 0.88; }
+    .btn-wa svg { width: 18px; height: 18px; fill: currentColor; flex-shrink: 0; }
+    .ct-right { background: #fff; padding: 100px 64px; display: flex; flex-direction: column; justify-content: center; }
+    .ct-right h3 { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 300; color: var(--text-dark); margin-bottom: 40px; }
+    .fg { margin-bottom: 28px; }
+    .fg label { display: block; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; font-weight: 500; }
+    .fg input, .fg select, .fg textarea { width: 100%; border: none; border-bottom: 1px solid rgba(122,113,104,0.3); padding: 10px 0; font-family: 'Jost', sans-serif; font-size: 14px; font-weight: 300; color: var(--text-dark); background: transparent; outline: none; transition: border-color 0.3s; -webkit-appearance: none; appearance: none; border-radius: 0; }
+    .fg input:focus, .fg select:focus, .fg textarea:focus { border-bottom-color: var(--gold); }
+    .fg textarea { resize: none; height: 80px; }
+    .fg select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237A7168' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 4px center; padding-right: 20px; }
+    .fg select option { color: var(--text-dark); background: #fff; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .f-submit { width: 100%; padding: 16px; background: var(--gold); color: #fff; font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; font-weight: 400; cursor: pointer; margin-top: 8px; position: relative; overflow: hidden; border: none; transition: opacity 0.3s; }
+    .f-submit::after { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); transition: left 0.4s; }
+    .f-submit:hover::after { left: 100%; }
+    .f-note { margin-top: 12px; font-size: 12px; font-style: italic; color: var(--text-muted); text-align: center; }
+
+    /* === FOOTER === */
+    .footer { background: var(--bg-dark); border-top: 1px solid rgba(184,151,58,0.1); padding: 24px 48px; display: flex; align-items: center; justify-content: space-between; }
+    .footer p { font-size: 12px; color: rgba(255,255,255,0.3); }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { font-size: 12px; color: rgba(255,255,255,0.3); transition: color 0.2s; }
+    .footer-links a:hover { color: var(--gold); }
+
+    /* === WA FLOAT === */
+    .wa-float { position: fixed; bottom: 28px; right: 28px; width: 52px; height: 52px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 900; box-shadow: 0 4px 20px rgba(37,211,102,0.35); transition: transform 0.2s; }
+    .wa-float:hover { transform: scale(1.08); }
+    .wa-float svg { width: 26px; height: 26px; fill: #fff; }
+
+    /* === COOKIE === */
+    .cookie { position: fixed; bottom: 0; left: 0; right: 0; background: var(--bg-dark); border-top: 1px solid var(--border); padding: 20px 48px; display: flex; align-items: center; gap: 24px; z-index: 1500; transform: translateY(100%); transition: transform 0.4s; }
+    .cookie.show { transform: translateY(0); }
+    .cookie p { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.5; flex: 1; }
+    .cookie p a { color: var(--gold); }
+    .ck-btn { font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; padding: 10px 22px; white-space: nowrap; cursor: pointer; font-weight: 400; }
+    .ck-accept { background: var(--gold); color: #fff; border: none; }
+    .ck-reject { background: transparent; color: rgba(255,255,255,0.4); border: 1px solid rgba(255,255,255,0.15); transition: color 0.2s; }
+    .ck-reject:hover { color: rgba(255,255,255,0.65); }
+
+    /* === RESPONSIVE === */
+    @media (max-width: 1024px) {
+      .nav { padding: 0 32px; }
+      .sobre { padding: 80px 32px; }
+      .sobre-inner { gap: 0 40px; }
+      .servicos { padding: 80px 32px; }
+      .esp-hdr, .esp-nav { padding-left: 32px; padding-right: 32px; }
+      .esp-track { padding: 0 32px; }
+      .depos { padding: 80px 32px; }
+      .galeria { padding: 80px 32px; }
+      .ct-left, .ct-right { padding: 80px 40px; }
+      .footer { padding: 20px 32px; }
+      .cookie { padding: 16px 32px; }
+    }
+    @media (max-width: 768px) {
+      .nav { padding: 0 24px; height: 64px; }
+      .nav-links, .nav-cta { display: none; }
+      .nav-hamburger { display: flex; }
+      .sobre { padding: 72px 24px; }
+      .sobre-inner { grid-template-columns: 1fr; gap: 0; }
+      .sobre-photo { min-height: 320px; height: 320px; }
+      .sobre-divider { display: none; }
+      .sobre-text { padding: 40px 0 0; }
+      .servicos { padding: 72px 24px; }
+      .serv-grid { grid-template-columns: repeat(2, 1fr); }
+      .espacos { padding: 72px 0; }
+      .esp-hdr { padding: 0 24px; }
+      .esp-track { padding: 0 24px; }
+      .esp-card { flex: 0 0 260px; height: 400px; }
+      .esp-nav { padding: 24px 24px 0; }
+      .depos { padding: 72px 24px; }
+      .galeria { padding: 72px 24px; }
+      .contacto { grid-template-columns: 1fr; }
+      .ct-left, .ct-right { padding: 72px 24px; }
+      .footer { padding: 20px 24px; flex-direction: column; gap: 12px; text-align: center; }
+      .cookie { padding: 16px 24px; flex-direction: column; align-items: flex-start; gap: 12px; }
+    }
+    @media (max-width: 480px) {
+      .hero-title { font-size: 36px; }
+      .hero-buttons { flex-direction: column; align-items: center; }
+      .btn-gold, .btn-outline-white { width: 240px; text-align: center; }
+      .serv-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav" role="navigation" aria-label="Navegação principal">
+  <a href="#inicio" class="nav-logo">Divinal ✦ Catering</a>
+  <ul class="nav-links">
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#servicos">Serviços</a></li>
+    <li><a href="#espacos">Espaços</a></li>
+    <li><a href="#galeria">Galeria</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <a href="#contacto" class="nav-cta">Pedir Orçamento</a>
+  <button class="nav-hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="nav-overlay" id="navOverlay" role="dialog" aria-modal="true" aria-label="Menu de navegação">
+  <a href="#sobre" class="overlay-nav-link">Sobre</a>
+  <a href="#servicos" class="overlay-nav-link">Serviços</a>
+  <a href="#espacos" class="overlay-nav-link">Espaços</a>
+  <a href="#galeria" class="overlay-nav-link">Galeria</a>
+  <a href="#contacto" class="overlay-nav-link">Contacto</a>
+  <a href="#contacto" class="overlay-cta">Pedir Orçamento</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="inicio" aria-label="Início">
+  <div class="hero-bg" role="img" aria-label="Mesa elegante decorada para casamento num pavilhão de vidro"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-label">Desde 2010 · Barcelos, Portugal</p>
+    <h1 class="hero-title">O Catering que torna<br>o seu dia Divinal.</h1>
+    <p class="hero-subtitle">Charme, elegância e bom gosto em cada evento.</p>
+    <div class="hero-buttons">
+      <a href="#contacto" class="btn-gold">Pedir Orçamento</a>
+      <a href="#galeria" class="btn-outline-white">Ver o nosso trabalho</a>
+    </div>
+  </div>
+  <div class="hero-scroll-line" aria-hidden="true"></div>
+</section>
+
+<!-- SOBRE -->
+<section class="sobre" id="sobre" aria-label="Sobre nós">
+  <div class="sobre-inner">
+    <div class="reveal">
+      <img
+        src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&auto=format&fit=crop&q=85"
+        alt="Equipa Divinal Catering em serviço num evento elegante"
+        class="sobre-photo"
+        loading="lazy"
+      >
+    </div>
+    <div class="sobre-divider"></div>
+    <div class="sobre-text reveal">
+      <span class="eyebrow">A Nossa História</span>
+      <h2>Uma equipa apaixonada<br>pelo detalhe.</h2>
+      <p>Desde 2010 que o Divinal Catering transforma momentos em memórias eternas. Nascemos em Barcelos com uma missão simples: oferecer o melhor catering do Norte de Portugal, com a qualidade, o rigor e o carinho que cada evento merece.</p>
+      <p>A nossa equipa é formada por profissionais apaixonados pela gastronomia e pelo serviço de excelência. Cada prato é pensado ao pormenor, cada montagem reflete o nosso compromisso com a beleza e a perfeição.</p>
+      <p>Do cocktail de boas-vindas à última dança, estamos presentes em cada momento para garantir que o seu dia seja verdadeiramente inesquecível.</p>
+      <div class="sobre-stats">
+        <div class="sobre-stat">
+          <span class="sobre-stat-n">500+</span>
+          <span class="sobre-stat-l">Eventos</span>
+        </div>
+        <div class="sobre-stat">
+          <span class="sobre-stat-n">15</span>
+          <span class="sobre-stat-l">Anos</span>
+        </div>
+        <div class="sobre-stat">
+          <span class="sobre-stat-n">4.8★</span>
+          <span class="sobre-stat-l">Avaliação</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVIÇOS -->
+<section class="servicos" id="servicos" aria-label="Os nossos serviços">
+  <div class="sec-hdr reveal">
+    <span class="eyebrow">O Que Fazemos</span>
+    <h2>Serviços de Excelência</h2>
+    <p>De casamentos íntimos a grandes eventos corporativos, adaptamo-nos a cada momento com elegância e profissionalismo.</p>
+  </div>
+  <div class="serv-grid">
+    <article class="serv-card reveal">
+      <div class="serv-img"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=600&auto=format&fit=crop&q=80" alt="Casamentos" loading="lazy"></div>
+      <div class="serv-body">
+        <h3 class="serv-name">Casamentos</h3>
+        <p class="serv-desc">O dia mais especial da sua vida merece o catering perfeito. Criamos experiências gastronómicas inesquecíveis.</p>
+      </div>
+    </article>
+    <article class="serv-card reveal">
+      <div class="serv-img"><img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=600&auto=format&fit=crop&q=80" alt="Batizados" loading="lazy"></div>
+      <div class="serv-body">
+        <h3 class="serv-name">Batizados</h3>
+        <p class="serv-desc">Celebre a chegada do novo membro da família com um ambiente caloroso e uma mesa memorável.</p>
+      </div>
+    </article>
+    <article class="serv-card reveal">
+      <div class="serv-img"><img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&auto=format&fit=crop&q=80" alt="Eventos Corporativos" loading="lazy"></div>
+      <div class="serv-body">
+        <h3 class="serv-name">Eventos Corporativos</h3>
+        <p class="serv-desc">Conferências, gala dinners e team buildings com a sofisticação que a sua empresa merece.</p>
+      </div>
+    </article>
+    <article class="serv-card reveal">
+      <div class="serv-img"><img src="https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=600&auto=format&fit=crop&q=80" alt="Cocktails e Receções" loading="lazy"></div>
+      <div class="serv-body">
+        <h3 class="serv-name">Cocktails &amp; Receções</h3>
+        <p class="serv-desc">Passas e finger food selecionados, apresentados com o cuidado estético que nos define.</p>
+      </div>
+    </article>
+    <article class="serv-card reveal">
+      <div class="serv-img"><img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=600&auto=format&fit=crop&q=80" alt="Comunhões" loading="lazy"></div>
+      <div class="serv-body">
+        <h3 class="serv-name">Comunhões</h3>
+        <p class="serv-desc">Momentos de fé e família celebrados com sabor, elegância e atenção a cada detalhe.</p>
+      </div>
+    </article>
+    <article class="serv-card reveal">
+      <div class="serv-img"><img src="https://images.unsplash.com/photo-1529543544282-ea669407fca3?w=600&auto=format&fit=crop&q=80" alt="Festas Privadas" loading="lazy"></div>
+      <div class="serv-body">
+        <h3 class="serv-name">Festas Privadas</h3>
+        <p class="serv-desc">Aniversários, reuniões familiares e celebrações especiais com o nosso toque de distinção.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ESPAÇOS -->
+<section class="espacos" id="espacos" aria-label="Espaços parceiros">
+  <div class="esp-hdr reveal">
+    <span class="eyebrow">Onde Celebramos</span>
+    <h2>Espaços Parceiros</h2>
+  </div>
+  <div class="esp-track" id="espTrack" role="list">
+    <div class="esp-card" role="listitem">
+      <div class="esp-bg" style="background-image:url('https://images.unsplash.com/photo-1505843513577-22bb7d21e455?w=600&auto=format&fit=crop&q=85')" role="img" aria-label="Palácio da Igreja Velha"></div>
+      <div class="esp-overlay"></div>
+      <div class="esp-info">
+        <h3 class="esp-name">Palácio da Igreja Velha</h3>
+        <p class="esp-loc">Barcelos</p>
+        <a href="https://www.palacioigrejavelha.com" target="_blank" rel="noopener" class="esp-link">Ver Espaço →</a>
+      </div>
+    </div>
+    <div class="esp-card" role="listitem">
+      <div class="esp-bg" style="background-image:url('https://images.unsplash.com/photo-1583037189850-1921ae7c6c22?w=600&auto=format&fit=crop&q=85')" role="img" aria-label="Lameiras Eventos"></div>
+      <div class="esp-overlay"></div>
+      <div class="esp-info">
+        <h3 class="esp-name">Lameiras Eventos</h3>
+        <p class="esp-loc">Minho</p>
+        <a href="https://www.lameiraseventos.com" target="_blank" rel="noopener" class="esp-link">Ver Espaço →</a>
+      </div>
+    </div>
+    <div class="esp-card" role="listitem">
+      <div class="esp-bg" style="background-image:url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&auto=format&fit=crop&q=85')" role="img" aria-label="Quinta de Caslopo"></div>
+      <div class="esp-overlay"></div>
+      <div class="esp-info">
+        <h3 class="esp-name">Quinta de Caslopo</h3>
+        <p class="esp-loc">Barcelos</p>
+        <a href="https://www.quintadecaslopo.com" target="_blank" rel="noopener" class="esp-link">Ver Espaço →</a>
+      </div>
+    </div>
+    <div class="esp-card" role="listitem">
+      <div class="esp-bg" style="background-image:url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&auto=format&fit=crop&q=85')" role="img" aria-label="Quinta do Covelo"></div>
+      <div class="esp-overlay"></div>
+      <div class="esp-info">
+        <h3 class="esp-name">Quinta do Covelo</h3>
+        <p class="esp-loc">Braga</p>
+        <a href="https://www.quintadocovelo.com.pt" target="_blank" rel="noopener" class="esp-link">Ver Espaço →</a>
+      </div>
+    </div>
+    <div class="esp-card" role="listitem">
+      <div class="esp-bg" style="background-image:url('https://images.unsplash.com/photo-1586611292717-f828b167408c?w=600&auto=format&fit=crop&q=85')" role="img" aria-label="Quinta das Camélias"></div>
+      <div class="esp-overlay"></div>
+      <div class="esp-info">
+        <h3 class="esp-name">Quinta das Camélias</h3>
+        <p class="esp-loc">Braga</p>
+        <a href="https://www.quintadascamelias.com" target="_blank" rel="noopener" class="esp-link">Ver Espaço →</a>
+      </div>
+    </div>
+    <div class="esp-card" role="listitem">
+      <div class="esp-bg" style="background-image:url('https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=600&auto=format&fit=crop&q=85')" role="img" aria-label="Quinta do Colégio"></div>
+      <div class="esp-overlay"></div>
+      <div class="esp-info">
+        <h3 class="esp-name">Quinta do Colégio</h3>
+        <p class="esp-loc">Vila Nova de Famalicão</p>
+        <a href="https://www.quintadocolegio.com" target="_blank" rel="noopener" class="esp-link">Ver Espaço →</a>
+      </div>
+    </div>
+    <div class="esp-card" role="listitem">
+      <div class="esp-bg" style="background-image:url('https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=600&auto=format&fit=crop&q=85')" role="img" aria-label="Quinta Cardeal"></div>
+      <div class="esp-overlay"></div>
+      <div class="esp-info">
+        <h3 class="esp-name">Quinta Cardeal</h3>
+        <p class="esp-loc">Braga</p>
+        <a href="https://www.quintacardeal.com" target="_blank" rel="noopener" class="esp-link">Ver Espaço →</a>
+      </div>
+    </div>
+  </div>
+  <div class="esp-nav">
+    <button class="esp-arrow" id="espPrev" aria-label="Anterior">←</button>
+    <button class="esp-arrow" id="espNext" aria-label="Seguinte">→</button>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section class="depos" id="depoimentos" aria-label="Testemunhos">
+  <div class="depos-inner">
+    <div class="sec-hdr reveal">
+      <span class="eyebrow">O Que Dizem</span>
+      <h2>Testemunhos</h2>
+    </div>
+    <div class="reveal">
+      <div class="dep-item active" id="dep-0" role="article">
+        <div class="dep-stars" aria-label="5 estrelas">★★★★★</div>
+        <blockquote class="dep-quote">"Desde a entrada da quinta, até à última dança, o Divinal Catering foi excelentemente profissional e atencioso para connosco."</blockquote>
+        <p class="dep-author">Ana &amp; João — Casamento</p>
+      </div>
+      <div class="dep-item" id="dep-1" role="article">
+        <div class="dep-stars" aria-label="5 estrelas">★★★★★</div>
+        <blockquote class="dep-quote">"Não temos palavras suficientes para agradecer. O serviço foi espetacular e impecável do primeiro ao último minuto."</blockquote>
+        <p class="dep-author">Maria &amp; Rui — Casamento</p>
+      </div>
+      <div class="dep-item" id="dep-2" role="article">
+        <div class="dep-stars" aria-label="5 estrelas">★★★★★</div>
+        <blockquote class="dep-quote">"Comida incrível e equipa impecável! Superaram em muito as nossas expectativas."</blockquote>
+        <p class="dep-author">Catarina &amp; Miguel — Casamento</p>
+      </div>
+      <div class="dep-dots" role="tablist" aria-label="Navegar entre testemunhos">
+        <button class="dep-dot active" role="tab" aria-selected="true" data-i="0" aria-label="Testemunho 1"></button>
+        <button class="dep-dot" role="tab" aria-selected="false" data-i="1" aria-label="Testemunho 2"></button>
+        <button class="dep-dot" role="tab" aria-selected="false" data-i="2" aria-label="Testemunho 3"></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALERIA -->
+<section class="galeria" id="galeria" aria-label="Galeria de fotos">
+  <div class="sec-hdr reveal">
+    <span class="eyebrow">O Nosso Trabalho</span>
+    <h2>Galeria</h2>
+    <p>Momentos que ficam para sempre.</p>
+  </div>
+  <div class="gal-grid reveal">
+    <div class="gal-item" tabindex="0" role="button" aria-label="Ver foto 1" data-i="0">
+      <img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=600&auto=format&fit=crop&q=80" alt="Mesa elegante de casamento" loading="lazy">
+      <div class="gal-ov"><span>+</span></div>
+    </div>
+    <div class="gal-item" tabindex="0" role="button" aria-label="Ver foto 2" data-i="1">
+      <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&auto=format&fit=crop&q=80" alt="Serviço de catering" loading="lazy">
+      <div class="gal-ov"><span>+</span></div>
+    </div>
+    <div class="gal-item" tabindex="0" role="button" aria-label="Ver foto 3" data-i="2">
+      <img src="https://images.unsplash.com/photo-1555244162-803834f70033?w=600&auto=format&fit=crop&q=80" alt="Pratos de degustação" loading="lazy">
+      <div class="gal-ov"><span>+</span></div>
+    </div>
+    <div class="gal-item" tabindex="0" role="button" aria-label="Ver foto 4" data-i="3">
+      <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=600&auto=format&fit=crop&q=80" alt="Decoração de casamento" loading="lazy">
+      <div class="gal-ov"><span>+</span></div>
+    </div>
+    <div class="gal-item" tabindex="0" role="button" aria-label="Ver foto 5" data-i="4">
+      <img src="https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=600&auto=format&fit=crop&q=80" alt="Cocktail de boas-vindas" loading="lazy">
+      <div class="gal-ov"><span>+</span></div>
+    </div>
+    <div class="gal-item" tabindex="0" role="button" aria-label="Ver foto 6" data-i="5">
+      <img src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=600&auto=format&fit=crop&q=80" alt="Sobremesas elegantes" loading="lazy">
+      <div class="gal-ov"><span>+</span></div>
+    </div>
+    <div class="gal-item" tabindex="0" role="button" aria-label="Ver foto 7" data-i="6">
+      <img src="https://images.unsplash.com/photo-1452967153771-7eea77b4dcbc?w=600&auto=format&fit=crop&q=80" alt="Jantar de gala" loading="lazy">
+      <div class="gal-ov"><span>+</span></div>
+    </div>
+    <div class="gal-item" tabindex="0" role="button" aria-label="Ver foto 8" data-i="7">
+      <img src="https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?w=600&auto=format&fit=crop&q=80" alt="Buffet" loading="lazy">
+      <div class="gal-ov"><span>+</span></div>
+    </div>
+    <div class="gal-item" tabindex="0" role="button" aria-label="Ver foto 9" data-i="8">
+      <img src="https://images.unsplash.com/photo-1574484284002-952d92456975?w=600&auto=format&fit=crop&q=80" alt="Receção elegante" loading="lazy">
+      <div class="gal-ov"><span>+</span></div>
+    </div>
+  </div>
+  <div class="gal-cta reveal">
+    <a href="https://www.instagram.com/divinalcatering" target="_blank" rel="noopener">Seguir no Instagram →</a>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Visualização de imagem">
+  <button class="lb-close" id="lbClose" aria-label="Fechar">×</button>
+  <button class="lb-prev" id="lbPrev" aria-label="Imagem anterior">‹</button>
+  <img id="lbImg" src="" alt="">
+  <button class="lb-next" id="lbNext" aria-label="Imagem seguinte">›</button>
+</div>
+
+<!-- CONTACTO -->
+<section class="contacto" id="contacto" aria-label="Contacto">
+  <div class="ct-left">
+    <span class="eyebrow reveal">Fale Connosco</span>
+    <h2 class="reveal">Vamos criar algo<br>inesquecível.</h2>
+    <div class="ct-items">
+      <div class="ct-item reveal">
+        <span class="ct-dash">—</span>
+        <div class="ct-txt">
+          <strong>Morada</strong>
+          Zona Industrial 13, 4755-481<br>Rio Covo (Santa Eulália), Barcelos
+        </div>
+      </div>
+      <div class="ct-item reveal">
+        <span class="ct-dash">—</span>
+        <div class="ct-txt">
+          <strong>Telefone</strong>
+          <a href="tel:+351919698505">+351 919 698 505</a>
+        </div>
+      </div>
+      <div class="ct-item reveal">
+        <span class="ct-dash">—</span>
+        <div class="ct-txt">
+          <strong>Email</strong>
+          <a href="mailto:divinalcatering@gmail.com">divinalcatering@gmail.com</a>
+        </div>
+      </div>
+      <div class="ct-item reveal">
+        <span class="ct-dash">—</span>
+        <div class="ct-txt">
+          <strong>Instagram</strong>
+          <a href="https://www.instagram.com/divinalcatering" target="_blank" rel="noopener">@divinalcatering</a>
+        </div>
+      </div>
+      <div class="ct-item reveal">
+        <span class="ct-dash">—</span>
+        <div class="ct-txt">
+          <strong>Área de Cobertura</strong>
+          Barcelos · Vila Nova de Famalicão<br>Braga · Porto
+        </div>
+      </div>
+    </div>
+    <a href="https://wa.me/351919698505" target="_blank" rel="noopener" class="btn-wa reveal" aria-label="Contactar via WhatsApp">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+      Contactar via WhatsApp
+    </a>
+  </div>
+  <div class="ct-right">
+    <h3 class="reveal">Peça o seu orçamento</h3>
+    <form id="ctForm" novalidate>
+      <div class="form-row">
+        <div class="fg reveal">
+          <label for="nome">Nome</label>
+          <input type="text" id="nome" name="nome" placeholder="O seu nome" required autocomplete="name">
+        </div>
+        <div class="fg reveal">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="o.seu@email.com" required autocomplete="email">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="fg reveal">
+          <label for="tel">Telefone</label>
+          <input type="tel" id="tel" name="tel" placeholder="+351 9XX XXX XXX" autocomplete="tel">
+        </div>
+        <div class="fg reveal">
+          <label for="tipo">Tipo de Evento</label>
+          <select id="tipo" name="tipo" required>
+            <option value="" disabled selected>Selecionar</option>
+            <option value="casamento">Casamento</option>
+            <option value="batizado">Batizado</option>
+            <option value="comunhao">Comunhão</option>
+            <option value="corporativo">Evento Corporativo</option>
+            <option value="cocktail">Cocktail / Receção</option>
+            <option value="festa">Festa Privada</option>
+            <option value="outro">Outro</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="fg reveal">
+          <label for="data">Data do Evento</label>
+          <input type="date" id="data" name="data">
+        </div>
+        <div class="fg reveal">
+          <label for="conv">Nº de Convidados</label>
+          <input type="number" id="conv" name="conv" placeholder="Ex: 150" min="1">
+        </div>
+      </div>
+      <div class="fg reveal">
+        <label for="msg">Mensagem</label>
+        <textarea id="msg" name="msg" placeholder="Conte-nos um pouco sobre o seu evento..."></textarea>
+      </div>
+      <button type="submit" class="f-submit reveal">Enviar Pedido</button>
+      <p class="f-note reveal">Respondemos em menos de 24 horas.</p>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer" role="contentinfo">
+  <p>© 2026 Divinal Catering</p>
+  <nav class="footer-links" aria-label="Links legais">
+    <a href="#privacidade">Política de Privacidade</a>
+    <a href="#cookies">Política de Cookies</a>
+  </nav>
+</footer>
+
+<!-- WA FLOAT -->
+<a href="https://wa.me/351919698505" target="_blank" rel="noopener" class="wa-float" aria-label="WhatsApp Divinal Catering">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+</a>
+
+<!-- COOKIE BANNER -->
+<div class="cookie" id="cookie" role="alertdialog" aria-labelledby="ckMsg">
+  <p id="ckMsg">Utilizamos cookies para melhorar a sua experiência. Ao continuar, aceita a nossa <a href="#privacidade">Política de Privacidade</a> e <a href="#cookies">Política de Cookies</a>.</p>
+  <button class="ck-btn ck-reject" id="ckReject">Recusar</button>
+  <button class="ck-btn ck-accept" id="ckAccept">Aceitar</button>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  // NAV SCROLL
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', function () {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  }, { passive: true });
+
+  // HAMBURGER
+  const burger = document.getElementById('hamburger');
+  const overlay = document.getElementById('navOverlay');
+  const closeMenu = function () {
+    burger.classList.remove('open');
+    overlay.classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  };
+  burger.addEventListener('click', function () {
+    const open = overlay.classList.toggle('open');
+    burger.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', String(open));
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  overlay.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', closeMenu); });
+
+  // SCROLL REVEAL
+  var revealObs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(function (el) { revealObs.observe(el); });
+
+  // DEPOIMENTOS
+  var deps = document.querySelectorAll('.dep-item');
+  var dots = document.querySelectorAll('.dep-dot');
+  var cur = 0;
+  function showDep(i) {
+    deps[cur].classList.remove('active');
+    dots[cur].classList.remove('active');
+    dots[cur].setAttribute('aria-selected', 'false');
+    cur = i;
+    deps[cur].classList.add('active');
+    dots[cur].classList.add('active');
+    dots[cur].setAttribute('aria-selected', 'true');
+  }
+  dots.forEach(function (d) { d.addEventListener('click', function () { showDep(+this.dataset.i); }); });
+
+  // ESPAÇOS NAV
+  var track = document.getElementById('espTrack');
+  document.getElementById('espPrev').addEventListener('click', function () { track.scrollBy({ left: -320, behavior: 'smooth' }); });
+  document.getElementById('espNext').addEventListener('click', function () { track.scrollBy({ left: 320, behavior: 'smooth' }); });
+
+  // LIGHTBOX
+  var lb = document.getElementById('lightbox');
+  var lbImg = document.getElementById('lbImg');
+  var items = document.querySelectorAll('.gal-item');
+  var imgs = Array.from(items).map(function (el) {
+    return { src: el.querySelector('img').src, alt: el.querySelector('img').alt };
+  });
+  var lbCur = 0;
+  function openLb(i) {
+    lbCur = i; lbImg.src = imgs[i].src; lbImg.alt = imgs[i].alt;
+    lb.classList.add('open'); document.body.style.overflow = 'hidden';
+  }
+  function closeLb() { lb.classList.remove('open'); document.body.style.overflow = ''; }
+  function prevLb() { lbCur = (lbCur - 1 + imgs.length) % imgs.length; lbImg.src = imgs[lbCur].src; lbImg.alt = imgs[lbCur].alt; }
+  function nextLb() { lbCur = (lbCur + 1) % imgs.length; lbImg.src = imgs[lbCur].src; lbImg.alt = imgs[lbCur].alt; }
+  items.forEach(function (el) {
+    el.addEventListener('click', function () { openLb(+this.dataset.i); });
+    el.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') openLb(+this.dataset.i); });
+  });
+  document.getElementById('lbClose').addEventListener('click', closeLb);
+  document.getElementById('lbPrev').addEventListener('click', prevLb);
+  document.getElementById('lbNext').addEventListener('click', nextLb);
+  lb.addEventListener('click', function (e) { if (e.target === lb) closeLb(); });
+  document.addEventListener('keydown', function (e) {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLb();
+    if (e.key === 'ArrowLeft') prevLb();
+    if (e.key === 'ArrowRight') nextLb();
+  });
+
+  // FORM
+  document.getElementById('ctForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var btn = this.querySelector('.f-submit');
+    var orig = btn.textContent;
+    btn.textContent = 'Mensagem enviada!';
+    btn.style.background = '#4a7c59';
+    setTimeout(function () { btn.textContent = orig; btn.style.background = ''; }, 3000);
+  });
+
+  // COOKIE
+  var ckKey = 'divinal_cookies_v1';
+  var banner = document.getElementById('cookie');
+  if (!localStorage.getItem(ckKey)) {
+    setTimeout(function () { banner.classList.add('show'); }, 1200);
+  }
+  document.getElementById('ckAccept').addEventListener('click', function () {
+    localStorage.setItem(ckKey, 'accepted'); banner.classList.remove('show');
+  });
+  document.getElementById('ckReject').addEventListener('click', function () {
+    localStorage.setItem(ckKey, 'rejected'); banner.classList.remove('show');
+  });
+
+  // ESC closes menu too
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeMenu();
+  });
+}());
+</script>
+</body>
+</html>
