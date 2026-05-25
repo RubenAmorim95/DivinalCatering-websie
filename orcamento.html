@@ -344,9 +344,45 @@
     @media (max-width: 480px) {
       .form-row { grid-template-columns: 1fr; gap: 0; }
     }
+
+    /* === INTRO OVERLAY === */
+    .intro-overlay {
+      position: fixed; inset: 0; z-index: 9999;
+      background: var(--bg-dark);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      pointer-events: none;
+    }
+    .intro-overlay.gone { display: none; }
+    .intro-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(20px, 2.5vw, 30px); font-weight: 300;
+      color: #fff; letter-spacing: 3px;
+      opacity: 0;
+      animation: introLogoIn 0.55s cubic-bezier(0.16,1,0.3,1) 0.12s forwards;
+    }
+    .intro-logo b { color: var(--gold); font-weight: 300; margin: 0 8px; }
+    .intro-line {
+      height: 1px; background: var(--gold); width: 0; margin-top: 18px;
+      animation: introLineGrow 0.5s cubic-bezier(0.16,1,0.3,1) 0.45s forwards;
+    }
+    @keyframes introLogoIn {
+      from { opacity: 0; filter: blur(8px); }
+      to   { opacity: 1; filter: blur(0); }
+    }
+    @keyframes introLineGrow { to { width: 56px; } }
+    @keyframes introFadeOut {
+      from { opacity: 1; }
+      to   { opacity: 0; }
+    }
+    .intro-overlay.leaving { animation: introFadeOut 0.45s ease forwards; }
   </style>
 </head>
 <body>
+<div class="intro-overlay" id="introOverlay" aria-hidden="true">
+  <p class="intro-logo">Divinal <b>✦</b> Catering</p>
+  <div class="intro-line"></div>
+</div>
 
 <!-- NAV -->
 <nav class="nav" id="nav" role="navigation" aria-label="Navegação principal">
@@ -511,6 +547,18 @@
 
 <script>
 (function () {
+  // INTRO OVERLAY
+  (function() {
+    var ov = document.getElementById('introOverlay');
+    if (!ov) return;
+    if (sessionStorage.getItem('dc_intro')) { ov.classList.add('gone'); return; }
+    sessionStorage.setItem('dc_intro', '1');
+    setTimeout(function() {
+      ov.classList.add('leaving');
+      setTimeout(function() { ov.classList.add('gone'); }, 450);
+    }, 1050);
+  }());
+
   'use strict';
 
   // PAGE TRANSITIONS
