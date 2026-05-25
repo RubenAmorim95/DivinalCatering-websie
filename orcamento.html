@@ -125,7 +125,7 @@
 
     /* === HERO === */
     .hero {
-      position: relative; height: 55vh; min-height: 460px;
+      position: relative; height: 45vh; min-height: 380px;
       display: flex; align-items: center; justify-content: center; overflow: hidden;
     }
     .hero-bg {
@@ -140,7 +140,7 @@
     }
     .hero-content .eyebrow { margin-bottom: 20px; }
     .hero-content h1 {
-      font-family: 'Cormorant Garamond', serif; font-size: clamp(44px, 6.5vw, 80px);
+      font-family: 'Cormorant Garamond', serif; font-size: clamp(30px, 4.5vw, 56px);
       font-weight: 300; color: #fff; line-height: 1; margin-bottom: 20px;
     }
     .hero-content p {
@@ -159,7 +159,7 @@
     .sec-hdr .eyebrow { margin-bottom: 16px; }
     .sec-hdr h2 {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(36px, 4vw, 52px); font-weight: 300; color: var(--text-dark); line-height: 1.15;
+      font-size: clamp(26px, 3vw, 40px); font-weight: 300; color: var(--text-dark); line-height: 1.15;
     }
 
     /* === DEPOIMENTOS === */
@@ -219,7 +219,7 @@
 
     /* === CONTACTO SPLIT === */
     .contacto { display: grid; grid-template-columns: 1fr 1fr; }
-    .ct-left { background: var(--bg-dark); padding: 80px 64px; display: flex; flex-direction: column; justify-content: center; }
+    .ct-left { background: var(--bg-dark); padding: 60px 48px; display: flex; flex-direction: column; justify-content: center; }
     .ct-left .eyebrow { margin-bottom: 20px; }
     .ct-left h2 {
       font-family: 'Cormorant Garamond', serif; font-size: clamp(28px, 2.8vw, 44px);
@@ -250,7 +250,7 @@
     .btn-wa svg { width: 18px; height: 18px; fill: currentColor; flex-shrink: 0; }
 
     /* === FORM === */
-    .ct-right { background: #fff; padding: 80px 64px; display: flex; flex-direction: column; justify-content: center; }
+    .ct-right { background: #fff; padding: 60px 48px; display: flex; flex-direction: column; justify-content: center; }
     .ct-right h3 {
       font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 300;
       color: var(--text-dark); margin-bottom: 40px;
@@ -381,70 +381,6 @@
     <p>Resposta garantida em menos de 24 horas.</p>
   </div>
   <div class="hero-scroll-line" aria-hidden="true"></div>
-</section>
-
-<!-- DEPOIMENTOS -->
-<section class="depoimentos" aria-label="Testemunhos">
-  <div class="sec-hdr" data-anim="up">
-    <span class="eyebrow">O Que Dizem</span>
-    <h2>Testemunhos</h2>
-  </div>
-  <div class="dep-grid" data-stagger>
-    <div class="dep-col" data-anim="up">
-      <span class="dep-stars" aria-label="5 estrelas">★★★★★</span>
-      <blockquote class="dep-quote">"Desde a entrada da quinta, até à última dança, o Divinal Catering foi excelentemente profissional e atencioso para connosco."</blockquote>
-      <div class="dep-line" aria-hidden="true"></div>
-      <span class="dep-author">Ana &amp; João</span>
-      <span class="dep-event">Casamento</span>
-    </div>
-    <div class="dep-divider" aria-hidden="true"></div>
-    <div class="dep-col" data-anim="up">
-      <span class="dep-stars" aria-label="5 estrelas">★★★★★</span>
-      <blockquote class="dep-quote">"Não temos palavras suficientes para agradecer. O serviço foi espetacular e impecável do primeiro ao último minuto."</blockquote>
-      <div class="dep-line" aria-hidden="true"></div>
-      <span class="dep-author">Maria &amp; Rui</span>
-      <span class="dep-event">Casamento</span>
-    </div>
-    <div class="dep-divider" aria-hidden="true"></div>
-    <div class="dep-col" data-anim="up">
-      <span class="dep-stars" aria-label="5 estrelas">★★★★★</span>
-      <blockquote class="dep-quote">"Comida incrível e equipa impecável! Superaram em muito as nossas expectativas para o dia mais importante da nossa vida."</blockquote>
-      <div class="dep-line" aria-hidden="true"></div>
-      <span class="dep-author">Catarina &amp; Miguel</span>
-      <span class="dep-event">Casamento</span>
-    </div>
-  </div>
-</section>
-
-<!-- PROCESSO -->
-<section class="processo" aria-label="Como funciona">
-  <div class="sec-hdr" data-anim="up">
-    <span class="eyebrow">Como Funciona</span>
-    <h2>Simples e Sem Stress</h2>
-  </div>
-  <div class="steps-grid" data-stagger>
-    <div class="step" data-anim="up">
-      <span class="step-num">01</span>
-      <h3 class="step-title">Envie o Pedido</h3>
-      <p class="step-desc">Preencha o formulário com os detalhes do seu evento. Quanto mais informação, melhor.</p>
-    </div>
-    <div class="step-connector">
-      <div class="step-line"></div>
-    </div>
-    <div class="step" data-anim="up">
-      <span class="step-num">02</span>
-      <h3 class="step-title">Entramos em Contacto</h3>
-      <p class="step-desc">Em menos de 24 horas, a nossa equipa contacta-o para perceber todos os detalhes.</p>
-    </div>
-    <div class="step-connector">
-      <div class="step-line"></div>
-    </div>
-    <div class="step" data-anim="up">
-      <span class="step-num">03</span>
-      <h3 class="step-title">Criamos o Menu Perfeito</h3>
-      <p class="step-desc">Desenvolvemos uma proposta personalizada à medida das suas necessidades e orçamento.</p>
-    </div>
-  </div>
 </section>
 
 <!-- CONTACTO / FORM -->

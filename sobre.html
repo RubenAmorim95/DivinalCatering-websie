@@ -142,13 +142,13 @@
     .sec-hdr .eyebrow { margin-bottom: 16px; }
     .sec-hdr h2 {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(36px, 4vw, 56px); font-weight: 300;
+      font-size: clamp(26px, 3vw, 40px); font-weight: 300;
       color: var(--text-dark); line-height: 1.15;
     }
 
     /* === HERO === */
     .hero {
-      position: relative; height: 65vh; min-height: 500px;
+      position: relative; height: 52vh; min-height: 500px;
       display: flex; align-items: center; justify-content: center; overflow: hidden;
     }
     .hero-bg {
@@ -163,7 +163,7 @@
     }
     .hero-content .eyebrow { margin-bottom: 24px; }
     .hero-content h1 {
-      font-family: 'Cormorant Garamond', serif; font-size: clamp(44px, 6vw, 72px);
+      font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 5.5vw, 68px);
       font-weight: 300; color: #fff; line-height: 1.1; margin-bottom: 20px;
     }
     .hero-content p {
@@ -178,7 +178,7 @@
     @keyframes scrollPulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
 
     /* === MANIFESTO === */
-    .manifesto { background: #fff; padding: 100px 48px; }
+    .manifesto { background: #fff; padding: 80px 48px; }
     .manifesto-inner { max-width: 800px; margin: 0 auto; text-align: center; }
     .quote-mark {
       font-family: 'Cormorant Garamond', serif; font-size: 120px; font-weight: 300;
@@ -186,7 +186,7 @@
       display: block; user-select: none;
     }
     .manifesto-quote {
-      font-family: 'Cormorant Garamond', serif; font-size: clamp(22px, 2.5vw, 36px);
+      font-family: 'Cormorant Garamond', serif; font-size: clamp(1.3rem, 2vw, 2rem);
       font-style: italic; font-weight: 300; color: var(--text-dark); line-height: 1.5;
       margin-bottom: 40px;
     }
@@ -198,7 +198,7 @@
     }
 
     /* === HISTÓRIA / TIMELINE === */
-    .historia { background: var(--bg-light); padding: 100px 48px; }
+    .historia { background: var(--bg-light); padding: 80px 48px; }
     .timeline { max-width: 900px; margin: 0 auto; position: relative; padding-left: 40px; }
     .timeline::before {
       content: ''; position: absolute; left: 0; top: 8px; bottom: 8px;
@@ -248,7 +248,7 @@
     }
 
     /* === VALORES === */
-    .valores { background: #fff; padding: 100px 48px; }
+    .valores { background: #fff; padding: 64px 48px; }
     .valores-grid {
       max-width: 1100px; margin: 0 auto;
       display: grid; grid-template-columns: 1fr 1fr;
@@ -277,7 +277,7 @@
     .val-desc { font-size: 14px; color: var(--text-muted); line-height: 1.75; }
 
     /* === NÚMEROS === */
-    .numeros { background: var(--bg-dark); padding: 80px 48px; }
+    .numeros { background: var(--bg-dark); padding: 64px 48px; }
     .nums-grid {
       max-width: 1100px; margin: 0 auto;
       display: grid; grid-template-columns: repeat(4, 1fr);
@@ -298,7 +298,7 @@
     }
 
     /* === CTA STRIP === */
-    .cta-strip { background: var(--bg-dark); padding: 100px 48px; text-align: center; }
+    .cta-strip { background: var(--bg-dark); padding: 72px 48px; text-align: center; }
     .cta-strip-line { width: 80px; height: 1px; background: var(--gold); margin: 0 auto 32px; opacity: 0.6; }
     .cta-strip .eyebrow { margin-bottom: 20px; }
     .cta-strip h2 {
@@ -326,6 +326,24 @@
     }
     .wa-float:hover { transform: scale(1.08); }
     .wa-float svg { width: 26px; height: 26px; fill: #fff; }
+
+    /* === DEPOIMENTOS === */
+    .depoimentos { background: #fff; padding: 72px 48px; }
+    .dep-grid {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1px 1fr 1px 1fr;
+      gap: 0 40px; align-items: start;
+    }
+    .dep-divider { background: var(--border); }
+    .dep-col { padding: 0 8px; }
+    .dep-stars { color: var(--gold); font-size: 12px; letter-spacing: 4px; margin-bottom: 20px; display: block; }
+    .dep-quote {
+      font-family: 'Cormorant Garamond', serif; font-size: 19px; font-style: italic;
+      font-weight: 300; color: var(--text-dark); line-height: 1.6; margin-bottom: 24px;
+    }
+    .dep-line { width: 36px; height: 1px; background: var(--gold); margin-bottom: 12px; }
+    .dep-author { font-family: 'Jost', sans-serif; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); font-weight: 500; display: block; margin-bottom: 4px; }
+    .dep-event { font-family: 'Jost', sans-serif; font-size: 11px; color: var(--text-muted); font-weight: 300; }
 
     /* === RESPONSIVE === */
     @media (max-width: 1024px) {
@@ -358,6 +376,12 @@
       .cta-strip { padding: 72px 24px; }
       .footer { padding: 20px 24px; flex-direction: column; gap: 12px; text-align: center; }
       .footer-links { flex-wrap: wrap; justify-content: center; }
+      .depoimentos { padding: 56px 24px; }
+      .dep-grid { grid-template-columns: 1fr; gap: 0; }
+      .dep-divider { display: none; }
+      .dep-col { padding: 32px 0; border-bottom: 1px solid var(--border); }
+      .dep-col:first-child { padding-top: 0; }
+      .dep-col:last-child { border-bottom: none; padding-bottom: 0; }
     }
     @media (max-width: 480px) {
       .nums-grid { grid-template-columns: 1fr; }
@@ -511,6 +535,39 @@
     <div class="num-item" data-anim="up">
       <span class="num-value" data-count="7">0</span>
       <span class="num-label">Espaços Parceiros</span>
+    </div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section class="depoimentos" aria-label="Testemunhos">
+  <div class="sec-hdr" data-anim="up">
+    <span class="eyebrow">O Que Dizem</span>
+    <h2>Testemunhos</h2>
+  </div>
+  <div class="dep-grid" data-stagger>
+    <div class="dep-col" data-anim="up">
+      <span class="dep-stars" aria-label="5 estrelas">★★★★★</span>
+      <blockquote class="dep-quote">"Desde a entrada da quinta, até à última dança, o Divinal Catering foi excelentemente profissional e atencioso para connosco."</blockquote>
+      <div class="dep-line" aria-hidden="true"></div>
+      <span class="dep-author">Ana &amp; João</span>
+      <span class="dep-event">Casamento</span>
+    </div>
+    <div class="dep-divider" aria-hidden="true"></div>
+    <div class="dep-col" data-anim="up">
+      <span class="dep-stars" aria-label="5 estrelas">★★★★★</span>
+      <blockquote class="dep-quote">"Não temos palavras suficientes para agradecer. O serviço foi espetacular e impecável do primeiro ao último minuto."</blockquote>
+      <div class="dep-line" aria-hidden="true"></div>
+      <span class="dep-author">Maria &amp; Rui</span>
+      <span class="dep-event">Casamento</span>
+    </div>
+    <div class="dep-divider" aria-hidden="true"></div>
+    <div class="dep-col" data-anim="up">
+      <span class="dep-stars" aria-label="5 estrelas">★★★★★</span>
+      <blockquote class="dep-quote">"Comida incrível e equipa impecável! Superaram em muito as nossas expectativas para o dia mais importante da nossa vida."</blockquote>
+      <div class="dep-line" aria-hidden="true"></div>
+      <span class="dep-author">Catarina &amp; Miguel</span>
+      <span class="dep-event">Casamento</span>
     </div>
   </div>
 </section>

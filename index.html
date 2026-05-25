@@ -185,17 +185,17 @@
     }
     .hero-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(40px, 6vw, 76px); font-weight: 300;
-      color: #fff; line-height: 1.1; margin-bottom: 20px; letter-spacing: 0.5px;
+      font-size: clamp(30px, 4.2vw, 54px); font-weight: 300;
+      color: #fff; line-height: 1.1; margin-bottom: 18px; letter-spacing: 0.5px;
     }
     .hero-subtitle {
-      font-family: 'Jost', sans-serif; font-size: 15px; font-weight: 300;
-      color: rgba(255,255,255,0.72); letter-spacing: 1px; margin-bottom: 44px;
+      font-family: 'Jost', sans-serif; font-size: 13px; font-weight: 300;
+      color: rgba(255,255,255,0.72); letter-spacing: 1px; margin-bottom: 36px;
     }
-    .hero-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .hero-buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
     .btn-gold {
-      font-family: 'Jost', sans-serif; font-size: 11px; font-weight: 400;
-      letter-spacing: 2px; text-transform: uppercase; padding: 16px 36px;
+      font-family: 'Jost', sans-serif; font-size: 10px; font-weight: 400;
+      letter-spacing: 2px; text-transform: uppercase; padding: 13px 28px;
       background: var(--gold); color: #fff;
       position: relative; overflow: hidden; display: inline-block;
     }
@@ -206,8 +206,8 @@
     }
     .btn-gold:hover::after { left: 100%; }
     .btn-outline-white {
-      font-family: 'Jost', sans-serif; font-size: 11px; font-weight: 400;
-      letter-spacing: 2px; text-transform: uppercase; padding: 16px 36px;
+      font-family: 'Jost', sans-serif; font-size: 10px; font-weight: 400;
+      letter-spacing: 2px; text-transform: uppercase; padding: 13px 28px;
       border: 1px solid rgba(255,255,255,0.5); color: #fff;
       transition: border-color 0.3s, background 0.3s; display: inline-block;
     }
@@ -220,15 +220,15 @@
     @keyframes scrollPulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
 
     /* === SECTION HEADER === */
-    .sec-hdr { text-align: center; margin-bottom: 72px; }
-    .sec-hdr .eyebrow { margin-bottom: 16px; }
+    .sec-hdr { text-align: center; margin-bottom: 52px; }
+    .sec-hdr .eyebrow { margin-bottom: 14px; }
     .sec-hdr h2 {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(36px, 4vw, 56px); font-weight: 300;
-      color: var(--text-dark); margin-bottom: 16px;
+      font-size: clamp(28px, 3vw, 42px); font-weight: 300;
+      color: var(--text-dark); margin-bottom: 14px;
     }
     .sec-hdr h2.white { color: #fff; }
-    .sec-hdr p { font-size: 15px; color: var(--text-muted); max-width: 480px; margin: 0 auto; line-height: 1.7; }
+    .sec-hdr p { font-size: 14px; color: var(--text-muted); max-width: 480px; margin: 0 auto; line-height: 1.7; }
 
     /* === GRADIENT HEADING === */
     .gradient-heading {
@@ -240,42 +240,42 @@
     }
 
     /* === SERVIÇOS — STACKING CARDS === */
-    .servicos { background: var(--bg-light); padding: 120px 0 0; }
-    .servicos-hdr { text-align: center; padding: 0 48px 88px; }
-    .servicos-hdr .eyebrow { margin-bottom: 16px; }
+    .servicos { background: var(--bg-light); padding: 80px 0 0; }
+    .servicos-hdr { text-align: center; padding: 0 48px 60px; }
+    .servicos-hdr .eyebrow { margin-bottom: 14px; }
     .servicos-hdr h2 {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(64px, 9vw, 128px); font-weight: 300;
-      line-height: 1; letter-spacing: -0.01em; margin-bottom: 20px;
+      font-size: clamp(44px, 6vw, 84px); font-weight: 300;
+      line-height: 1; letter-spacing: -0.01em; margin-bottom: 16px;
     }
-    .servicos-hdr p { font-size: 15px; color: var(--text-muted); max-width: 480px; margin: 0 auto; line-height: 1.7; }
+    .servicos-hdr p { font-size: 14px; color: var(--text-muted); max-width: 480px; margin: 0 auto; line-height: 1.7; }
 
     /* Stack container — no wrappers; all cards live here directly */
     .serv-stack { position: relative; padding: 0 48px; padding-bottom: 60px; }
 
     .serv-sc {
       /* top + height set by JS on desktop */
-      max-width: 1160px; margin: 0 auto;
+      max-width: 1100px; margin: 0 auto;
       background: #fff;
       border: 1px solid var(--border);
-      border-radius: 28px;
-      padding: 26px 36px 30px;
+      border-radius: 22px;
+      padding: 20px 28px 24px;
       transform-origin: top center;
       will-change: transform;
       overflow: hidden;
-      box-shadow: 0 2px 32px rgba(184,151,58,0.07);
+      box-shadow: 0 2px 24px rgba(184,151,58,0.06);
       display: flex;
       flex-direction: column;
     }
     .serv-sc-top {
       flex-shrink: 0;
-      display: flex; align-items: baseline; gap: 20px; flex-wrap: wrap;
-      padding-bottom: 16px; margin-bottom: 20px;
+      display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap;
+      padding-bottom: 12px; margin-bottom: 16px;
       border-bottom: 1px solid var(--border);
     }
     .serv-sc-num {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(48px, 7vw, 96px); font-weight: 300;
+      font-size: clamp(34px, 5vw, 68px); font-weight: 300;
       color: var(--gold); line-height: 0.9; opacity: 0.45; flex-shrink: 0;
     }
     .serv-sc-tag {
@@ -284,51 +284,77 @@
     }
     .serv-sc-name {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(26px, 3.2vw, 50px); font-weight: 400;
+      font-size: clamp(20px, 2.4vw, 36px); font-weight: 400;
       color: var(--text-dark); line-height: 1; flex: 2;
     }
     .serv-sc-link {
       font-family: 'Jost', sans-serif; font-size: 9px;
       letter-spacing: 2px; text-transform: uppercase;
-      padding: 9px 20px; border: 1px solid var(--gold); color: var(--gold);
+      padding: 7px 16px; border: 1px solid var(--gold); color: var(--gold);
       white-space: nowrap; transition: background 0.3s; align-self: center;
       display: inline-block;
     }
     .serv-sc-link:hover { background: rgba(184,151,58,0.07); }
-    /* Body fills remaining card height */
     .serv-sc-body {
       flex: 1; min-height: 0;
-      display: flex; gap: 28px; align-items: stretch; overflow: hidden;
+      display: flex; gap: 24px; align-items: stretch; overflow: hidden;
     }
     .serv-sc-imgs {
-      flex: 0 0 40%; border-radius: 16px; overflow: hidden;
+      flex: 0 0 40%; border-radius: 14px; overflow: hidden;
       background-color: #EDE8DF;
-      /* height fills flex — no fixed height */
     }
     .serv-sc-imgs img { width: 100%; height: 100%; object-fit: cover; font-size: 0; }
     .serv-sc-text {
       flex: 1; display: flex; align-items: center; overflow: hidden;
     }
     .serv-sc-desc {
-      font-size: clamp(14px, 1.25vw, 19px);
-      color: var(--text-dark); line-height: 1.8; font-weight: 300;
+      font-size: clamp(13px, 1.1vw, 17px);
+      color: var(--text-dark); line-height: 1.75; font-weight: 300;
     }
     .anim-char { display: inline; transition: opacity 0.08s linear; }
 
     /* === ESPAÇOS === */
-    .espacos { background: var(--bg-dark); padding: 120px 0; overflow: hidden; }
-    .esp-hdr { padding: 0 48px; margin-bottom: 56px; }
-    .esp-hdr .eyebrow { margin-bottom: 16px; }
+    .espacos { background: var(--bg-dark); padding: 80px 0; overflow: hidden; }
+    .esp-hdr { padding: 0 48px; margin-bottom: 44px; }
+    .esp-hdr .eyebrow { margin-bottom: 14px; }
     .esp-hdr h2 {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(36px, 4vw, 56px); font-weight: 300; color: #fff;
+      font-size: clamp(28px, 3vw, 42px); font-weight: 300; color: #fff;
     }
     .esp-track {
-      display: flex; gap: 20px; overflow-x: auto; scroll-behavior: smooth;
+      display: flex; gap: 16px; overflow-x: auto; scroll-behavior: smooth;
       padding: 0 48px; scrollbar-width: none; -ms-overflow-style: none;
     }
     .esp-track::-webkit-scrollbar { display: none; }
-    .esp-card { flex: 0 0 300px; height: 480px; position: relative; overflow: hidden; }
+    .esp-card { flex: 0 0 240px; height: 360px; position: relative; overflow: hidden; }
+
+    /* === COMO FUNCIONA === */
+    .processo { background: var(--bg-light); padding: 80px 48px; }
+    .steps-grid {
+      max-width: 1100px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr auto 1fr;
+      gap: 0 16px; align-items: start;
+    }
+    .step-connector {
+      align-self: center; padding-top: 14px;
+      display: flex; align-items: center;
+    }
+    .step-line {
+      width: 100%; height: 1px; min-width: 20px;
+      background: repeating-linear-gradient(to right, var(--gold) 0px, var(--gold) 5px, transparent 5px, transparent 10px);
+      opacity: 0.45;
+    }
+    .step { text-align: center; }
+    .step-num {
+      font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 300;
+      color: var(--gold); line-height: 1; margin-bottom: 12px; display: block;
+    }
+    .step-title {
+      font-family: 'Cormorant Garamond', serif; font-size: 17px; font-weight: 400;
+      color: var(--text-dark); margin-bottom: 8px;
+    }
+    .step-desc { font-size: 12px; color: var(--text-muted); line-height: 1.65; max-width: 180px; margin: 0 auto; }
     .esp-bg {
       position: absolute; inset: 0; background-color: #2A2520;
       background-size: cover; background-position: center; transition: transform 0.5s;
@@ -359,18 +385,18 @@
 
     /* === CTA STRIP === */
     .cta-strip {
-      background: var(--bg-dark); padding: 100px 48px;
+      background: var(--bg-dark); padding: 72px 48px;
       text-align: center;
     }
     .cta-strip-line {
-      width: 80px; height: 1px; background: var(--gold);
-      margin: 0 auto 32px; opacity: 0.6;
+      width: 60px; height: 1px; background: var(--gold);
+      margin: 0 auto 24px; opacity: 0.6;
     }
-    .cta-strip .eyebrow { margin-bottom: 20px; }
+    .cta-strip .eyebrow { margin-bottom: 16px; }
     .cta-strip h2 {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(36px, 4vw, 56px); font-weight: 300; color: #fff;
-      margin-bottom: 44px; line-height: 1.15;
+      font-size: clamp(26px, 3vw, 40px); font-weight: 300; color: #fff;
+      margin-bottom: 36px; line-height: 1.15;
     }
     .cta-strip-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
 
@@ -420,12 +446,13 @@
     /* === RESPONSIVE === */
     @media (max-width: 1024px) {
       .nav { padding: 0 32px; }
-      .servicos { padding: 80px 0 0; }
-      .servicos-hdr { padding: 0 32px 64px; }
-      .serv-stack { padding: 0 32px 48px; }
+      .servicos { padding: 64px 0 0; }
+      .servicos-hdr { padding: 0 32px 48px; }
+      .serv-stack { padding: 0 32px 40px; }
       .esp-hdr, .esp-nav { padding-left: 32px; padding-right: 32px; }
       .esp-track { padding: 0 32px; }
-      .cta-strip { padding: 80px 32px; }
+      .processo { padding: 64px 32px; }
+      .cta-strip { padding: 64px 32px; }
       .footer { padding: 20px 32px; }
       .cookie { padding: 16px 32px; }
     }
@@ -433,23 +460,25 @@
       .nav { padding: 0 24px; height: 64px; }
       .nav-links, .nav-cta { display: none; }
       .nav-hamburger { display: flex; }
-      .servicos { padding: 64px 0 0; }
-      .servicos-hdr { padding: 0 24px 48px; }
-      .serv-stack { padding: 0 16px 32px; }
-      /* On mobile: normal document flow, no stacking */
+      .servicos { padding: 56px 0 0; }
+      .servicos-hdr { padding: 0 24px 40px; }
+      .serv-stack { padding: 0 16px 24px; }
       .serv-sc {
         position: relative !important; top: auto !important;
         height: auto !important; transform: none !important;
-        border-radius: 20px; padding: 20px 22px 24px; margin-bottom: 16px;
+        border-radius: 16px; padding: 18px 20px 22px; margin-bottom: 14px;
       }
       .serv-sc-body { flex-direction: column; }
-      .serv-sc-imgs { height: 200px; flex: none; }
-      .espacos { padding: 72px 0; }
+      .serv-sc-imgs { height: 180px; flex: none; }
+      .espacos { padding: 56px 0; }
       .esp-hdr { padding: 0 24px; }
       .esp-track { padding: 0 24px; }
-      .esp-card { flex: 0 0 260px; height: 400px; }
-      .esp-nav { padding: 24px 24px 0; }
-      .cta-strip { padding: 72px 24px; }
+      .esp-card { flex: 0 0 220px; height: 320px; }
+      .esp-nav { padding: 20px 24px 0; }
+      .processo { padding: 56px 24px; }
+      .steps-grid { grid-template-columns: 1fr; gap: 24px 0; }
+      .step-connector { display: none; }
+      .cta-strip { padding: 56px 24px; }
       .footer { padding: 20px 24px; flex-direction: column; gap: 12px; text-align: center; }
       .footer-links { flex-wrap: wrap; justify-content: center; }
       .cookie { padding: 16px 24px; flex-direction: column; align-items: flex-start; gap: 12px; }
@@ -693,6 +722,46 @@
   </div>
 </section>
 
+<!-- COMO FUNCIONA -->
+<section class="processo" id="como-funciona" aria-label="Como funciona">
+  <div class="sec-hdr" data-anim="up">
+    <span class="eyebrow">Como Funciona</span>
+    <h2>Simples e Sem Stress</h2>
+    <p>Do primeiro contacto ao dia especial, acompanhamos cada passo com dedicação.</p>
+  </div>
+  <div class="steps-grid" data-stagger>
+    <div class="step" data-anim="up">
+      <span class="step-num">01</span>
+      <h3 class="step-title">Envie o Pedido</h3>
+      <p class="step-desc">Preencha o formulário com os detalhes do seu evento. Quanto mais informação, melhor.</p>
+    </div>
+    <div class="step-connector"><div class="step-line"></div></div>
+    <div class="step" data-anim="up">
+      <span class="step-num">02</span>
+      <h3 class="step-title">Entramos em Contacto</h3>
+      <p class="step-desc">Em menos de 24 horas, a nossa equipa contacta-o para perceber todos os detalhes.</p>
+    </div>
+    <div class="step-connector"><div class="step-line"></div></div>
+    <div class="step" data-anim="up">
+      <span class="step-num">03</span>
+      <h3 class="step-title">Criamos o Menu Perfeito</h3>
+      <p class="step-desc">Desenvolvemos uma proposta personalizada à medida das suas necessidades e orçamento.</p>
+    </div>
+    <div class="step-connector"><div class="step-line"></div></div>
+    <div class="step" data-anim="up">
+      <span class="step-num">04</span>
+      <h3 class="step-title">Prova de Menus</h3>
+      <p class="step-desc">Realizamos uma prova privada para afinar cada sabor e garantir que tudo está perfeito.</p>
+    </div>
+    <div class="step-connector"><div class="step-line"></div></div>
+    <div class="step" data-anim="up">
+      <span class="step-num">05</span>
+      <h3 class="step-title">O Dia Especial</h3>
+      <p class="step-desc">A nossa equipa trata de tudo, para que só tenha de desfrutar de cada momento.</p>
+    </div>
+  </div>
+</section>
+
 <!-- CTA STRIP -->
 <section class="cta-strip" aria-label="Chamada para ação">
   <div class="cta-strip-line" aria-hidden="true"></div>
@@ -790,7 +859,7 @@
     if (!stack) return;
     var cards = Array.from(stack.querySelectorAll('.serv-sc'));
     var total = cards.length;
-    var BASE = 100, STEP = 20, SCALE = 0.013;
+    var BASE = 80, STEP = 14, SCALE = 0.013;
 
     function isMob() { return window.innerWidth < 769; }
 
@@ -815,7 +884,7 @@
         var top = BASE + i * STEP;
         c.style.position = 'sticky';
         c.style.top = top + 'px';
-        c.style.height = (vh - top) + 'px';
+        c.style.height = Math.round(vh * 0.80 - top) + 'px';
         c.style.zIndex = i + 1;
         c.style.transform = '';
       });
