@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pedir Orçamento — Divinal Catering | Resposta em 24 horas</title>
+  <meta name="description" content="Peça o seu orçamento ao Divinal Catering. Resposta garantida em menos de 24 horas. Casamentos, batizados, eventos corporativos e mais.">
+  <meta property="og:title" content="Pedir Orçamento — Divinal Catering">
+  <meta property="og:description" content="Vamos criar algo único. Resposta garantida em menos de 24 horas.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_PT">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg-light: #FAFAF7;
+      --bg-dark: #0F0E0C;
+      --gold: #B8973A;
+      --text-dark: #1C1B18;
+      --text-muted: #7A7168;
+      --border: rgba(184,151,58,0.2);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Jost', sans-serif; font-weight: 300;
+      color: var(--text-dark); background: var(--bg-light);
+      overflow-x: hidden; -webkit-font-smoothing: antialiased;
+      opacity: 0; animation: pageIn 0.5s ease forwards;
+    }
+    @keyframes pageIn { to { opacity: 1; } }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+    button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+    /* === ANIMATION SYSTEM === */
+    [data-anim] {
+      opacity: 0;
+      transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1);
+    }
+    [data-anim="up"] { transform: translateY(60px); }
+    [data-anim="left"] { transform: translateX(-50px); }
+    [data-anim="right"] { transform: translateX(50px); }
+    [data-anim="scale"] { transform: scale(0.88); }
+    [data-anim].in { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) {
+      [data-anim] { opacity: 1; transform: none; transition: none; }
+      body { animation: none; opacity: 1; }
+      .hero-scroll-line { animation: none !important; }
+    }
+
+    /* === EYEBROW === */
+    .eyebrow {
+      font-family: 'Jost', sans-serif; font-size: 10px; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--gold); font-weight: 500; display: block;
+    }
+
+    /* === NAV === */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 0 48px; height: 72px;
+      display: flex; align-items: center; justify-content: space-between;
+      transition: background 0.3s, border-color 0.3s;
+      border-bottom: 1px solid transparent;
+    }
+    .nav.scrolled { background: #fff; border-bottom-color: var(--border); }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 400;
+      color: #fff; letter-spacing: 1px; transition: color 0.3s; white-space: nowrap;
+    }
+    .nav.scrolled .nav-logo { color: var(--text-dark); }
+    .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+    .nav-links a {
+      font-family: 'Jost', sans-serif; font-size: 11px; font-weight: 400;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: rgba(255,255,255,0.8); transition: color 0.3s;
+      padding-bottom: 2px; border-bottom: 1px solid transparent;
+    }
+    .nav-links a:hover { color: #fff; }
+    .nav-links a.nav-active { color: var(--gold); border-bottom-color: var(--gold); }
+    .nav.scrolled .nav-links a { color: var(--text-muted); }
+    .nav.scrolled .nav-links a:hover { color: var(--text-dark); }
+    .nav.scrolled .nav-links a.nav-active { color: var(--gold); border-bottom-color: var(--gold); }
+    .nav-cta {
+      font-family: 'Jost', sans-serif; font-size: 11px; font-weight: 400;
+      letter-spacing: 2px; text-transform: uppercase;
+      padding: 10px 22px; border: 1px solid var(--gold); color: var(--gold);
+      transition: background 0.3s; position: relative; overflow: hidden;
+    }
+    .nav-cta::after {
+      content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(184,151,58,0.15), transparent);
+      transition: left 0.4s;
+    }
+    .nav-cta:hover::after { left: 100%; }
+    .nav-hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      width: 28px; cursor: pointer; padding: 4px 0;
+    }
+    .nav-hamburger span {
+      display: block; width: 100%; height: 1px; background: #fff;
+      transition: background 0.3s, transform 0.3s, opacity 0.3s;
+    }
+    .nav.scrolled .nav-hamburger span { background: var(--text-dark); }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+    .nav-overlay {
+      position: fixed; inset: 0; background: var(--bg-light); z-index: 999;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 36px; opacity: 0; pointer-events: none; transition: opacity 0.3s;
+    }
+    .nav-overlay.open { opacity: 1; pointer-events: all; }
+    .nav-overlay a {
+      font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 300;
+      color: var(--text-dark); transition: color 0.2s;
+    }
+    .nav-overlay a:hover, .nav-overlay a.nav-active { color: var(--gold); }
+    .nav-overlay .overlay-cta {
+      font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 2px;
+      text-transform: uppercase; padding: 14px 36px;
+      border: 1px solid var(--gold); color: var(--gold); margin-top: 8px;
+    }
+
+    /* === HERO === */
+    .hero {
+      position: relative; height: 55vh; min-height: 460px;
+      display: flex; align-items: center; justify-content: center; overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; background-color: #1E1B14;
+      background-image: url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=1920&auto=format&fit=crop&q=85');
+      background-size: cover; background-position: center;
+    }
+    .hero-overlay { position: absolute; inset: 0; background: rgba(10,9,7,0.62); }
+    .hero-content {
+      position: relative; z-index: 1; text-align: center;
+      padding: 0 24px; max-width: 700px;
+    }
+    .hero-content .eyebrow { margin-bottom: 20px; }
+    .hero-content h1 {
+      font-family: 'Cormorant Garamond', serif; font-size: clamp(44px, 6.5vw, 80px);
+      font-weight: 300; color: #fff; line-height: 1; margin-bottom: 20px;
+    }
+    .hero-content p {
+      font-family: 'Jost', sans-serif; font-size: 15px; font-weight: 300;
+      color: rgba(255,255,255,0.7); letter-spacing: 0.5px;
+    }
+    .hero-scroll-line {
+      position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+      width: 1px; height: 60px; background: var(--gold);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+    @keyframes scrollPulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
+
+    /* === SECTION HEADER === */
+    .sec-hdr { text-align: center; margin-bottom: 64px; }
+    .sec-hdr .eyebrow { margin-bottom: 16px; }
+    .sec-hdr h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 4vw, 52px); font-weight: 300; color: var(--text-dark); line-height: 1.15;
+    }
+
+    /* === DEPOIMENTOS === */
+    .depoimentos { background: #fff; padding: 100px 48px; }
+    .dep-grid {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1px 1fr 1px 1fr;
+      gap: 0 48px; align-items: start;
+    }
+    .dep-divider { background: var(--border); }
+    .dep-col { padding: 0 8px; }
+    .dep-stars {
+      color: var(--gold); font-size: 13px; letter-spacing: 4px;
+      margin-bottom: 24px; display: block;
+    }
+    .dep-quote {
+      font-family: 'Cormorant Garamond', serif; font-size: 22px; font-style: italic;
+      font-weight: 300; color: var(--text-dark); line-height: 1.6; margin-bottom: 28px;
+    }
+    .dep-line { width: 40px; height: 1px; background: var(--gold); margin-bottom: 14px; }
+    .dep-author {
+      font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--gold); font-weight: 500; display: block;
+      margin-bottom: 4px;
+    }
+    .dep-event {
+      font-family: 'Jost', sans-serif; font-size: 11px; color: var(--text-muted);
+      font-weight: 300;
+    }
+
+    /* === PROCESSO === */
+    .processo { background: var(--bg-light); padding: 80px 48px; }
+    .steps-grid {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr auto 1fr auto 1fr;
+      gap: 0 24px; align-items: start;
+    }
+    .step-connector {
+      align-self: center; padding-top: 16px;
+      display: flex; align-items: center; padding-bottom: 0;
+    }
+    .step-line {
+      width: 100%; height: 1px;
+      background: repeating-linear-gradient(to right, var(--gold) 0px, var(--gold) 6px, transparent 6px, transparent 12px);
+      opacity: 0.5; min-width: 32px;
+    }
+    .step { text-align: center; }
+    .step-num {
+      font-family: 'Cormorant Garamond', serif; font-size: 48px; font-weight: 300;
+      color: var(--gold); line-height: 1; margin-bottom: 16px; display: block;
+    }
+    .step-title {
+      font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 400;
+      color: var(--text-dark); margin-bottom: 10px;
+    }
+    .step-desc { font-size: 13px; color: var(--text-muted); line-height: 1.7; max-width: 240px; margin: 0 auto; }
+
+    /* === CONTACTO SPLIT === */
+    .contacto { display: grid; grid-template-columns: 1fr 1fr; }
+    .ct-left { background: var(--bg-dark); padding: 80px 64px; display: flex; flex-direction: column; justify-content: center; }
+    .ct-left .eyebrow { margin-bottom: 20px; }
+    .ct-left h2 {
+      font-family: 'Cormorant Garamond', serif; font-size: clamp(28px, 2.8vw, 44px);
+      font-weight: 300; color: #fff; margin-bottom: 48px; line-height: 1.15;
+    }
+    .ct-items { display: flex; flex-direction: column; }
+    .ct-item {
+      display: flex; gap: 16px; align-items: flex-start;
+      padding: 16px 0; border-bottom: 1px solid rgba(184,151,58,0.12);
+    }
+    .ct-item:first-child { border-top: 1px solid rgba(184,151,58,0.12); }
+    .ct-dash { color: var(--gold); font-size: 18px; font-family: 'Cormorant Garamond', serif; line-height: 1.4; flex-shrink: 0; }
+    .ct-txt { font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.65; }
+    .ct-txt strong {
+      display: block; color: rgba(255,255,255,0.88); font-weight: 400;
+      font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 3px;
+    }
+    .ct-txt a { color: rgba(255,255,255,0.6); transition: color 0.2s; }
+    .ct-txt a:hover { color: var(--gold); }
+    .btn-wa {
+      margin-top: 40px; display: inline-flex; align-items: center; gap: 12px;
+      background: #25D366; color: #fff; padding: 16px 28px;
+      font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 2px;
+      text-transform: uppercase; font-weight: 400; transition: opacity 0.3s;
+      align-self: flex-start;
+    }
+    .btn-wa:hover { opacity: 0.88; }
+    .btn-wa svg { width: 18px; height: 18px; fill: currentColor; flex-shrink: 0; }
+
+    /* === FORM === */
+    .ct-right { background: #fff; padding: 80px 64px; display: flex; flex-direction: column; justify-content: center; }
+    .ct-right h3 {
+      font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 300;
+      color: var(--text-dark); margin-bottom: 40px;
+    }
+    .fg { margin-bottom: 28px; }
+    .fg label {
+      display: block; font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--text-muted); margin-bottom: 8px; font-weight: 500;
+    }
+    .fg input, .fg select, .fg textarea {
+      width: 100%; border: none; border-bottom: 1px solid rgba(122,113,104,0.3);
+      padding: 10px 0; font-family: 'Jost', sans-serif; font-size: 14px;
+      font-weight: 300; color: var(--text-dark); background: transparent;
+      outline: none; transition: border-color 0.3s;
+      -webkit-appearance: none; appearance: none; border-radius: 0;
+    }
+    .fg input:focus, .fg select:focus, .fg textarea:focus { border-bottom-color: var(--gold); }
+    .fg textarea { resize: none; height: 88px; }
+    .fg select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237A7168' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 4px center;
+      padding-right: 24px; cursor: pointer;
+    }
+    .fg select option { color: var(--text-dark); background: #fff; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .f-submit {
+      width: 100%; padding: 16px; background: var(--gold); color: #fff;
+      font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 2px;
+      text-transform: uppercase; font-weight: 400; cursor: pointer;
+      margin-top: 8px; position: relative; overflow: hidden; border: none;
+      transition: background 0.3s;
+    }
+    .f-submit::after {
+      content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.22), transparent);
+      transition: left 0.4s;
+    }
+    .f-submit:hover::after { left: 100%; }
+    .f-submit.success { background: #3d7a52; }
+    .f-note {
+      margin-top: 12px; font-size: 12px; font-style: italic;
+      color: var(--text-muted); text-align: center;
+    }
+
+    /* === FOOTER === */
+    .footer {
+      background: var(--bg-dark); border-top: 1px solid rgba(184,151,58,0.1);
+      padding: 24px 48px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .footer p { font-size: 12px; color: rgba(255,255,255,0.3); }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { font-size: 12px; color: rgba(255,255,255,0.3); transition: color 0.2s; }
+    .footer-links a:hover { color: var(--gold); }
+
+    /* === WA FLOAT === */
+    .wa-float {
+      position: fixed; bottom: 28px; right: 28px; width: 52px; height: 52px;
+      background: #25D366; border-radius: 50%; display: flex; align-items: center;
+      justify-content: center; z-index: 900; box-shadow: 0 4px 20px rgba(37,211,102,0.35);
+      transition: transform 0.2s;
+    }
+    .wa-float:hover { transform: scale(1.08); }
+    .wa-float svg { width: 26px; height: 26px; fill: #fff; }
+
+    /* === RESPONSIVE === */
+    @media (max-width: 1024px) {
+      .nav { padding: 0 32px; }
+      .depoimentos { padding: 80px 32px; }
+      .processo { padding: 64px 32px; }
+      .ct-left, .ct-right { padding: 72px 40px; }
+      .footer { padding: 20px 32px; }
+    }
+    @media (max-width: 768px) {
+      .nav { padding: 0 24px; height: 64px; }
+      .nav-links, .nav-cta { display: none; }
+      .nav-hamburger { display: flex; }
+      .depoimentos { padding: 72px 24px; }
+      .dep-grid { grid-template-columns: 1fr; gap: 0; }
+      .dep-divider { display: none; }
+      .dep-col { padding: 40px 0; border-bottom: 1px solid var(--border); }
+      .dep-col:first-child { padding-top: 0; }
+      .dep-col:last-child { border-bottom: none; padding-bottom: 0; }
+      .processo { padding: 64px 24px; }
+      .steps-grid { grid-template-columns: 1fr; gap: 48px; }
+      .step-connector { display: none; }
+      .contacto { grid-template-columns: 1fr; }
+      .ct-left, .ct-right { padding: 64px 24px; }
+      .footer { padding: 20px 24px; flex-direction: column; gap: 12px; text-align: center; }
+      .footer-links { flex-wrap: wrap; justify-content: center; }
+    }
+    @media (max-width: 480px) {
+      .form-row { grid-template-columns: 1fr; gap: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav" role="navigation" aria-label="Navegação principal">
+  <a href="index.html" class="nav-logo">Divinal ✦ Catering</a>
+  <ul class="nav-links">
+    <li><a href="sobre.html">Sobre</a></li>
+    <li><a href="index.html#servicos">Serviços</a></li>
+    <li><a href="index.html#espacos">Espaços</a></li>
+    <li><a href="galeria.html">Galeria</a></li>
+  </ul>
+  <a href="orcamento.html" class="nav-cta">Pedir Orçamento</a>
+  <button class="nav-hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="nav-overlay" id="navOverlay" role="dialog" aria-modal="true" aria-label="Menu de navegação">
+  <a href="sobre.html">Sobre</a>
+  <a href="index.html#servicos">Serviços</a>
+  <a href="index.html#espacos">Espaços</a>
+  <a href="galeria.html">Galeria</a>
+  <a href="orcamento.html" class="overlay-cta">Pedir Orçamento</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" aria-label="Pedir orçamento">
+  <div class="hero-bg" role="img" aria-label="Decoração nupcial elegante"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <span class="eyebrow">Vamos Criar Algo Único</span>
+    <h1>Pedir Orçamento</h1>
+    <p>Resposta garantida em menos de 24 horas.</p>
+  </div>
+  <div class="hero-scroll-line" aria-hidden="true"></div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section class="depoimentos" aria-label="Testemunhos">
+  <div class="sec-hdr" data-anim="up">
+    <span class="eyebrow">O Que Dizem</span>
+    <h2>Testemunhos</h2>
+  </div>
+  <div class="dep-grid" data-stagger>
+    <div class="dep-col" data-anim="up">
+      <span class="dep-stars" aria-label="5 estrelas">★★★★★</span>
+      <blockquote class="dep-quote">"Desde a entrada da quinta, até à última dança, o Divinal Catering foi excelentemente profissional e atencioso para connosco."</blockquote>
+      <div class="dep-line" aria-hidden="true"></div>
+      <span class="dep-author">Ana &amp; João</span>
+      <span class="dep-event">Casamento</span>
+    </div>
+    <div class="dep-divider" aria-hidden="true"></div>
+    <div class="dep-col" data-anim="up">
+      <span class="dep-stars" aria-label="5 estrelas">★★★★★</span>
+      <blockquote class="dep-quote">"Não temos palavras suficientes para agradecer. O serviço foi espetacular e impecável do primeiro ao último minuto."</blockquote>
+      <div class="dep-line" aria-hidden="true"></div>
+      <span class="dep-author">Maria &amp; Rui</span>
+      <span class="dep-event">Casamento</span>
+    </div>
+    <div class="dep-divider" aria-hidden="true"></div>
+    <div class="dep-col" data-anim="up">
+      <span class="dep-stars" aria-label="5 estrelas">★★★★★</span>
+      <blockquote class="dep-quote">"Comida incrível e equipa impecável! Superaram em muito as nossas expectativas para o dia mais importante da nossa vida."</blockquote>
+      <div class="dep-line" aria-hidden="true"></div>
+      <span class="dep-author">Catarina &amp; Miguel</span>
+      <span class="dep-event">Casamento</span>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESSO -->
+<section class="processo" aria-label="Como funciona">
+  <div class="sec-hdr" data-anim="up">
+    <span class="eyebrow">Como Funciona</span>
+    <h2>Simples e Sem Stress</h2>
+  </div>
+  <div class="steps-grid" data-stagger>
+    <div class="step" data-anim="up">
+      <span class="step-num">01</span>
+      <h3 class="step-title">Envie o Pedido</h3>
+      <p class="step-desc">Preencha o formulário com os detalhes do seu evento. Quanto mais informação, melhor.</p>
+    </div>
+    <div class="step-connector">
+      <div class="step-line"></div>
+    </div>
+    <div class="step" data-anim="up">
+      <span class="step-num">02</span>
+      <h3 class="step-title">Entramos em Contacto</h3>
+      <p class="step-desc">Em menos de 24 horas, a nossa equipa contacta-o para perceber todos os detalhes.</p>
+    </div>
+    <div class="step-connector">
+      <div class="step-line"></div>
+    </div>
+    <div class="step" data-anim="up">
+      <span class="step-num">03</span>
+      <h3 class="step-title">Criamos o Menu Perfeito</h3>
+      <p class="step-desc">Desenvolvemos uma proposta personalizada à medida das suas necessidades e orçamento.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO / FORM -->
+<section class="contacto" id="formulario" aria-label="Contacto e formulário">
+  <!-- LEFT: Info -->
+  <div class="ct-left">
+    <span class="eyebrow" data-anim="left">Fale Connosco</span>
+    <h2 data-anim="left">Vamos criar algo<br>inesquecível.</h2>
+    <div class="ct-items">
+      <div class="ct-item" data-anim="left">
+        <span class="ct-dash">—</span>
+        <div class="ct-txt">
+          <strong>Morada</strong>
+          Zona Industrial 13, 4755-481<br>Rio Covo (Santa Eulália), Barcelos
+        </div>
+      </div>
+      <div class="ct-item" data-anim="left">
+        <span class="ct-dash">—</span>
+        <div class="ct-txt">
+          <strong>Telefone</strong>
+          <a href="tel:+351919698505">+351 919 698 505</a>
+        </div>
+      </div>
+      <div class="ct-item" data-anim="left">
+        <span class="ct-dash">—</span>
+        <div class="ct-txt">
+          <strong>Email</strong>
+          <a href="mailto:divinalcatering@gmail.com">divinalcatering@gmail.com</a>
+        </div>
+      </div>
+      <div class="ct-item" data-anim="left">
+        <span class="ct-dash">—</span>
+        <div class="ct-txt">
+          <strong>Instagram</strong>
+          <a href="https://www.instagram.com/divinalcatering" target="_blank" rel="noopener">@divinalcatering</a>
+        </div>
+      </div>
+      <div class="ct-item" data-anim="left">
+        <span class="ct-dash">—</span>
+        <div class="ct-txt">
+          <strong>Cobertura</strong>
+          Barcelos · Vila Nova de Famalicão<br>Braga · Porto
+        </div>
+      </div>
+    </div>
+    <a href="https://wa.me/351919698505" target="_blank" rel="noopener" class="btn-wa" aria-label="Contactar via WhatsApp" data-anim="left">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+      Contactar via WhatsApp
+    </a>
+  </div>
+
+  <!-- RIGHT: Form -->
+  <div class="ct-right">
+    <h3 data-anim="right">Peça o seu orçamento</h3>
+    <form id="ctForm" novalidate>
+      <div class="form-row">
+        <div class="fg" data-anim="right">
+          <label for="nome">Nome</label>
+          <input type="text" id="nome" name="nome" placeholder="O seu nome" required autocomplete="name">
+        </div>
+        <div class="fg" data-anim="right">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="o.seu@email.com" required autocomplete="email">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="fg" data-anim="right">
+          <label for="tel">Telefone</label>
+          <input type="tel" id="tel" name="tel" placeholder="+351 9XX XXX XXX" autocomplete="tel">
+        </div>
+        <div class="fg" data-anim="right">
+          <label for="tipo">Tipo de Evento</label>
+          <select id="tipo" name="tipo" required>
+            <option value="" disabled selected>Selecionar</option>
+            <option value="casamento">Casamento</option>
+            <option value="batizado">Batizado</option>
+            <option value="comunhao">Comunhão</option>
+            <option value="corporativo">Evento Corporativo</option>
+            <option value="cocktail">Cocktail / Receção</option>
+            <option value="festa">Festa Privada</option>
+            <option value="outro">Outro</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="fg" data-anim="right">
+          <label for="data">Data do Evento</label>
+          <input type="date" id="data" name="data">
+        </div>
+        <div class="fg" data-anim="right">
+          <label for="conv">Nº de Convidados</label>
+          <input type="number" id="conv" name="conv" placeholder="Ex: 150" min="1">
+        </div>
+      </div>
+      <div class="fg" data-anim="right">
+        <label for="origem">Como nos conheceu</label>
+        <select id="origem" name="origem">
+          <option value="" disabled selected>Selecionar</option>
+          <option value="instagram">Instagram</option>
+          <option value="google">Google</option>
+          <option value="recomendacao">Recomendação</option>
+          <option value="outro">Outro</option>
+        </select>
+      </div>
+      <div class="fg" data-anim="right">
+        <label for="msg">Mensagem</label>
+        <textarea id="msg" name="msg" placeholder="Conte-nos um pouco sobre o seu evento..."></textarea>
+      </div>
+      <button type="submit" class="f-submit" id="fSubmit" data-anim="right">Enviar Pedido</button>
+      <p class="f-note" data-anim="right">Respondemos em menos de 24 horas.</p>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer" role="contentinfo">
+  <p>© 2026 Divinal Catering</p>
+  <nav class="footer-links" aria-label="Links legais">
+    <a href="#">Política de Privacidade</a>
+    <a href="#">Política de Cookies</a>
+  </nav>
+</footer>
+
+<!-- WA FLOAT -->
+<a href="https://wa.me/351919698505" target="_blank" rel="noopener" class="wa-float" aria-label="WhatsApp Divinal Catering">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+</a>
+
+<script>
+(function () {
+  'use strict';
+
+  // PAGE TRANSITIONS
+  document.addEventListener('click', function(e) {
+    var a = e.target.closest('a');
+    if (!a) return;
+    var href = a.getAttribute('href');
+    if (!href) return;
+    if (href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:') || href.includes('wa.me') || a.target === '_blank') return;
+    if (!href.match(/\.html/)) return;
+    e.preventDefault();
+    document.body.style.transition = 'opacity 0.35s ease';
+    document.body.style.opacity = '0';
+    setTimeout(function() { window.location.href = href; }, 360);
+  });
+
+  // NAV SCROLL
+  var nav = document.getElementById('nav');
+  window.addEventListener('scroll', function () {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  }, { passive: true });
+
+  // ACTIVE NAV LINK
+  var path = window.location.pathname;
+  var page = path.split('/').pop() || 'index.html';
+  document.querySelectorAll('.nav-links a, .nav-overlay a').forEach(function(a) {
+    var ah = a.getAttribute('href');
+    if (!ah) return;
+    var apage = ah.split('/').pop().split('#')[0] || 'index.html';
+    if (apage === page) a.classList.add('nav-active');
+  });
+
+  // HAMBURGER
+  var burger = document.getElementById('hamburger');
+  var overlay = document.getElementById('navOverlay');
+  var closeMenu = function () {
+    burger.classList.remove('open');
+    overlay.classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  };
+  burger.addEventListener('click', function () {
+    var open = overlay.classList.toggle('open');
+    burger.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', String(open));
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  overlay.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', closeMenu); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeMenu(); });
+
+  // DATA-ANIM SCROLL REVEAL
+  var animObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        animObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('[data-stagger]').forEach(function(parent) {
+    var children = parent.querySelectorAll('[data-anim]');
+    children.forEach(function(child, i) {
+      child.style.transitionDelay = (i * 0.12) + 's';
+    });
+  });
+
+  document.querySelectorAll('[data-anim]').forEach(function(el) {
+    animObs.observe(el);
+  });
+
+  setTimeout(function() {
+    document.querySelectorAll('[data-anim]:not(.in)').forEach(function(el) {
+      el.style.transitionDelay = '0s';
+      el.classList.add('in');
+    });
+  }, 2500);
+
+  // FORM SUBMIT
+  document.getElementById('ctForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var btn = document.getElementById('fSubmit');
+    btn.textContent = 'Pedido enviado com sucesso!';
+    btn.classList.add('success');
+    btn.disabled = true;
+    var note = this.querySelector('.f-note');
+    if (note) note.textContent = 'Entraremos em contacto em menos de 24 horas. Obrigado!';
+  });
+
+}());
+</script>
+</body>
+</html>

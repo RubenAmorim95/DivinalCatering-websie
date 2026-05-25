@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galeria — Divinal Catering | O Nosso Trabalho em Imagens</title>
+  <meta name="description" content="Galeria de imagens do Divinal Catering. Casamentos, batizados, eventos corporativos e cocktails em todo o Norte de Portugal.">
+  <meta property="og:title" content="Galeria — Divinal Catering">
+  <meta property="og:description" content="Cada imagem conta a história de um momento perfeito.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_PT">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg-light: #FAFAF7;
+      --bg-dark: #0F0E0C;
+      --gold: #B8973A;
+      --text-dark: #1C1B18;
+      --text-muted: #7A7168;
+      --border: rgba(184,151,58,0.2);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Jost', sans-serif; font-weight: 300;
+      color: var(--text-dark); background: var(--bg-light);
+      overflow-x: hidden; -webkit-font-smoothing: antialiased;
+      opacity: 0; animation: pageIn 0.5s ease forwards;
+    }
+    @keyframes pageIn { to { opacity: 1; } }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+    button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+    /* === ANIMATION SYSTEM === */
+    [data-anim] {
+      opacity: 0;
+      transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1);
+    }
+    [data-anim="up"] { transform: translateY(60px); }
+    [data-anim="left"] { transform: translateX(-50px); }
+    [data-anim="right"] { transform: translateX(50px); }
+    [data-anim="scale"] { transform: scale(0.88); }
+    [data-anim].in { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) {
+      [data-anim] { opacity: 1; transform: none; transition: none; }
+      body { animation: none; opacity: 1; }
+      .hero-scroll-line { animation: none !important; }
+      .gal-item { transition: none !important; }
+    }
+
+    /* === EYEBROW === */
+    .eyebrow {
+      font-family: 'Jost', sans-serif; font-size: 10px; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--gold); font-weight: 500; display: block;
+    }
+
+    /* === NAV === */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 0 48px; height: 72px;
+      display: flex; align-items: center; justify-content: space-between;
+      transition: background 0.3s, border-color 0.3s;
+      border-bottom: 1px solid transparent;
+    }
+    .nav.scrolled { background: #fff; border-bottom-color: var(--border); }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 400;
+      color: #fff; letter-spacing: 1px; transition: color 0.3s; white-space: nowrap;
+    }
+    .nav.scrolled .nav-logo { color: var(--text-dark); }
+    .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+    .nav-links a {
+      font-family: 'Jost', sans-serif; font-size: 11px; font-weight: 400;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: rgba(255,255,255,0.8); transition: color 0.3s;
+      padding-bottom: 2px; border-bottom: 1px solid transparent;
+    }
+    .nav-links a:hover { color: #fff; }
+    .nav-links a.nav-active { color: var(--gold); border-bottom-color: var(--gold); }
+    .nav.scrolled .nav-links a { color: var(--text-muted); }
+    .nav.scrolled .nav-links a:hover { color: var(--text-dark); }
+    .nav.scrolled .nav-links a.nav-active { color: var(--gold); border-bottom-color: var(--gold); }
+    .nav-cta {
+      font-family: 'Jost', sans-serif; font-size: 11px; font-weight: 400;
+      letter-spacing: 2px; text-transform: uppercase;
+      padding: 10px 22px; border: 1px solid var(--gold); color: var(--gold);
+      transition: background 0.3s; position: relative; overflow: hidden;
+    }
+    .nav-cta::after {
+      content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(184,151,58,0.15), transparent);
+      transition: left 0.4s;
+    }
+    .nav-cta:hover::after { left: 100%; }
+    .nav-hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      width: 28px; cursor: pointer; padding: 4px 0;
+    }
+    .nav-hamburger span {
+      display: block; width: 100%; height: 1px; background: #fff;
+      transition: background 0.3s, transform 0.3s, opacity 0.3s;
+    }
+    .nav.scrolled .nav-hamburger span { background: var(--text-dark); }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+    .nav-overlay {
+      position: fixed; inset: 0; background: var(--bg-light); z-index: 999;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 36px; opacity: 0; pointer-events: none; transition: opacity 0.3s;
+    }
+    .nav-overlay.open { opacity: 1; pointer-events: all; }
+    .nav-overlay a {
+      font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 300;
+      color: var(--text-dark); transition: color 0.2s;
+    }
+    .nav-overlay a:hover, .nav-overlay a.nav-active { color: var(--gold); }
+    .nav-overlay .overlay-cta {
+      font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 2px;
+      text-transform: uppercase; padding: 14px 36px;
+      border: 1px solid var(--gold); color: var(--gold); margin-top: 8px;
+    }
+
+    /* === HERO === */
+    .hero {
+      position: relative; height: 50vh; min-height: 420px;
+      display: flex; align-items: center; justify-content: center; overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; background-color: #1E1B14;
+      background-image: url('https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=1920&auto=format&fit=crop&q=85');
+      background-size: cover; background-position: center;
+    }
+    .hero-overlay { position: absolute; inset: 0; background: rgba(10,9,7,0.6); }
+    .hero-content {
+      position: relative; z-index: 1; text-align: center;
+      padding: 0 24px; max-width: 700px;
+    }
+    .hero-content .eyebrow { margin-bottom: 20px; }
+    .hero-content h1 {
+      font-family: 'Cormorant Garamond', serif; font-size: clamp(48px, 7vw, 80px);
+      font-weight: 300; color: #fff; line-height: 1; margin-bottom: 20px;
+    }
+    .hero-content p {
+      font-family: 'Jost', sans-serif; font-size: 15px; font-weight: 300;
+      color: rgba(255,255,255,0.7); letter-spacing: 0.5px;
+    }
+    .hero-scroll-line {
+      position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+      width: 1px; height: 60px; background: var(--gold);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+    @keyframes scrollPulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
+
+    /* === FILTER TABS === */
+    .filter-section { background: #fff; padding: 48px 48px 0; }
+    .filter-row {
+      display: flex; gap: 0; justify-content: center; flex-wrap: wrap;
+      border-bottom: 1px solid var(--border);
+    }
+    .filter-btn {
+      font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 2px;
+      text-transform: uppercase; font-weight: 400; color: var(--text-muted);
+      padding: 12px 24px; background: none; border: none; cursor: pointer;
+      border-bottom: 2px solid transparent; margin-bottom: -1px;
+      transition: color 0.25s, border-color 0.25s;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .filter-btn:hover { color: var(--text-dark); }
+    .filter-btn.active { color: var(--gold); border-bottom-color: var(--gold); }
+    .filter-count {
+      font-size: 10px; background: var(--border); color: var(--gold);
+      padding: 1px 6px; border-radius: 10px; font-weight: 500; letter-spacing: 0;
+    }
+    .filter-btn.active .filter-count { background: rgba(184,151,58,0.15); }
+
+    /* === GALLERY === */
+    .gallery-section { background: #fff; padding: 32px 48px 80px; }
+    .gallery-grid {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 3px;
+    }
+    .gal-item {
+      aspect-ratio: 1; overflow: hidden; position: relative; cursor: pointer;
+      background-color: #EDE8DF;
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    .gal-item.hiding {
+      opacity: 0; transform: scale(0.92); pointer-events: none;
+    }
+    .gal-item.hidden { display: none; }
+    .gal-item img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .gal-item:hover img { transform: scale(1.05); }
+    .gal-overlay {
+      position: absolute; inset: 0; background: rgba(10,9,7,0.55);
+      opacity: 0; transition: opacity 0.3s;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .gal-plus {
+      font-family: 'Cormorant Garamond', serif; font-size: 40px; font-weight: 300;
+      color: var(--gold); line-height: 1;
+    }
+    .gal-item:hover .gal-overlay { opacity: 1; }
+
+    /* === LIGHTBOX === */
+    .lightbox {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.96); z-index: 2000;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none; transition: opacity 0.3s;
+    }
+    .lightbox.open { opacity: 1; pointer-events: all; }
+    .lightbox img { max-width: 88vw; max-height: 85vh; object-fit: contain; }
+    .lb-close {
+      position: absolute; top: 24px; right: 32px; color: #fff; font-size: 36px;
+      cursor: pointer; opacity: 0.6; transition: opacity 0.2s;
+      font-family: 'Cormorant Garamond', serif; line-height: 1; background: none; border: none;
+    }
+    .lb-close:hover { opacity: 1; }
+    .lb-prev, .lb-next {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      color: var(--gold); font-size: 56px; cursor: pointer; padding: 16px;
+      opacity: 0.7; transition: opacity 0.2s;
+      font-family: 'Cormorant Garamond', serif; line-height: 1; background: none; border: none;
+    }
+    .lb-prev { left: 8px; }
+    .lb-next { right: 8px; }
+    .lb-prev:hover, .lb-next:hover { opacity: 1; }
+
+    /* === INSTAGRAM CTA === */
+    .insta-cta { background: var(--bg-dark); padding: 80px 48px; text-align: center; }
+    .insta-cta .eyebrow { margin-bottom: 20px; }
+    .insta-cta h2 {
+      font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 5vw, 60px);
+      font-weight: 300; color: #fff; margin-bottom: 16px; line-height: 1.1;
+    }
+    .insta-cta p {
+      font-family: 'Jost', sans-serif; font-size: 14px; font-weight: 300;
+      color: rgba(255,255,255,0.45); letter-spacing: 0.5px; margin-bottom: 40px;
+    }
+    .insta-link {
+      font-family: 'Cormorant Garamond', serif; font-size: clamp(24px, 3vw, 40px);
+      font-weight: 300; color: var(--gold); letter-spacing: 1px;
+      display: inline-block; position: relative;
+    }
+    .insta-link::after {
+      content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
+      height: 1px; background: var(--gold); transform: scaleX(0);
+      transform-origin: left; transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+    }
+    .insta-link:hover::after { transform: scaleX(1); }
+
+    /* === FOOTER === */
+    .footer {
+      background: var(--bg-dark); border-top: 1px solid rgba(184,151,58,0.1);
+      padding: 24px 48px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .footer p { font-size: 12px; color: rgba(255,255,255,0.3); }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { font-size: 12px; color: rgba(255,255,255,0.3); transition: color 0.2s; }
+    .footer-links a:hover { color: var(--gold); }
+
+    /* === WA FLOAT === */
+    .wa-float {
+      position: fixed; bottom: 28px; right: 28px; width: 52px; height: 52px;
+      background: #25D366; border-radius: 50%; display: flex; align-items: center;
+      justify-content: center; z-index: 900; box-shadow: 0 4px 20px rgba(37,211,102,0.35);
+      transition: transform 0.2s;
+    }
+    .wa-float:hover { transform: scale(1.08); }
+    .wa-float svg { width: 26px; height: 26px; fill: #fff; }
+
+    /* === RESPONSIVE === */
+    @media (max-width: 1024px) {
+      .nav { padding: 0 32px; }
+      .filter-section { padding: 40px 32px 0; }
+      .gallery-section { padding: 28px 32px 64px; }
+      .insta-cta { padding: 64px 32px; }
+      .footer { padding: 20px 32px; }
+    }
+    @media (max-width: 768px) {
+      .nav { padding: 0 24px; height: 64px; }
+      .nav-links, .nav-cta { display: none; }
+      .nav-hamburger { display: flex; }
+      .filter-section { padding: 32px 24px 0; }
+      .filter-row { justify-content: flex-start; overflow-x: auto; flex-wrap: nowrap; }
+      .filter-btn { white-space: nowrap; flex-shrink: 0; }
+      .gallery-section { padding: 20px 24px 56px; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 2px; }
+      .insta-cta { padding: 64px 24px; }
+      .footer { padding: 20px 24px; flex-direction: column; gap: 12px; text-align: center; }
+      .footer-links { flex-wrap: wrap; justify-content: center; }
+    }
+    @media (max-width: 480px) {
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 2px; }
+      .lb-prev { left: 0; }
+      .lb-next { right: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav" role="navigation" aria-label="Navegação principal">
+  <a href="index.html" class="nav-logo">Divinal ✦ Catering</a>
+  <ul class="nav-links">
+    <li><a href="sobre.html">Sobre</a></li>
+    <li><a href="index.html#servicos">Serviços</a></li>
+    <li><a href="index.html#espacos">Espaços</a></li>
+    <li><a href="galeria.html">Galeria</a></li>
+  </ul>
+  <a href="orcamento.html" class="nav-cta">Pedir Orçamento</a>
+  <button class="nav-hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="nav-overlay" id="navOverlay" role="dialog" aria-modal="true" aria-label="Menu de navegação">
+  <a href="sobre.html">Sobre</a>
+  <a href="index.html#servicos">Serviços</a>
+  <a href="index.html#espacos">Espaços</a>
+  <a href="galeria.html">Galeria</a>
+  <a href="orcamento.html" class="overlay-cta">Pedir Orçamento</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" aria-label="Galeria">
+  <div class="hero-bg" role="img" aria-label="Mesa de casamento elegante"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <span class="eyebrow">O Nosso Trabalho</span>
+    <h1>Galeria</h1>
+    <p>Cada imagem conta a história de um momento perfeito.</p>
+  </div>
+  <div class="hero-scroll-line" aria-hidden="true"></div>
+</section>
+
+<!-- FILTER TABS -->
+<div class="filter-section">
+  <div class="filter-row" role="tablist" aria-label="Filtrar por categoria">
+    <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">
+      Todos <span class="filter-count" id="count-all">12</span>
+    </button>
+    <button class="filter-btn" data-filter="casamento" role="tab" aria-selected="false">
+      Casamentos <span class="filter-count" id="count-casamento">6</span>
+    </button>
+    <button class="filter-btn" data-filter="batizado" role="tab" aria-selected="false">
+      Batizados <span class="filter-count" id="count-batizado">1</span>
+    </button>
+    <button class="filter-btn" data-filter="corporativo" role="tab" aria-selected="false">
+      Corporativos <span class="filter-count" id="count-corporativo">2</span>
+    </button>
+    <button class="filter-btn" data-filter="cocktail" role="tab" aria-selected="false">
+      Cocktails <span class="filter-count" id="count-cocktail">2</span>
+    </button>
+    <button class="filter-btn" data-filter="festas" role="tab" aria-selected="false">
+      Festas <span class="filter-count" id="count-festas">1</span>
+    </button>
+  </div>
+</div>
+
+<!-- GALLERY GRID -->
+<section class="gallery-section" aria-label="Galeria de fotos">
+  <div class="gallery-grid" id="galleryGrid">
+    <div class="gal-item" data-cat="casamento" tabindex="0" role="button" aria-label="Ver foto casamento 1" data-i="0">
+      <img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=600&auto=format&fit=crop&q=80" alt="Mesa de casamento elegante" loading="lazy">
+      <div class="gal-overlay"><span class="gal-plus">+</span></div>
+    </div>
+    <div class="gal-item" data-cat="casamento" tabindex="0" role="button" aria-label="Ver foto casamento 2" data-i="1">
+      <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=600&auto=format&fit=crop&q=80" alt="Decoração nupcial" loading="lazy">
+      <div class="gal-overlay"><span class="gal-plus">+</span></div>
+    </div>
+    <div class="gal-item" data-cat="casamento" tabindex="0" role="button" aria-label="Ver foto casamento 3" data-i="2">
+      <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=600&auto=format&fit=crop&q=80" alt="Casamento cerimónia" loading="lazy">
+      <div class="gal-overlay"><span class="gal-plus">+</span></div>
+    </div>
+    <div class="gal-item" data-cat="batizado" tabindex="0" role="button" aria-label="Ver foto batizado" data-i="3">
+      <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=600&auto=format&fit=crop&q=80" alt="Batizado celebração" loading="lazy">
+      <div class="gal-overlay"><span class="gal-plus">+</span></div>
+    </div>
+    <div class="gal-item" data-cat="corporativo" tabindex="0" role="button" aria-label="Ver foto corporativo 1" data-i="4">
+      <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&auto=format&fit=crop&q=80" alt="Evento corporativo" loading="lazy">
+      <div class="gal-overlay"><span class="gal-plus">+</span></div>
+    </div>
+    <div class="gal-item" data-cat="cocktail" tabindex="0" role="button" aria-label="Ver foto cocktail 1" data-i="5">
+      <img src="https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=600&auto=format&fit=crop&q=80" alt="Cocktail receção" loading="lazy">
+      <div class="gal-overlay"><span class="gal-plus">+</span></div>
+    </div>
+    <div class="gal-item" data-cat="casamento" tabindex="0" role="button" aria-label="Ver foto casamento 4" data-i="6">
+      <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&auto=format&fit=crop&q=80" alt="Serviço elegante" loading="lazy">
+      <div class="gal-overlay"><span class="gal-plus">+</span></div>
+    </div>
+    <div class="gal-item" data-cat="festas" tabindex="0" role="button" aria-label="Ver foto festa" data-i="7">
+      <img src="https://images.unsplash.com/photo-1529543544282-ea669407fca3?w=600&auto=format&fit=crop&q=80" alt="Festa privada" loading="lazy">
+      <div class="gal-overlay"><span class="gal-plus">+</span></div>
+    </div>
+    <div class="gal-item" data-cat="casamento" tabindex="0" role="button" aria-label="Ver foto casamento 5" data-i="8">
+      <img src="https://images.unsplash.com/photo-1555244162-803834f70033?w=600&auto=format&fit=crop&q=80" alt="Mesa de casamento" loading="lazy">
+      <div class="gal-overlay"><span class="gal-plus">+</span></div>
+    </div>
+    <div class="gal-item" data-cat="cocktail" tabindex="0" role="button" aria-label="Ver foto cocktail 2" data-i="9">
+      <img src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=600&auto=format&fit=crop&q=80" alt="Cocktail sobremesas" loading="lazy">
+      <div class="gal-overlay"><span class="gal-plus">+</span></div>
+    </div>
+    <div class="gal-item" data-cat="corporativo" tabindex="0" role="button" aria-label="Ver foto corporativo 2" data-i="10">
+      <img src="https://images.unsplash.com/photo-1452967153771-7eea77b4dcbc?w=600&auto=format&fit=crop&q=80" alt="Jantar de gala" loading="lazy">
+      <div class="gal-overlay"><span class="gal-plus">+</span></div>
+    </div>
+    <div class="gal-item" data-cat="casamento" tabindex="0" role="button" aria-label="Ver foto casamento 6" data-i="11">
+      <img src="https://images.unsplash.com/photo-1574484284002-952d92456975?w=600&auto=format&fit=crop&q=80" alt="Receção casamento" loading="lazy">
+      <div class="gal-overlay"><span class="gal-plus">+</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Visualização de imagem">
+  <button class="lb-close" id="lbClose" aria-label="Fechar">×</button>
+  <button class="lb-prev" id="lbPrev" aria-label="Imagem anterior">‹</button>
+  <img id="lbImg" src="" alt="" loading="lazy">
+  <button class="lb-next" id="lbNext" aria-label="Imagem seguinte">›</button>
+</div>
+
+<!-- INSTAGRAM CTA -->
+<section class="insta-cta" aria-label="Instagram">
+  <span class="eyebrow" data-anim="up">@divinalcatering</span>
+  <h2 data-anim="up">Siga-nos no Instagram</h2>
+  <p data-anim="up">Inspire-se com os nossos trabalhos mais recentes.</p>
+  <a href="https://www.instagram.com/divinalcatering" target="_blank" rel="noopener" class="insta-link" data-anim="up">→ @divinalcatering</a>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer" role="contentinfo">
+  <p>© 2026 Divinal Catering</p>
+  <nav class="footer-links" aria-label="Links legais">
+    <a href="#">Política de Privacidade</a>
+    <a href="#">Política de Cookies</a>
+  </nav>
+</footer>
+
+<!-- WA FLOAT -->
+<a href="https://wa.me/351919698505" target="_blank" rel="noopener" class="wa-float" aria-label="WhatsApp Divinal Catering">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+</a>
+
+<script>
+(function () {
+  'use strict';
+
+  // PAGE TRANSITIONS
+  document.addEventListener('click', function(e) {
+    var a = e.target.closest('a');
+    if (!a) return;
+    var href = a.getAttribute('href');
+    if (!href) return;
+    if (href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:') || href.includes('wa.me') || a.target === '_blank') return;
+    if (!href.match(/\.html/)) return;
+    e.preventDefault();
+    document.body.style.transition = 'opacity 0.35s ease';
+    document.body.style.opacity = '0';
+    setTimeout(function() { window.location.href = href; }, 360);
+  });
+
+  // NAV SCROLL
+  var nav = document.getElementById('nav');
+  window.addEventListener('scroll', function () {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  }, { passive: true });
+
+  // ACTIVE NAV LINK
+  var path = window.location.pathname;
+  var page = path.split('/').pop() || 'index.html';
+  document.querySelectorAll('.nav-links a, .nav-overlay a').forEach(function(a) {
+    var ah = a.getAttribute('href');
+    if (!ah) return;
+    var apage = ah.split('/').pop().split('#')[0] || 'index.html';
+    if (apage === page) a.classList.add('nav-active');
+  });
+
+  // HAMBURGER
+  var burger = document.getElementById('hamburger');
+  var overlay = document.getElementById('navOverlay');
+  var closeMenu = function () {
+    burger.classList.remove('open');
+    overlay.classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  };
+  burger.addEventListener('click', function () {
+    var open = overlay.classList.toggle('open');
+    burger.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', String(open));
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  overlay.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', closeMenu); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeMenu(); });
+
+  // DATA-ANIM SCROLL REVEAL
+  var animObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        animObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('[data-stagger]').forEach(function(parent) {
+    var children = parent.querySelectorAll('[data-anim]');
+    children.forEach(function(child, i) {
+      child.style.transitionDelay = (i * 0.12) + 's';
+    });
+  });
+
+  document.querySelectorAll('[data-anim]').forEach(function(el) {
+    animObs.observe(el);
+  });
+
+  setTimeout(function() {
+    document.querySelectorAll('[data-anim]:not(.in)').forEach(function(el) {
+      el.style.transitionDelay = '0s';
+      el.classList.add('in');
+    });
+  }, 2500);
+
+  // GALLERY FILTER
+  var allItems = Array.from(document.querySelectorAll('.gal-item'));
+  var filterBtns = document.querySelectorAll('.filter-btn');
+
+  filterBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var filter = this.dataset.filter;
+
+      // Update active button
+      filterBtns.forEach(function(b) {
+        b.classList.remove('active');
+        b.setAttribute('aria-selected', 'false');
+      });
+      this.classList.add('active');
+      this.setAttribute('aria-selected', 'true');
+
+      // Filter items with smooth transition
+      allItems.forEach(function(item) {
+        var cat = item.dataset.cat;
+        var show = filter === 'all' || cat === filter;
+
+        if (!show) {
+          // Currently visible, needs to hide
+          if (!item.classList.contains('hidden')) {
+            item.classList.add('hiding');
+            setTimeout(function() {
+              item.classList.add('hidden');
+              item.classList.remove('hiding');
+            }, 400);
+          }
+        } else {
+          // Needs to show
+          item.classList.remove('hidden');
+          item.classList.remove('hiding');
+          // Force reflow so transition plays
+          item.getBoundingClientRect();
+          item.style.opacity = '';
+          item.style.transform = '';
+        }
+      });
+    });
+  });
+
+  // LIGHTBOX
+  var lb = document.getElementById('lightbox');
+  var lbImg = document.getElementById('lbImg');
+  var lbCur = 0;
+  var visibleItems = [];
+
+  function getVisibleItems() {
+    return allItems.filter(function(el) { return !el.classList.contains('hidden'); });
+  }
+
+  function openLb(itemEl) {
+    visibleItems = getVisibleItems();
+    lbCur = visibleItems.indexOf(itemEl);
+    lbImg.src = itemEl.querySelector('img').src;
+    lbImg.alt = itemEl.querySelector('img').alt;
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLb() {
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function prevLb() {
+    lbCur = (lbCur - 1 + visibleItems.length) % visibleItems.length;
+    lbImg.src = visibleItems[lbCur].querySelector('img').src;
+    lbImg.alt = visibleItems[lbCur].querySelector('img').alt;
+  }
+  function nextLb() {
+    lbCur = (lbCur + 1) % visibleItems.length;
+    lbImg.src = visibleItems[lbCur].querySelector('img').src;
+    lbImg.alt = visibleItems[lbCur].querySelector('img').alt;
+  }
+
+  allItems.forEach(function(el) {
+    el.addEventListener('click', function() { openLb(el); });
+    el.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLb(el); }
+    });
+  });
+  document.getElementById('lbClose').addEventListener('click', closeLb);
+  document.getElementById('lbPrev').addEventListener('click', prevLb);
+  document.getElementById('lbNext').addEventListener('click', nextLb);
+  lb.addEventListener('click', function(e) { if (e.target === lb) closeLb(); });
+  document.addEventListener('keydown', function(e) {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLb();
+    if (e.key === 'ArrowLeft') prevLb();
+    if (e.key === 'ArrowRight') nextLb();
+  });
+
+}());
+</script>
+</body>
+</html>
