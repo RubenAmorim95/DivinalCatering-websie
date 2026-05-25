@@ -284,9 +284,9 @@
       display: inline-block;
     }
 
-    /* === SERVIÇOS — STACKING CARDS === */
-    .servicos { background: var(--bg-light); padding: 80px 0 0; }
-    .servicos-hdr { text-align: center; padding: 0 48px 60px; }
+    /* === SERVIÇOS — SPLIT SCREEN === */
+    .servicos { background: var(--bg-light); padding: 80px 0; }
+    .servicos-hdr { text-align: center; padding: 0 48px 72px; }
     .servicos-hdr .eyebrow { margin-bottom: 14px; }
     .servicos-hdr h2 {
       font-family: 'Cormorant Garamond', serif;
@@ -295,83 +295,75 @@
     }
     .servicos-hdr p { font-size: 14px; color: var(--text-muted); max-width: 480px; margin: 0 auto; line-height: 1.7; }
 
-    /* Stack container — no wrappers; all cards live here directly */
-    .serv-stack { position: relative; padding: 0 48px; padding-bottom: 60px; }
-
-    .serv-sc {
-      /* top + height set by JS on desktop */
-      max-width: 1100px; margin: 0 auto;
-      background: #fff;
-      border-radius: 22px;
-      padding: 20px 28px 24px;
-      transform-origin: top center;
-      will-change: transform;
-      overflow: hidden;
-      box-shadow: 0 2px 24px rgba(184,151,58,0.06);
-      display: flex;
-      flex-direction: column;
-      position: relative;
+    .serv-split {
+      max-width: 1200px; margin: 0 auto;
+      padding: 0 48px;
+      display: flex; gap: 72px; align-items: flex-start;
     }
-    .serv-sc::before {
+    .serv-nav {
+      flex: 0 0 220px;
+      position: sticky; top: 100px;
+    }
+    .serv-nav-item {
+      display: flex; align-items: center; gap: 18px;
+      padding: 15px 0; border-bottom: 1px solid var(--border);
+      cursor: pointer; position: relative;
+      transition: padding-left 0.3s cubic-bezier(0.16,1,0.3,1);
+    }
+    .serv-nav-item::before {
       content: '';
-      position: absolute; inset: 0;
-      border-radius: 22px;
-      padding: 1px;
-      background: linear-gradient(160deg,
-        rgba(184,151,58,0.60) 0%,
-        rgba(184,151,58,0.20) 35%,
-        rgba(184,151,58,0.04) 100%);
-      -webkit-mask: linear-gradient(#fff 0 0) content-box,
-                    linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      pointer-events: none;
+      position: absolute; left: -1px; top: 0; bottom: 0; width: 2px;
+      background: var(--gold);
+      transform: scaleY(0); transform-origin: top;
+      transition: transform 0.35s cubic-bezier(0.16,1,0.3,1);
     }
-    .serv-sc-top {
-      flex-shrink: 0;
-      display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap;
-      padding-bottom: 12px; margin-bottom: 16px;
-      border-bottom: 1px solid var(--border);
+    .serv-nav-item.active { padding-left: 10px; }
+    .serv-nav-item.active::before { transform: scaleY(1); }
+    .serv-nav-num {
+      font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 300;
+      color: var(--gold); opacity: 0.22; line-height: 1; flex-shrink: 0;
+      transition: opacity 0.3s;
     }
-    .serv-sc-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(34px, 5vw, 68px); font-weight: 300;
-      color: var(--gold); line-height: 0.9; opacity: 0.45; flex-shrink: 0;
+    .serv-nav-name {
+      font-family: 'Cormorant Garamond', serif; font-size: 16px; font-weight: 400;
+      color: var(--text-muted); transition: color 0.3s;
     }
-    .serv-sc-tag {
+    .serv-nav-item.active .serv-nav-num { opacity: 1; }
+    .serv-nav-item.active .serv-nav-name { color: var(--text-dark); }
+
+    .serv-panels { flex: 1; min-width: 0; }
+    .serv-panel { padding-bottom: 88px; }
+    .serv-panel:last-child { padding-bottom: 0; }
+    .serv-panel-img {
+      width: 100%; aspect-ratio: 16/9;
+      border-radius: 16px; overflow: hidden;
+      background: #EDE8DF; margin-bottom: 28px;
+    }
+    .serv-panel-img img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.7s cubic-bezier(0.16,1,0.3,1);
+    }
+    .serv-panel:hover .serv-panel-img img { transform: scale(1.04); }
+    .serv-panel-tag {
       font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
-      color: var(--gold); font-weight: 500; flex: 1; padding-bottom: 2px;
+      color: var(--gold); font-weight: 500; display: block; margin-bottom: 8px;
     }
-    .serv-sc-name {
+    .serv-panel-name {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(20px, 2.4vw, 36px); font-weight: 400;
-      color: var(--text-dark); line-height: 1; flex: 2;
+      font-size: clamp(26px, 2.8vw, 40px); font-weight: 300;
+      color: var(--text-dark); line-height: 1.1; margin-bottom: 14px;
     }
-    .serv-sc-link {
+    .serv-panel-desc {
+      font-size: 14px; line-height: 1.85; color: var(--text-muted);
+      font-weight: 300; max-width: 540px; margin-bottom: 24px;
+    }
+    .serv-panel-cta {
       font-family: 'Jost', sans-serif; font-size: 9px;
       letter-spacing: 2px; text-transform: uppercase;
-      padding: 7px 16px; border: 1px solid var(--gold); color: var(--gold);
-      white-space: nowrap; transition: background 0.3s; align-self: center;
-      display: inline-block;
+      padding: 10px 22px; border: 1px solid var(--gold); color: var(--gold);
+      display: inline-block; transition: background 0.3s;
     }
-    .serv-sc-link:hover { background: rgba(184,151,58,0.07); }
-    .serv-sc-body {
-      flex: 1; min-height: 0;
-      display: flex; gap: 24px; align-items: stretch;
-    }
-    .serv-sc-imgs {
-      flex: 0 0 40%; border-radius: 14px; overflow: hidden;
-      background-color: #EDE8DF;
-    }
-    .serv-sc-imgs img { width: 100%; height: 100%; object-fit: cover; font-size: 0; }
-    .serv-sc-text {
-      flex: 1; display: flex; align-items: flex-start; padding-top: 4px;
-    }
-    .serv-sc-desc {
-      font-size: clamp(13px, 1.1vw, 17px);
-      color: var(--text-dark); line-height: 1.75; font-weight: 300;
-    }
-    .anim-char { display: inline; transition: opacity 0.08s linear; }
+    .serv-panel-cta:hover { background: rgba(184,151,58,0.07); }
 
     /* === ESPAÇOS === */
     .espacos { background: var(--bg-dark); padding: 80px 0; overflow: hidden; }
@@ -506,9 +498,10 @@
     /* === RESPONSIVE === */
     @media (max-width: 1024px) {
       .nav { padding: 0 32px; }
-      .servicos { padding: 64px 0 0; }
+      .servicos { padding: 64px 0; }
       .servicos-hdr { padding: 0 32px 48px; }
-      .serv-stack { padding: 0 32px 40px; }
+      .serv-split { padding: 0 32px; gap: 48px; }
+      .serv-nav { flex: 0 0 180px; }
       .esp-hdr, .esp-nav { padding-left: 32px; padding-right: 32px; }
       .esp-track { padding: 0 32px; }
       .processo { padding: 64px 32px; }
@@ -520,16 +513,12 @@
       .nav { padding: 0 24px; height: 64px; }
       .nav-links, .nav-cta { display: none; }
       .nav-hamburger { display: flex; }
-      .servicos { padding: 56px 0 0; }
+      .servicos { padding: 56px 0; }
       .servicos-hdr { padding: 0 24px 40px; }
-      .serv-stack { padding: 0 16px 24px; }
-      .serv-sc {
-        position: relative !important; top: auto !important;
-        height: auto !important; transform: none !important;
-        border-radius: 16px; padding: 18px 20px 22px; margin-bottom: 14px;
-      }
-      .serv-sc-body { flex-direction: column; }
-      .serv-sc-imgs { height: 180px; flex: none; }
+      .serv-split { flex-direction: column; padding: 0 24px; gap: 0; }
+      .serv-nav { display: none; }
+      .serv-panel { padding-bottom: 56px; }
+      .serv-panel-img { aspect-ratio: 4/3; }
       .espacos { padding: 56px 0; }
       .esp-hdr { padding: 0 24px; }
       .esp-track { padding: 0 24px; }
@@ -621,108 +610,77 @@
     <p>De casamentos íntimos a grandes eventos corporativos, adaptamo-nos a cada momento com elegância e profissionalismo.</p>
   </div>
 
-  <div class="serv-stack" id="servStack">
-    <article class="serv-sc">
-      <div class="serv-sc-top">
-        <span class="serv-sc-num">01</span>
-        <span class="serv-sc-tag">Eventos Especiais</span>
-        <h3 class="serv-sc-name">Casamentos</h3>
-        <a href="orcamento.html" class="serv-sc-link">Pedir Orçamento</a>
-      </div>
-      <div class="serv-sc-body">
-        <div class="serv-sc-imgs">
-          <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800&auto=format&fit=crop&q=80" alt="Casamentos — mesa decorada" loading="lazy">
-        </div>
-        <div class="serv-sc-text">
-          <p class="serv-sc-desc">O dia mais especial da sua vida merece o catering perfeito. Criamos experiências gastronómicas verdadeiramente inesquecíveis, com menus personalizados e um serviço impecável do início ao fim.</p>
-        </div>
-      </div>
-    </article>
+  <div class="serv-split">
+    <nav class="serv-nav" id="servNav" aria-label="Navegação de serviços">
+      <div class="serv-nav-item active" data-idx="0"><span class="serv-nav-num">01</span><span class="serv-nav-name">Casamentos</span></div>
+      <div class="serv-nav-item" data-idx="1"><span class="serv-nav-num">02</span><span class="serv-nav-name">Batizados</span></div>
+      <div class="serv-nav-item" data-idx="2"><span class="serv-nav-num">03</span><span class="serv-nav-name">Corporativos</span></div>
+      <div class="serv-nav-item" data-idx="3"><span class="serv-nav-num">04</span><span class="serv-nav-name">Cocktails</span></div>
+      <div class="serv-nav-item" data-idx="4"><span class="serv-nav-num">05</span><span class="serv-nav-name">Comunhões</span></div>
+      <div class="serv-nav-item" data-idx="5"><span class="serv-nav-num">06</span><span class="serv-nav-name">Festas Privadas</span></div>
+    </nav>
 
-    <article class="serv-sc">
-      <div class="serv-sc-top">
-        <span class="serv-sc-num">02</span>
-        <span class="serv-sc-tag">Família</span>
-        <h3 class="serv-sc-name">Batizados</h3>
-        <a href="orcamento.html" class="serv-sc-link">Pedir Orçamento</a>
-      </div>
-      <div class="serv-sc-body">
-        <div class="serv-sc-imgs">
-          <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=800&auto=format&fit=crop&q=80" alt="Batizados — celebração familiar" loading="lazy">
+    <div class="serv-panels">
+      <article class="serv-panel" data-idx="0">
+        <div class="serv-panel-img">
+          <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=1000&auto=format&fit=crop&q=80" alt="Casamentos — mesa decorada" loading="lazy">
         </div>
-        <div class="serv-sc-text">
-          <p class="serv-sc-desc">Celebre a chegada do novo membro da família com um ambiente caloroso e uma mesa memorável. Cada detalhe pensado para criar memórias que durarão para sempre.</p>
-        </div>
-      </div>
-    </article>
+        <span class="serv-panel-tag">Eventos Especiais</span>
+        <h3 class="serv-panel-name">Casamentos</h3>
+        <p class="serv-panel-desc">O dia mais especial da sua vida merece o catering perfeito. Criamos experiências gastronómicas verdadeiramente inesquecíveis, com menus personalizados e um serviço impecável do início ao fim.</p>
+        <a href="orcamento.html" class="serv-panel-cta">Pedir Orçamento</a>
+      </article>
 
-    <article class="serv-sc">
-      <div class="serv-sc-top">
-        <span class="serv-sc-num">03</span>
-        <span class="serv-sc-tag">Empresas</span>
-        <h3 class="serv-sc-name">Eventos Corporativos</h3>
-        <a href="orcamento.html" class="serv-sc-link">Pedir Orçamento</a>
-      </div>
-      <div class="serv-sc-body">
-        <div class="serv-sc-imgs">
-          <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&auto=format&fit=crop&q=80" alt="Eventos Corporativos" loading="lazy">
+      <article class="serv-panel" data-idx="1">
+        <div class="serv-panel-img">
+          <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=1000&auto=format&fit=crop&q=80" alt="Batizados — celebração familiar" loading="lazy">
         </div>
-        <div class="serv-sc-text">
-          <p class="serv-sc-desc">Conferências, gala dinners e team buildings com a sofisticação que a sua empresa merece. Serviço profissional, apresentação impecável e sabores que impressionam.</p>
-        </div>
-      </div>
-    </article>
+        <span class="serv-panel-tag">Família</span>
+        <h3 class="serv-panel-name">Batizados</h3>
+        <p class="serv-panel-desc">Celebre a chegada do novo membro da família com um ambiente caloroso e uma mesa memorável. Cada detalhe pensado para criar memórias que durarão para sempre.</p>
+        <a href="orcamento.html" class="serv-panel-cta">Pedir Orçamento</a>
+      </article>
 
-    <article class="serv-sc">
-      <div class="serv-sc-top">
-        <span class="serv-sc-num">04</span>
-        <span class="serv-sc-tag">Receções</span>
-        <h3 class="serv-sc-name">Cocktails &amp; Receções</h3>
-        <a href="orcamento.html" class="serv-sc-link">Pedir Orçamento</a>
-      </div>
-      <div class="serv-sc-body">
-        <div class="serv-sc-imgs">
-          <img src="https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=800&auto=format&fit=crop&q=80" alt="Cocktails e Receções" loading="lazy">
+      <article class="serv-panel" data-idx="2">
+        <div class="serv-panel-img">
+          <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1000&auto=format&fit=crop&q=80" alt="Eventos Corporativos" loading="lazy">
         </div>
-        <div class="serv-sc-text">
-          <p class="serv-sc-desc">Passas e finger food selecionados com rigor, apresentados com o cuidado estético que nos define. Um cocktail que se torna, por si só, parte da experiência.</p>
-        </div>
-      </div>
-    </article>
+        <span class="serv-panel-tag">Empresas</span>
+        <h3 class="serv-panel-name">Eventos Corporativos</h3>
+        <p class="serv-panel-desc">Conferências, gala dinners e team buildings com a sofisticação que a sua empresa merece. Serviço profissional, apresentação impecável e sabores que impressionam.</p>
+        <a href="orcamento.html" class="serv-panel-cta">Pedir Orçamento</a>
+      </article>
 
-    <article class="serv-sc">
-      <div class="serv-sc-top">
-        <span class="serv-sc-num">05</span>
-        <span class="serv-sc-tag">Fé &amp; Família</span>
-        <h3 class="serv-sc-name">Comunhões</h3>
-        <a href="orcamento.html" class="serv-sc-link">Pedir Orçamento</a>
-      </div>
-      <div class="serv-sc-body">
-        <div class="serv-sc-imgs">
-          <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=800&auto=format&fit=crop&q=80" alt="Comunhões" loading="lazy">
+      <article class="serv-panel" data-idx="3">
+        <div class="serv-panel-img">
+          <img src="https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=1000&auto=format&fit=crop&q=80" alt="Cocktails e Receções" loading="lazy">
         </div>
-        <div class="serv-sc-text">
-          <p class="serv-sc-desc">Momentos de fé e família celebrados com sabor, elegância e atenção a cada detalhe. Um dia inesquecível começa com uma mesa perfeita.</p>
-        </div>
-      </div>
-    </article>
+        <span class="serv-panel-tag">Receções</span>
+        <h3 class="serv-panel-name">Cocktails &amp; Receções</h3>
+        <p class="serv-panel-desc">Passas e finger food selecionados com rigor, apresentados com o cuidado estético que nos define. Um cocktail que se torna, por si só, parte da experiência.</p>
+        <a href="orcamento.html" class="serv-panel-cta">Pedir Orçamento</a>
+      </article>
 
-    <article class="serv-sc">
-      <div class="serv-sc-top">
-        <span class="serv-sc-num">06</span>
-        <span class="serv-sc-tag">Celebrações</span>
-        <h3 class="serv-sc-name">Festas Privadas</h3>
-        <a href="orcamento.html" class="serv-sc-link">Pedir Orçamento</a>
-      </div>
-      <div class="serv-sc-body">
-        <div class="serv-sc-imgs">
-          <img src="https://images.unsplash.com/photo-1529543544282-ea669407fca3?w=800&auto=format&fit=crop&q=80" alt="Festas Privadas" loading="lazy">
+      <article class="serv-panel" data-idx="4">
+        <div class="serv-panel-img">
+          <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=1000&auto=format&fit=crop&q=80" alt="Comunhões" loading="lazy">
         </div>
-        <div class="serv-sc-text">
-          <p class="serv-sc-desc">Aniversários, reuniões familiares e celebrações especiais com o nosso toque de distinção. Porque cada festa deve ser vivida sem preocupações.</p>
+        <span class="serv-panel-tag">Fé &amp; Família</span>
+        <h3 class="serv-panel-name">Comunhões</h3>
+        <p class="serv-panel-desc">Momentos de fé e família celebrados com sabor, elegância e atenção a cada detalhe. Um dia inesquecível começa com uma mesa perfeita.</p>
+        <a href="orcamento.html" class="serv-panel-cta">Pedir Orçamento</a>
+      </article>
+
+      <article class="serv-panel" data-idx="5">
+        <div class="serv-panel-img">
+          <img src="https://images.unsplash.com/photo-1529543544282-ea669407fca3?w=1000&auto=format&fit=crop&q=80" alt="Festas Privadas" loading="lazy">
         </div>
-      </div>
-    </article>
+        <span class="serv-panel-tag">Celebrações</span>
+        <h3 class="serv-panel-name">Festas Privadas</h3>
+        <p class="serv-panel-desc">Aniversários, reuniões familiares e celebrações especiais com o nosso toque de distinção. Porque cada festa deve ser vivida sem preocupações.</p>
+        <a href="orcamento.html" class="serv-panel-cta">Pedir Orçamento</a>
+      </article>
+    </div>
   </div>
 </section>
 
@@ -961,81 +919,35 @@
   overlay.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', closeMenu); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeMenu(); });
 
-  // STACKING CARDS
-  // All cards live in ONE container. Each card is sticky at BASE+i*STEP.
-  // Card heights fill from their sticky-top to the viewport bottom,
-  // so their document-flow positions naturally space them out.
-  // Earlier cards remain sticky for the full scroll through the section,
-  // giving true simultaneous overlap as later cards slide on top.
+  // SPLIT-SCREEN SERVICES NAV
   (function() {
-    var stack = document.getElementById('servStack');
-    if (!stack) return;
-    var cards = Array.from(stack.querySelectorAll('.serv-sc'));
-    var total = cards.length;
-    var BASE = 80, STEP = 14, SCALE = 0.013;
+    var navItems = Array.from(document.querySelectorAll('.serv-nav-item'));
+    var panels   = Array.from(document.querySelectorAll('.serv-panel'));
+    if (!navItems.length || !panels.length) return;
 
-    function isMob() { return window.innerWidth < 769; }
-
-    // Store natural page-Y for each card (computed after setup)
-    var naturalY = [];
-
-    function setup() {
-      var vh = window.innerHeight;
-      naturalY = [];
-      if (isMob()) {
-        cards.forEach(function(c) {
-          c.style.position = '';
-          c.style.top = '';
-          c.style.height = '';
-          c.style.zIndex = '';
-          c.style.transform = '';
-        });
-        return;
-      }
-      // Set sticky top and height; height = viewport - top so card fills to bottom
-      cards.forEach(function(c, i) {
-        var top = BASE + i * STEP;
-        c.style.position = 'sticky';
-        c.style.top = top + 'px';
-        c.style.height = Math.round(vh * 0.80 - top) + 'px';
-        c.style.zIndex = i + 1;
-        c.style.transform = '';
-      });
-
-      // After layout, record each card's natural page-Y
-      requestAnimationFrame(function() {
-        var stackPageTop = stack.getBoundingClientRect().top + window.scrollY;
-        var cumulative = stackPageTop;
-        cards.forEach(function(c, i) {
-          naturalY[i] = cumulative;
-          cumulative += (window.innerHeight - BASE - i * STEP);
-        });
-        updateScale();
+    function setActive(idx) {
+      navItems.forEach(function(item, i) {
+        item.classList.toggle('active', i === idx);
       });
     }
 
-    function updateScale() {
-      if (isMob() || naturalY.length < total) return;
-      cards.forEach(function(card, i) {
-        var cardsOnTop = 0;
-        for (var j = i + 1; j < total; j++) {
-          // Card j becomes sticky when scrollY reaches its naturalY minus its sticky-top
-          var jStickyAt = naturalY[j] - (BASE + j * STEP);
-          if (window.scrollY >= jStickyAt) {
-            // Smooth transition over 15% of viewport as card slides in
-            var t = Math.min(1, (window.scrollY - jStickyAt) / (window.innerHeight * 0.15));
-            cardsOnTop += t;
-          }
+    // Click nav → scroll to panel
+    navItems.forEach(function(item, i) {
+      item.addEventListener('click', function() {
+        panels[i].scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+
+    // Scroll → highlight active nav item
+    var obs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          setActive(parseInt(entry.target.dataset.idx, 10));
         }
-        var minSc = 1 - (total - 1 - i) * SCALE;
-        var scale = Math.max(minSc, 1 - cardsOnTop * SCALE);
-        card.style.transform = 'scale(' + scale + ')';
       });
-    }
+    }, { threshold: 0.25, rootMargin: '-72px 0px -35% 0px' });
 
-    setup();
-    window.addEventListener('scroll', updateScale, { passive: true });
-    window.addEventListener('resize', function() { setup(); }, { passive: true });
+    panels.forEach(function(panel) { obs.observe(panel); });
   }());
 
   // ANIMATED TEXT — character-by-character scroll opacity
