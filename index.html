@@ -208,10 +208,10 @@
     .btn-outline-white {
       font-family: 'Jost', sans-serif; font-size: 10px; font-weight: 400;
       letter-spacing: 2px; text-transform: uppercase; padding: 13px 28px;
-      border: 1px solid rgba(255,255,255,0.5); color: #fff;
-      transition: border-color 0.3s, background 0.3s; display: inline-block;
+      border: 1px solid rgba(255,255,255,0.35); color: #fff; background: rgba(255,255,255,0.07); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      transition: border-color 0.3s, background 0.3s, backdrop-filter 0.3s; display: inline-block;
     }
-    .btn-outline-white:hover { border-color: #fff; background: rgba(255,255,255,0.07); }
+    .btn-outline-white:hover { border-color: rgba(255,255,255,0.8); background: rgba(255,255,255,0.14); }
     .hero-scroll-line {
       position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
       width: 1px; height: 60px; background: var(--gold);
