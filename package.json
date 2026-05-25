@@ -2,6 +2,6 @@
   "name": "divinalcatering-website",
   "version": "1.0.0",
   "scripts": {
-    "build": "mkdir -p dist && cp *.html dist/"
+    "build": "mkdir -p dist && cp *.html dist/ && cp -r images dist/"
   }
 }
