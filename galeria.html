@@ -47,8 +47,7 @@
     @media (prefers-reduced-motion: reduce) {
       [data-anim] { opacity: 1; transform: none; transition: none; }
       body { animation: none; opacity: 1; }
-      .hero-scroll-line { animation: none !important; }
-      .gal-item { transition: none !important; }
+        .gal-item { transition: none !important; }
     }
 
     /* === EYEBROW === */
@@ -147,11 +146,6 @@
     .hero-content p {
       font-family: 'Jost', sans-serif; font-size: 15px; font-weight: 300;
       color: rgba(255,255,255,0.7); letter-spacing: 0.5px;
-    }
-    .hero-scroll-line {
-      position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
-      width: 1px; height: 60px; background: var(--gold);
-      animation: scrollPulse 2s ease-in-out infinite;
     }
     @keyframes scrollPulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
 
@@ -419,7 +413,6 @@
     <h1>Galeria</h1>
     <p>Cada imagem conta a história de um momento perfeito.</p>
   </div>
-  <div class="hero-scroll-line" aria-hidden="true"></div>
 </section>
 
 <!-- FILTER TABS -->
