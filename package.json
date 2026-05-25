@@ -2,6 +2,6 @@
   "name": "divinalcatering-website",
   "version": "1.0.0",
   "scripts": {
-    "build": "echo 'Static site — no build step required'"
+    "build": "mkdir -p dist && cp *.html dist/"
   }
 }
