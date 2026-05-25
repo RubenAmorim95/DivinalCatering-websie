@@ -622,6 +622,18 @@
     if (e.key === 'ArrowRight') nextLb();
   });
 
+  // Swipe support for mobile
+  var touchStartX = 0;
+  lb.addEventListener('touchstart', function(e) {
+    touchStartX = e.touches[0].clientX;
+  }, { passive: true });
+  lb.addEventListener('touchend', function(e) {
+    var dx = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(dx) > 50) {
+      if (dx < 0) nextLb(); else prevLb();
+    }
+  }, { passive: true });
+
 }());
 </script>
 </body>
