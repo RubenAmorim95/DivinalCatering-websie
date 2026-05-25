@@ -303,43 +303,88 @@
       .lb-next { right: 0; }
     }
 
-    /* === INTRO OVERLAY === */
+        /* === INTRO OVERLAY === */
     .intro-overlay {
       position: fixed; inset: 0; z-index: 9999;
       background: var(--bg-dark);
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      pointer-events: none;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
     }
     .intro-overlay.gone { display: none; }
-    .intro-logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(20px, 2.5vw, 30px); font-weight: 300;
-      color: #fff; letter-spacing: 3px;
+    .intro-inner {
+      display: flex; flex-direction: column; align-items: center; gap: 0;
+      text-align: center;
+    }
+    .intro-gem {
+      font-size: 22px; color: var(--gold); line-height: 1;
+      margin-bottom: 22px;
       opacity: 0;
-      animation: introLogoIn 0.55s cubic-bezier(0.16,1,0.3,1) 0.12s forwards;
+      animation: introGemIn 0.65s cubic-bezier(0.16,1,0.3,1) 0.1s forwards;
     }
-    .intro-logo b { color: var(--gold); font-weight: 300; margin: 0 8px; }
-    .intro-line {
-      height: 1px; background: var(--gold); width: 0; margin-top: 18px;
-      animation: introLineGrow 0.5s cubic-bezier(0.16,1,0.3,1) 0.45s forwards;
+    @keyframes introGemIn {
+      from { opacity: 0; transform: scale(0.4); filter: blur(6px); }
+      to   { opacity: 1; transform: scale(1);   filter: blur(0); }
     }
-    @keyframes introLogoIn {
-      from { opacity: 0; filter: blur(8px); }
-      to   { opacity: 1; filter: blur(0); }
+    .intro-wordmark {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(18px, 2.2vw, 26px); font-weight: 300;
+      color: #fff; text-transform: uppercase; letter-spacing: 0.08em;
+      opacity: 0;
+      animation: introWordIn 0.8s cubic-bezier(0.16,1,0.3,1) 0.38s forwards;
     }
-    @keyframes introLineGrow { to { width: 56px; } }
-    @keyframes introFadeOut {
-      from { opacity: 1; }
-      to   { opacity: 0; }
+    @keyframes introWordIn {
+      from { opacity: 0; letter-spacing: 0.02em; filter: blur(4px); }
+      to   { opacity: 1; letter-spacing: 0.38em; filter: blur(0); }
     }
-    .intro-overlay.leaving { animation: introFadeOut 0.45s ease forwards; }
+    .intro-wordmark b { color: var(--gold); font-weight: 300; margin: 0 10px; opacity: 0.8; }
+    .intro-rule {
+      display: flex; align-items: center; gap: 10px;
+      margin: 18px 0 15px;
+    }
+    .intro-rule-l, .intro-rule-r {
+      height: 1px; background: var(--gold); width: 0;
+    }
+    .intro-rule-l { animation: introRuleL 0.55s cubic-bezier(0.16,1,0.3,1) 0.88s forwards; }
+    .intro-rule-r { animation: introRuleR 0.55s cubic-bezier(0.16,1,0.3,1) 0.88s forwards; }
+    @keyframes introRuleL { to { width: 52px; } }
+    @keyframes introRuleR { to { width: 52px; } }
+    .intro-rule-dot {
+      width: 3px; height: 3px; border-radius: 50%;
+      background: var(--gold); opacity: 0;
+      animation: introFade 0.3s ease 1.0s forwards;
+    }
+    .intro-tagline {
+      font-family: 'Jost', sans-serif; font-size: 9px;
+      letter-spacing: 4px; text-transform: uppercase;
+      color: rgba(255,255,255,0.28); opacity: 0;
+      animation: introTagIn 0.5s cubic-bezier(0.16,1,0.3,1) 1.0s forwards;
+    }
+    @keyframes introFade  { to { opacity: 0.7; } }
+    @keyframes introTagIn {
+      from { opacity: 0; transform: translateY(7px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes introCurtain {
+      from { transform: translateY(0); }
+      to   { transform: translateY(-100%); }
+    }
+    .intro-overlay.leaving {
+      animation: introCurtain 0.75s cubic-bezier(0.7,0,0.3,1) forwards;
+    }
   </style>
 </head>
 <body>
 <div class="intro-overlay" id="introOverlay" aria-hidden="true">
-  <p class="intro-logo">Divinal <b>✦</b> Catering</p>
-  <div class="intro-line"></div>
+  <div class="intro-inner">
+    <div class="intro-gem">✦</div>
+    <div class="intro-wordmark">Divinal <b>·</b> Catering</div>
+    <div class="intro-rule">
+      <div class="intro-rule-l"></div>
+      <div class="intro-rule-dot"></div>
+      <div class="intro-rule-r"></div>
+    </div>
+    <div class="intro-tagline">Desde 2010 · Barcelos, Portugal</div>
+  </div>
 </div>
 
 <!-- NAV -->
@@ -495,8 +540,8 @@
     sessionStorage.setItem('dc_intro', '1');
     setTimeout(function() {
       ov.classList.add('leaving');
-      setTimeout(function() { ov.classList.add('gone'); }, 450);
-    }, 1050);
+      setTimeout(function() { ov.classList.add('gone'); }, 750);
+    }, 1350);
   }());
 
   'use strict';
