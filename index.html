@@ -219,6 +219,24 @@
     }
     @keyframes scrollPulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
 
+    /* === HERO WORD ANIMATION === */
+    @keyframes heroWordIn {
+      0%   { opacity: 0; filter: blur(10px); transform: translateY(18px); }
+      100% { opacity: 1; filter: blur(0px);  transform: translateY(0); }
+    }
+    @keyframes heroFadeUp {
+      0%   { opacity: 0; transform: translateY(10px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    .hero-word {
+      display: inline-block;
+      opacity: 0;
+      animation: heroWordIn 0.7s cubic-bezier(0.16,1,0.3,1) forwards;
+    }
+    .hero-label-anim  { opacity: 0; animation: heroFadeUp 0.6s cubic-bezier(0.16,1,0.3,1) 0.15s forwards; }
+    .hero-sub-anim    { opacity: 0; animation: heroFadeUp 0.6s cubic-bezier(0.16,1,0.3,1) forwards; }
+    .hero-btns-anim   { opacity: 0; animation: heroFadeUp 0.6s cubic-bezier(0.16,1,0.3,1) forwards; }
+
     /* === SECTION HEADER === */
     .sec-hdr { text-align: center; margin-bottom: 52px; }
     .sec-hdr .eyebrow { margin-bottom: 14px; }
@@ -521,10 +539,10 @@
   <div class="hero-bg" role="img" aria-label="Mesa elegante decorada para casamento num pavilhão de vidro"></div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <p class="hero-label">Desde 2010 · Barcelos, Portugal</p>
-    <h1 class="hero-title">O Catering que torna<br>o seu dia Divinal.</h1>
-    <p class="hero-subtitle">Charme, elegância e bom gosto em cada evento.</p>
-    <div class="hero-buttons">
+    <p class="hero-label hero-label-anim">Desde 2010 · Barcelos, Portugal</p>
+    <h1 class="hero-title" id="heroTitle">O Catering que torna<br>o seu dia Divinal.</h1>
+    <p class="hero-subtitle hero-sub-anim">Charme, elegância e bom gosto em cada evento.</p>
+    <div class="hero-buttons hero-btns-anim">
       <a href="orcamento.html" class="btn-gold">Pedir Orçamento</a>
       <a href="sobre.html" class="btn-outline-white">A nossa história</a>
     </div>
@@ -797,6 +815,38 @@
 <script>
 (function () {
   'use strict';
+
+  // HERO WORD-BY-WORD BLUR ANIMATION
+  (function() {
+    var h1 = document.getElementById('heroTitle');
+    if (!h1) return;
+    var DELAY_START = 0.3; // seconds — starts after body pageIn (0.5s body fade allows overlap)
+    var WORD_GAP    = 0.10; // seconds between each word
+    var wordIdx = 0;
+    var html = '';
+    Array.from(h1.childNodes).forEach(function(node) {
+      if (node.nodeType === 3) {
+        node.textContent.split(/(\s+)/).forEach(function(part) {
+          if (part.trim()) {
+            var delay = (DELAY_START + wordIdx * WORD_GAP).toFixed(2);
+            html += '<span class="hero-word" style="animation-delay:' + delay + 's">' + part + '</span>';
+            wordIdx++;
+          } else if (part) {
+            html += part;
+          }
+        });
+      } else if (node.nodeName === 'BR') {
+        html += '<br>';
+      }
+    });
+    h1.innerHTML = html;
+    // Stagger subtitle and buttons after last word
+    var lastWordDelay = DELAY_START + (wordIdx - 1) * WORD_GAP;
+    var sub = document.querySelector('.hero-sub-anim');
+    var btns = document.querySelector('.hero-btns-anim');
+    if (sub)  sub.style.animationDelay  = (lastWordDelay + 0.2).toFixed(2) + 's';
+    if (btns) btns.style.animationDelay = (lastWordDelay + 0.45).toFixed(2) + 's';
+  }());
 
   // PAGE TRANSITIONS
   document.addEventListener('click', function(e) {
