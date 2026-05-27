@@ -193,52 +193,148 @@
 
     /* === HISTÓRIA / TIMELINE === */
     .historia { background: var(--bg-light); padding: 80px 48px; }
-    .timeline { max-width: 900px; margin: 0 auto; position: relative; padding-left: 40px; }
+
+    .timeline {
+      max-width: 900px; margin: 0 auto;
+      position: relative; padding-left: 40px;
+    }
+
+    /* Mobile ghost track (always visible, very faint) */
     .timeline::before {
-      content: ''; position: absolute; left: 0; top: 8px; bottom: 8px;
-      width: 1px; background: var(--gold); opacity: 0.4;
+      content: ''; position: absolute;
+      left: 0; top: 8px; bottom: 8px;
+      width: 1px; background: var(--gold); opacity: 0.12;
     }
-    .tl-item {
-      position: relative; margin-bottom: 64px; padding-left: 32px;
+
+    /* Mobile scroll-driven draw line — grows via --tl-h set by JS */
+    .timeline::after {
+      content: ''; position: absolute;
+      left: 0; top: 8px; width: 1px;
+      background: var(--gold); opacity: 0.65;
+      height: var(--tl-h, 0%);
+      max-height: calc(100% - 16px);
+      transition: height 0.12s linear;
+      will-change: height;
     }
+
+    .tl-item { position: relative; margin-bottom: 64px; padding-left: 32px; }
     .tl-item:last-child { margin-bottom: 0; }
+
+    /* Dot: scales in when item enters viewport */
     .tl-dot {
       position: absolute; left: -44px; top: 8px;
       width: 8px; height: 8px; border-radius: 50%;
-      border: 1px solid var(--gold); background: var(--bg-light);
-      z-index: 1;
+      border: 1.5px solid var(--gold); background: var(--bg-light);
+      z-index: 2; transform: scale(0);
+      transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
     }
+    .tl-item.in .tl-dot { transform: scale(1); }
+
+    /* Ring ripple: expands outward after dot pops in */
+    .tl-dot::after {
+      content: ''; position: absolute; inset: -5px;
+      border-radius: 50%; border: 1px solid var(--gold);
+      opacity: 0; transform: scale(1);
+    }
+    .tl-item.in .tl-dot::after {
+      animation: tl-ring 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both;
+    }
+    @keyframes tl-ring {
+      0%   { opacity: 0.55; transform: scale(1); }
+      100% { opacity: 0;    transform: scale(4.5); }
+    }
+
+    /* Text stagger: year > title > desc, each with a longer delay */
     .tl-year {
       font-family: 'Jost', sans-serif; font-size: 10px; letter-spacing: 2px;
       text-transform: uppercase; color: var(--gold); font-weight: 500;
       margin-bottom: 8px; display: block;
+      opacity: 0; transform: translateY(14px);
+      transition: opacity  0.65s cubic-bezier(0.16,1,0.3,1) 0.05s,
+                  transform 0.65s cubic-bezier(0.16,1,0.3,1) 0.05s;
     }
     .tl-title {
       font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 400;
       color: var(--text-dark); margin-bottom: 10px;
+      opacity: 0; transform: translateY(14px);
+      transition: opacity  0.65s cubic-bezier(0.16,1,0.3,1) 0.18s,
+                  transform 0.65s cubic-bezier(0.16,1,0.3,1) 0.18s;
     }
-    .tl-desc { font-size: 14px; color: var(--text-muted); line-height: 1.8; }
+    .tl-desc {
+      font-size: 14px; color: var(--text-muted); line-height: 1.8;
+      opacity: 0; transform: translateY(14px);
+      transition: opacity  0.65s cubic-bezier(0.16,1,0.3,1) 0.32s,
+                  transform 0.65s cubic-bezier(0.16,1,0.3,1) 0.32s;
+    }
+    .tl-item.in .tl-year,
+    .tl-item.in .tl-title,
+    .tl-item.in .tl-desc { opacity: 1; transform: none; }
 
-    /* Desktop alternating timeline */
+    /* Desktop: alternating two-column layout with animated center line */
     @media (min-width: 1024px) {
       .timeline {
-        padding-left: 0;
-        display: grid;
+        padding-left: 0; display: grid;
         grid-template-columns: 1fr 2px 1fr;
-        gap: 0 64px;
-        align-items: start;
+        gap: 0 64px; align-items: start;
       }
-      .timeline::before { display: none; }
+
+      /* Hide mobile lines */
+      .timeline::before,
+      .timeline::after { display: none; }
+
+      /* Ghost track for center column */
       .timeline-line {
         grid-column: 2; grid-row: 1 / 99;
-        background: var(--gold); opacity: 0.4; width: 1px;
-        justify-self: center; width: 1px;
+        position: relative;
+        background: oklch(75% 0.04 80 / 0.12);
+        width: 1px; justify-self: center;
       }
+
+      /* Desktop draw line grows via --tl-h */
+      .timeline-line::after {
+        content: ''; position: absolute;
+        top: 0; left: 0; width: 1px;
+        background: var(--gold); opacity: 0.65;
+        height: var(--tl-h, 0%);
+        transition: height 0.12s linear;
+        will-change: height;
+      }
+
       .tl-item { padding-left: 0; margin-bottom: 0; padding-bottom: 64px; }
       .tl-item:last-child { padding-bottom: 0; }
-      .tl-dot { display: none; }
-      .tl-item:nth-child(odd) { grid-column: 1; text-align: right; }
+
+      /* Dots: visible, positioned toward the center line */
+      .tl-dot { display: block; }
+      .tl-item:nth-child(odd)  .tl-dot { right: -69px; left: auto; }
+      .tl-item:nth-child(even) .tl-dot { left: -69px; }
+
+      /* Alternating columns */
+      .tl-item:nth-child(odd)  { grid-column: 1; text-align: right; }
       .tl-item:nth-child(even) { grid-column: 3; text-align: left; }
+
+      /* Desktop initial state: elements slide in from the center line */
+      .tl-item:nth-child(odd) .tl-year,
+      .tl-item:nth-child(odd) .tl-title,
+      .tl-item:nth-child(odd) .tl-desc  { transform: translateX(18px); }
+      .tl-item:nth-child(even) .tl-year,
+      .tl-item:nth-child(even) .tl-title,
+      .tl-item:nth-child(even) .tl-desc { transform: translateX(-18px); }
+
+      /* Desktop reveal (after nth-child rules — wins on equal specificity) */
+      .tl-item.in .tl-year,
+      .tl-item.in .tl-title,
+      .tl-item.in .tl-desc { opacity: 1; transform: none; }
+    }
+
+    /* Reduced motion: instant, no animation */
+    @media (prefers-reduced-motion: reduce) {
+      .timeline::after,
+      .timeline-line::after    { height: 100% !important; transition: none !important; }
+      .tl-dot                  { transform: scale(1) !important; transition: none !important; }
+      .tl-dot::after           { animation: none !important; }
+      .tl-year, .tl-title, .tl-desc {
+        opacity: 1 !important; transform: none !important; transition: none !important;
+      }
     }
 
     /* === VALORES === */
@@ -524,35 +620,35 @@
   <div class="timeline">
     <div class="timeline-line" aria-hidden="true"></div>
 
-    <div class="tl-item" data-anim="left">
+    <div class="tl-item">
       <div class="tl-dot" aria-hidden="true"></div>
       <span class="tl-year">2010</span>
       <h3 class="tl-title">Fundação</h3>
       <p class="tl-desc">Nascemos em Barcelos com uma visão: criar experiências gastronómicas verdadeiramente inesquecíveis para os momentos mais importantes da vida.</p>
     </div>
 
-    <div class="tl-item" data-anim="right">
+    <div class="tl-item">
       <div class="tl-dot" aria-hidden="true"></div>
       <span class="tl-year">2013</span>
       <h3 class="tl-title">Os Primeiros Grandes Casamentos</h3>
       <p class="tl-desc">Os primeiros casamentos de grande escala consolidaram a nossa reputação de excelência no serviço e na gastronomia do Norte de Portugal.</p>
     </div>
 
-    <div class="tl-item" data-anim="left">
+    <div class="tl-item">
       <div class="tl-dot" aria-hidden="true"></div>
       <span class="tl-year">2016</span>
       <h3 class="tl-title">Expansão Regional</h3>
       <p class="tl-desc">Alargámos a nossa cobertura a Braga, Porto e Vila Nova de Famalicão, tornando-nos referência em todo o Noroeste.</p>
     </div>
 
-    <div class="tl-item" data-anim="right">
+    <div class="tl-item">
       <div class="tl-dot" aria-hidden="true"></div>
       <span class="tl-year">2020</span>
       <h3 class="tl-title">Resiliência e Renovação</h3>
       <p class="tl-desc">Atravessámos os desafios globais com determinação. Investimos na equipa e nos processos, e saímos mais fortes do que nunca.</p>
     </div>
 
-    <div class="tl-item" data-anim="left">
+    <div class="tl-item">
       <div class="tl-dot" aria-hidden="true"></div>
       <span class="tl-year">2025</span>
       <h3 class="tl-title">15 Anos de Excelência</h3>
@@ -762,6 +858,48 @@
       el.classList.add('in');
     });
   }, 2500);
+
+  // TIMELINE: scroll-driven golden line draw
+  (function() {
+    var tl = document.querySelector('.timeline');
+    if (!tl) return;
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduced) { tl.style.setProperty('--tl-h', '100%'); return; }
+    function drawLine() {
+      var r = tl.getBoundingClientRect();
+      var vh = window.innerHeight;
+      // 0% when section top is at 60% of viewport height; 100% when section fills
+      var p = (vh * 0.6 - r.top) / r.height;
+      p = p < 0 ? 0 : p > 1 ? 1 : p;
+      tl.style.setProperty('--tl-h', (p * 100).toFixed(1) + '%');
+    }
+    window.addEventListener('scroll', drawLine, { passive: true });
+    drawLine();
+  }());
+
+  // TIMELINE: stagger reveal per milestone item
+  (function() {
+    var items = document.querySelectorAll('.tl-item');
+    if (!items.length) return;
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduced) {
+      items.forEach(function(el) { el.classList.add('in'); });
+      return;
+    }
+    var obs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          obs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    items.forEach(function(el) { obs.observe(el); });
+    // Safety: reveal anything still hidden after 3s
+    setTimeout(function() {
+      items.forEach(function(el) { el.classList.add('in'); });
+    }, 3000);
+  }());
 
   // COUNTER ANIMATION
   function countUp(el, target, suffix, isDecimal) {
