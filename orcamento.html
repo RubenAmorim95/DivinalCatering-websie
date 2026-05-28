@@ -148,69 +148,6 @@
     }
     @keyframes scrollPulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
 
-    /* === SECTION HEADER === */
-    .sec-hdr { text-align: center; margin-bottom: 64px; }
-    .sec-hdr .eyebrow { margin-bottom: 16px; }
-    .sec-hdr h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(26px, 3vw, 40px); font-weight: 300; color: var(--text-dark); line-height: 1.15;
-    }
-
-    /* === DEPOIMENTOS === */
-    .depoimentos { background: #fff; padding: 100px 48px; }
-    .dep-grid {
-      max-width: 1200px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1px 1fr 1px 1fr;
-      gap: 0 48px; align-items: start;
-    }
-    .dep-divider { background: var(--border); }
-    .dep-col { padding: 0 8px; }
-    .dep-stars {
-      color: var(--gold); font-size: 13px; letter-spacing: 4px;
-      margin-bottom: 24px; display: block;
-    }
-    .dep-quote {
-      font-family: 'Cormorant Garamond', serif; font-size: 22px; font-style: italic;
-      font-weight: 300; color: var(--text-dark); line-height: 1.6; margin-bottom: 28px;
-    }
-    .dep-line { width: 40px; height: 1px; background: var(--gold); margin-bottom: 14px; }
-    .dep-author {
-      font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 2px;
-      text-transform: uppercase; color: var(--gold); font-weight: 500; display: block;
-      margin-bottom: 4px;
-    }
-    .dep-event {
-      font-family: 'Jost', sans-serif; font-size: 11px; color: var(--text-muted);
-      font-weight: 300;
-    }
-
-    /* === PROCESSO === */
-    .processo { background: var(--bg-light); padding: 80px 48px; }
-    .steps-grid {
-      max-width: 1100px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr auto 1fr auto 1fr;
-      gap: 0 24px; align-items: start;
-    }
-    .step-connector {
-      align-self: center; padding-top: 16px;
-      display: flex; align-items: center; padding-bottom: 0;
-    }
-    .step-line {
-      width: 100%; height: 1px;
-      background: repeating-linear-gradient(to right, var(--gold) 0px, var(--gold) 6px, transparent 6px, transparent 12px);
-      opacity: 0.5; min-width: 32px;
-    }
-    .step { text-align: center; }
-    .step-num {
-      font-family: 'Cormorant Garamond', serif; font-size: 48px; font-weight: 300;
-      color: var(--gold); line-height: 1; margin-bottom: 16px; display: block;
-    }
-    .step-title {
-      font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 400;
-      color: var(--text-dark); margin-bottom: 10px;
-    }
-    .step-desc { font-size: 13px; color: var(--text-muted); line-height: 1.7; max-width: 240px; margin: 0 auto; }
-
     /* === CONTACTO SPLIT === */
     .contacto { display: grid; grid-template-columns: 1fr 1fr; }
     .ct-left { background: var(--bg-dark); padding: 60px 48px; display: flex; flex-direction: column; justify-content: center; }
@@ -312,8 +249,6 @@
     /* === RESPONSIVE === */
     @media (max-width: 1024px) {
       .nav { padding: 0 32px; }
-      .depoimentos { padding: 80px 32px; }
-      .processo { padding: 64px 32px; }
       .ct-left, .ct-right { padding: 72px 40px; }
       .footer { padding: 20px 32px; }
     }
@@ -321,15 +256,6 @@
       .nav { padding: 0 24px; height: 64px; }
       .nav-links, .nav-cta { display: none; }
       .nav-hamburger { display: flex; }
-      .depoimentos { padding: 72px 24px; }
-      .dep-grid { grid-template-columns: 1fr; gap: 0; }
-      .dep-divider { display: none; }
-      .dep-col { padding: 40px 0; border-bottom: 1px solid var(--border); }
-      .dep-col:first-child { padding-top: 0; }
-      .dep-col:last-child { border-bottom: none; padding-bottom: 0; }
-      .processo { padding: 64px 24px; }
-      .steps-grid { grid-template-columns: 1fr; gap: 48px; }
-      .step-connector { display: none; }
       .contacto { grid-template-columns: 1fr; }
       .ct-left, .ct-right { padding: 64px 24px; }
       .footer { padding: 20px 24px; flex-direction: column; gap: 12px; text-align: center; }
@@ -454,66 +380,6 @@
     <span class="eyebrow">Vamos Criar Algo Único</span>
     <h1>Pedir Orçamento</h1>
     <p>Resposta garantida em menos de 24 horas.</p>
-  </div>
-</section>
-
-<!-- DEPOIMENTOS -->
-<section class="depoimentos" aria-label="Testemunhos de clientes">
-  <div class="sec-hdr" data-anim="up">
-    <span class="eyebrow">O Que Dizem de Nós</span>
-    <h2>Palavras que nos tocam</h2>
-  </div>
-  <div class="dep-grid" data-stagger>
-    <div class="dep-col" data-anim="up">
-      <span class="dep-stars">★★★★★</span>
-      <p class="dep-quote">"A equipa do Divinal transformou o nosso casamento num sonho real. Cada prato foi uma obra de arte e o serviço foi impecável do início ao fim."</p>
-      <div class="dep-line"></div>
-      <span class="dep-author">Maria &amp; João Ferreira</span>
-      <span class="dep-event">Casamento · Quinta de Caslopo, 2024</span>
-    </div>
-    <div class="dep-divider" aria-hidden="true"></div>
-    <div class="dep-col" data-anim="up">
-      <span class="dep-stars">★★★★★</span>
-      <p class="dep-quote">"Profissionalismo e elegância em cada detalhe. Os nossos convidados ainda falam do menu. Uma experiência que superou todas as expectativas."</p>
-      <div class="dep-line"></div>
-      <span class="dep-author">Ana Rodrigues</span>
-      <span class="dep-event">Evento Corporativo · Braga, 2023</span>
-    </div>
-    <div class="dep-divider" aria-hidden="true"></div>
-    <div class="dep-col" data-anim="up">
-      <span class="dep-stars">★★★★★</span>
-      <p class="dep-quote">"Uma experiência gastronómica verdadeiramente inesquecível. O cuidado com cada pormenor fez do nosso dia algo absolutamente único."</p>
-      <div class="dep-line"></div>
-      <span class="dep-author">Sofia &amp; Miguel Costa</span>
-      <span class="dep-event">Casamento · Palácio da Igreja Velha, 2023</span>
-    </div>
-  </div>
-</section>
-
-<!-- PROCESSO -->
-<section class="processo" id="como-funciona" aria-label="Como funciona">
-  <div class="sec-hdr" data-anim="up">
-    <span class="eyebrow">Como Funciona</span>
-    <h2>Do primeiro contacto<br>ao dia perfeito</h2>
-  </div>
-  <div class="steps-grid" data-stagger>
-    <div class="step" data-anim="up">
-      <span class="step-num">01</span>
-      <h3 class="step-title">Preencha o Formulário</h3>
-      <p class="step-desc">Partilhe connosco os detalhes do seu evento. Quanto mais nos contar, mais personalizada será a nossa proposta.</p>
-    </div>
-    <div class="step-connector" aria-hidden="true"><div class="step-line"></div></div>
-    <div class="step" data-anim="up">
-      <span class="step-num">02</span>
-      <h3 class="step-title">Reunião &amp; Menu</h3>
-      <p class="step-desc">Reunimo-nos consigo para perceber a sua visão e criamos um menu completamente personalizado, incluindo uma prova privada.</p>
-    </div>
-    <div class="step-connector" aria-hidden="true"><div class="step-line"></div></div>
-    <div class="step" data-anim="up">
-      <span class="step-num">03</span>
-      <h3 class="step-title">Dia Inesquecível</h3>
-      <p class="step-desc">A nossa equipa cuida de tudo, para que possa viver cada momento sem preocupações. O resto é memória.</p>
-    </div>
   </div>
 </section>
 
