@@ -495,7 +495,7 @@
 
   </style>
 </head>
-<body>
+<body style="opacity:0">
 
 
 <!-- NAV -->
@@ -715,6 +715,7 @@
     if (href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:') || href.includes('wa.me') || a.target === '_blank') return;
     if (!href.match(/\.html/)) return;
     e.preventDefault();
+    document.body.style.animation = 'none';
     document.body.style.transition = 'opacity 0.35s ease';
     document.body.style.opacity = '0';
     setTimeout(function() { window.location.href = href; }, 360);
@@ -866,6 +867,14 @@
 
   var numsGrid = document.getElementById('numsGrid');
   if (numsGrid) counterObs.observe(numsGrid);
+
+  // BFCACHE RESTORE — page navigated back/forward; re-show without re-animating
+  window.addEventListener('pageshow', function(e) {
+    if (e.persisted) {
+      document.body.style.transition = 'opacity 0.2s ease';
+      document.body.style.opacity = '1';
+    }
+  });
 
 }());
 </script>
