@@ -171,24 +171,17 @@
       display: flex; align-items: center; justify-content: center; overflow: hidden;
     }
 
-    /* Ken Burns Slideshow */
-    .hero-slides { position: absolute; inset: 0; overflow: hidden; }
-    .hero-slide {
+    /* Hero background — single static image with subtle Ken Burns zoom */
+    .hero-bg {
       position: absolute; inset: 0;
-      background-size: cover; background-position: center; background-color: #1E1B14;
-      opacity: 0;
-      will-change: opacity, transform;
-      transition: opacity 1.2s cubic-bezier(0.4,0,0.2,1);
+      background-image: url('images/hero/hero-index.jpg'), url('images/galeria/evento-01.jpg');
+      background-size: cover; background-position: center 30%;
+      background-color: #1E1B14;
+      will-change: transform;
+      animation: heroKb 20s cubic-bezier(0.25,0.46,0.45,0.94) forwards;
     }
-    .hero-slide.active { opacity: 1; }
-    .hero-slide.kb-a { animation: kbA 8s cubic-bezier(0.25,0.46,0.45,0.94) both; }
-    .hero-slide.kb-b { animation: kbB 8s cubic-bezier(0.25,0.46,0.45,0.94) both; }
-    .hero-slide.kb-c { animation: kbC 8s cubic-bezier(0.25,0.46,0.45,0.94) both; }
-    .hero-slide.kb-d { animation: kbD 8s cubic-bezier(0.25,0.46,0.45,0.94) both; }
-    @keyframes kbA { from { transform: scale(1.0) translateX(0); }   to { transform: scale(1.06) translateX(-1%); } }
-    @keyframes kbB { from { transform: scale(1.06) translateY(1%); } to { transform: scale(1.0)  translateY(0); } }
-    @keyframes kbC { from { transform: scale(1.0) translateX(1%); }  to { transform: scale(1.06) translateX(0); } }
-    @keyframes kbD { from { transform: scale(1.04) translateY(0); }  to { transform: scale(1.0)  translateY(1%); } }
+    @keyframes heroKb { from { transform: scale(1.0); } to { transform: scale(1.07); } }
+    @media (prefers-reduced-motion: reduce) { .hero-bg { animation: none !important; } }
 
     /* Sophisticated dual-layer overlay: vignette + directional gradient */
     .hero-overlay {
@@ -271,16 +264,6 @@
     .hero-btns-anim   { opacity: 0; animation: heroFadeUp 0.6s cubic-bezier(0.16,1,0.3,1) forwards; }
 
     /* Slide progress dots */
-    .hero-dots {
-      position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
-      z-index: 3; display: flex; gap: 8px;
-    }
-    .hero-dot {
-      width: 4px; height: 4px; border-radius: 50%;
-      background: rgba(255,255,255,0.3); transition: background 0.4s, transform 0.4s;
-      cursor: pointer;
-    }
-    .hero-dot.active { background: var(--gold); transform: scale(1.5); }
 
     /* === MARQUEE === */
     .marquee-strip {
@@ -753,20 +736,9 @@
 
 <!-- HERO -->
 <section class="hero" id="inicio" aria-label="Início">
-  <div class="hero-slides" id="heroSlides" aria-hidden="true">
-    <div class="hero-slide active kb-a" style="background-image:url('images/hero/hero-index.jpg'),url('images/galeria/evento-09.jpg')"></div>
-    <div class="hero-slide kb-b" style="background-image:url('images/galeria/evento-01.jpg'),url('images/galeria/evento-09.jpg')"></div>
-    <div class="hero-slide kb-c" style="background-image:url('images/galeria/evento-09.jpg'),url('images/galeria/evento-01.jpg')"></div>
-    <div class="hero-slide kb-d" style="background-image:url('images/galeria/evento-11.jpg'),url('images/galeria/evento-01.jpg')"></div>
-  </div>
+  <div class="hero-bg" id="heroBg" role="img" aria-label="Mesa rústica de casamento com flores silvestres e louça de cristal — evento Divinal Catering"></div>
   <div class="hero-overlay"></div>
   <canvas class="hero-grain" id="heroGrain" aria-hidden="true"></canvas>
-  <div class="hero-dots" id="heroDots" aria-hidden="true">
-    <div class="hero-dot active" data-dot="0"></div>
-    <div class="hero-dot" data-dot="1"></div>
-    <div class="hero-dot" data-dot="2"></div>
-    <div class="hero-dot" data-dot="3"></div>
-  </div>
   <div class="hero-content">
     <p class="hero-label hero-label-anim">Desde 2010 · Barcelos, Portugal</p>
     <h1 class="hero-title" id="heroTitle">O Catering que torna<br>o seu dia Divinal.</h1>
@@ -1049,35 +1021,6 @@
 
   'use strict';
 
-  // KEN BURNS SLIDESHOW
-  (function() {
-    var slides = Array.from(document.querySelectorAll('.hero-slide'));
-    var dots   = Array.from(document.querySelectorAll('.hero-dot'));
-    var kbCls  = ['kb-a','kb-b','kb-c','kb-d'];
-    var cur    = 0;
-    var total  = slides.length;
-    if (total < 2) return;
-
-    function goTo(next) {
-      var prev = cur;
-      cur = next % total;
-      slides[prev].classList.remove('active');
-      kbCls.forEach(function(c) { slides[cur].classList.remove(c); });
-      slides[cur].classList.add(kbCls[cur % kbCls.length]);
-      slides[cur].classList.add('active');
-      dots.forEach(function(d, i) { d.classList.toggle('active', i === cur); });
-    }
-
-    var timer = setInterval(function() { goTo(cur + 1); }, 6000);
-
-    dots.forEach(function(d) {
-      d.addEventListener('click', function() {
-        clearInterval(timer);
-        goTo(parseInt(d.dataset.dot, 10));
-        timer = setInterval(function() { goTo(cur + 1); }, 6000);
-      });
-    });
-  }());
 
   // FILM GRAIN CANVAS (animated at 12fps for cinematic texture)
   (function() {
@@ -1118,9 +1061,9 @@
     if (!reduced) requestAnimationFrame(loop);
   }());
 
-  // HERO PARALLAX (photo stack moves at 0.4× scroll speed)
+  // HERO PARALLAX (photo moves at 0.4× scroll speed)
   (function() {
-    var slides = document.getElementById('heroSlides');
+    var slides = document.getElementById('heroBg');
     var hero   = document.getElementById('inicio');
     if (!slides || !hero) return;
     var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
