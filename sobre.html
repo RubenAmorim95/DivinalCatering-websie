@@ -17,14 +17,14 @@
     :root {
       --bg-light: #FAFAF7;
       --bg-dark: #0F0E0C;
-      --gold: #B8973A;
+      --gold: #C9A84C;
       --text-dark: #1C1B18;
       --text-muted: #7A7168;
-      --border: rgba(184,151,58,0.2);
+      --border: rgba(201,168,76,0.2);
     }
     html { scroll-behavior: smooth; }
     body {
-      font-family: 'Jost', sans-serif; font-weight: 300;
+      font-family: 'Jost', sans-serif; font-weight: 300; font-size: 16px;
       color: var(--text-dark); background: var(--bg-light);
       overflow-x: hidden; -webkit-font-smoothing: antialiased;
       opacity: 0; animation: pageIn 0.5s ease forwards;
@@ -51,7 +51,7 @@
 
     /* === EYEBROW === */
     .eyebrow {
-      font-family: 'Jost', sans-serif; font-size: 10px; letter-spacing: 3px;
+      font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 3px;
       text-transform: uppercase; color: var(--gold); font-weight: 500; display: block;
     }
 
@@ -71,7 +71,7 @@
     .nav.scrolled .nav-logo { color: var(--text-dark); }
     .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
     .nav-links a {
-      font-family: 'Jost', sans-serif; font-size: 11px; font-weight: 400;
+      font-family: 'Jost', sans-serif; font-size: 13px; font-weight: 400;
       letter-spacing: 2px; text-transform: uppercase;
       color: rgba(255,255,255,0.8); transition: color 0.3s;
       position: relative;
@@ -90,7 +90,7 @@
     .nav.scrolled .nav-links a:hover { color: var(--text-dark); }
     .nav.scrolled .nav-links a.nav-active { color: var(--gold); border-bottom-color: var(--gold); }
     .nav-cta {
-      font-family: 'Jost', sans-serif; font-size: 11px; font-weight: 400;
+      font-family: 'Jost', sans-serif; font-size: 13px; font-weight: 400;
       letter-spacing: 2px; text-transform: uppercase;
       padding: 10px 22px; border: 1px solid var(--gold); color: var(--gold);
       transition: background 0.3s; position: relative; overflow: hidden;
@@ -125,14 +125,14 @@
     }
     .nav-overlay a:hover, .nav-overlay a.nav-active { color: var(--gold); }
     .nav-overlay .overlay-cta {
-      font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 2px;
+      font-family: 'Jost', sans-serif; font-size: 13px; letter-spacing: 2px;
       text-transform: uppercase; padding: 14px 36px;
       border: 1px solid var(--gold); color: var(--gold); margin-top: 8px;
     }
 
     /* === BUTTONS === */
     .btn-gold {
-      font-family: 'Jost', sans-serif; font-size: 11px; font-weight: 400;
+      font-family: 'Jost', sans-serif; font-size: 13px; font-weight: 400;
       letter-spacing: 2px; text-transform: uppercase; padding: 16px 36px;
       background: var(--gold); color: #fff;
       position: relative; overflow: hidden; display: inline-block;
@@ -149,7 +149,7 @@
     .sec-hdr .eyebrow { margin-bottom: 16px; }
     .sec-hdr h2 {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(26px, 3vw, 40px); font-weight: 300;
+      font-size: clamp(32px, 3.5vw, 48px); font-weight: 300;
       color: var(--text-dark); line-height: 1.15;
     }
 
@@ -174,7 +174,7 @@
       font-weight: 300; color: #fff; line-height: 1.1; margin-bottom: 20px;
     }
     .hero-content p {
-      font-family: 'Jost', sans-serif; font-size: 15px; font-weight: 300;
+      font-family: 'Jost', sans-serif; font-size: 17px; font-weight: 300;
       color: rgba(255,255,255,0.7); letter-spacing: 0.5px;
     }
     @keyframes scrollPulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
@@ -269,7 +269,7 @@
                   transform 0.65s cubic-bezier(0.16,1,0.3,1) 0.18s;
     }
     .tl-desc {
-      font-size: 14px; color: var(--text-muted); line-height: 1.8;
+      font-size: 16px; color: var(--text-muted); line-height: 1.8;
       opacity: 0; transform: translateY(14px);
       transition: opacity  0.65s cubic-bezier(0.16,1,0.3,1) 0.32s,
                   transform 0.65s cubic-bezier(0.16,1,0.3,1) 0.32s;
@@ -372,7 +372,7 @@
       font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 400;
       color: var(--text-dark); margin-bottom: 14px;
     }
-    .val-desc { font-size: 14px; color: var(--text-muted); line-height: 1.75; }
+    .val-desc { font-size: 16px; color: var(--text-muted); line-height: 1.75; }
 
     /* === NÚMEROS === */
     .numeros { background: var(--bg-dark); padding: 64px 48px; }
@@ -410,9 +410,9 @@
       background: var(--bg-dark); border-top: 1px solid rgba(184,151,58,0.1);
       padding: 24px 48px; display: flex; align-items: center; justify-content: space-between;
     }
-    .footer p { font-size: 12px; color: rgba(255,255,255,0.3); }
+    .footer p { font-size: 13px; color: rgba(255,255,255,0.3); }
     .footer-links { display: flex; gap: 24px; }
-    .footer-links a { font-size: 12px; color: rgba(255,255,255,0.3); transition: color 0.2s; }
+    .footer-links a { font-size: 13px; color: rgba(255,255,255,0.3); transition: color 0.2s; }
     .footer-links a:hover { color: var(--gold); }
 
     /* === WA FLOAT === */
