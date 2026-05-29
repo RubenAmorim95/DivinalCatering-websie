@@ -75,10 +75,18 @@
       font-family: 'Jost', sans-serif; font-size: 11px; font-weight: 400;
       letter-spacing: 2px; text-transform: uppercase;
       color: rgba(255,255,255,0.8); transition: color 0.3s;
-      padding-bottom: 2px; border-bottom: 1px solid transparent;
+      position: relative;
     }
+    .nav-links a::after {
+      content: '';
+      position: absolute; bottom: -2px; left: 0; right: 0;
+      height: 1px; background: var(--gold);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.25s cubic-bezier(0.16,1,0.3,1);
+    }
+    .nav-links a:hover::after, .nav-links a.nav-active::after { transform: scaleX(1); }
     .nav-links a:hover { color: #fff; }
-    .nav-links a.nav-active { color: var(--gold); border-bottom-color: var(--gold); }
+    .nav-links a.nav-active { color: var(--gold); }
     .nav.scrolled .nav-links a { color: var(--text-muted); }
     .nav.scrolled .nav-links a:hover { color: var(--text-dark); }
     .nav.scrolled .nav-links a.nav-active { color: var(--gold); border-bottom-color: var(--gold); }
@@ -130,7 +138,7 @@
     }
     .hero-bg {
       position: absolute; inset: 0; background-color: #1E1B14;
-      background-image: url('images/hero/hero-galeria.jpg'), url('https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=1920&auto=format&fit=crop&q=85');
+      background-image: url('images/hero/hero-galeria.jpg'), url('images/galeria/evento-02.jpg');
       background-size: cover; background-position: center;
     }
     .hero-overlay { position: absolute; inset: 0; background: rgba(10,9,7,0.6); }
@@ -388,7 +396,7 @@
     <li><a href="sobre.html">Sobre</a></li>
     <li><a href="index.html#servicos">Serviços</a></li>
     <li><a href="index.html#espacos">Espaços</a></li>
-    <li><a href="galeria.html">Galeria</a></li>
+    <li><a href="galeria.html" class="nav-active">Galeria</a></li>
   </ul>
   <a href="orcamento.html" class="nav-cta">Pedir Orçamento</a>
   <button class="nav-hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
@@ -400,7 +408,7 @@
   <a href="sobre.html">Sobre</a>
   <a href="index.html#servicos">Serviços</a>
   <a href="index.html#espacos">Espaços</a>
-  <a href="galeria.html">Galeria</a>
+  <a href="galeria.html" class="nav-active">Galeria</a>
   <a href="orcamento.html" class="overlay-cta">Pedir Orçamento</a>
 </div>
 

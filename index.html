@@ -425,103 +425,47 @@
     }
     .serv-panel-cta:hover { background: rgba(184,151,58,0.07); }
 
-    /* === ESPAÇOS — Immersive fullscreen slider === */
-    .espacos { background: var(--bg-dark); padding: 0; overflow: hidden; }
-    .esp-hdr { padding: 64px 64px 40px; }
+    /* === ESPAÇOS === */
+    .espacos { background: var(--bg-dark); padding: 80px 0; overflow: hidden; }
+    .esp-hdr { padding: 0 48px; margin-bottom: 44px; }
     .esp-hdr .eyebrow { margin-bottom: 14px; }
     .esp-hdr h2 {
       font-family: 'Cormorant Garamond', serif;
       font-size: clamp(28px, 3vw, 42px); font-weight: 300; color: #fff;
-      letter-spacing: -0.01em;
     }
-    /* Slider stage */
     .esp-track {
-      position: relative;
-      width: 100%;
-      height: 70vh; min-height: 460px; max-height: 680px;
-      overflow: hidden;
+      display: flex; gap: 16px; overflow-x: auto; scroll-behavior: smooth;
+      padding: 0 48px; scrollbar-width: none; -ms-overflow-style: none;
     }
-    .esp-card {
-      position: absolute; inset: 0;
-      opacity: 0;
-      transition: opacity 0.65s cubic-bezier(0.4,0,0.2,1);
-      pointer-events: none;
-    }
-    .esp-card.active { opacity: 1; pointer-events: auto; }
-
-    /* Slide-in/out direction classes (applied by JS momentarily) */
-    .esp-card.slide-in  { animation: espSlideIn  0.65s cubic-bezier(0.4,0,0.2,1) both; }
-    .esp-card.slide-out { animation: espSlideOut 0.65s cubic-bezier(0.4,0,0.2,1) both; }
-    @keyframes espSlideIn  { from { opacity:0; transform:translateX(3%) scale(0.985); } to { opacity:1; transform:none; } }
-    @keyframes espSlideOut { from { opacity:1; transform:none; } to { opacity:0; transform:translateX(-3%) scale(0.985); } }
-
+    .esp-track::-webkit-scrollbar { display: none; }
+    .esp-card { flex: 0 0 240px; height: 360px; position: relative; overflow: hidden; }
     .esp-bg {
-      position: absolute; inset: 0; background-color: #1E1B14;
-      background-size: cover; background-position: center;
-      transform: scale(1.04);
-      transition: transform 6s cubic-bezier(0.25,0.46,0.45,0.94);
+      position: absolute; inset: 0; background-color: #2A2520;
+      background-size: cover; background-position: center; transition: transform 0.5s;
     }
-    .esp-card.active .esp-bg { transform: scale(1); }
+    .esp-card:hover .esp-bg { transform: scale(1.04); }
     .esp-overlay {
       position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(5,4,3,0.86) 0%, rgba(5,4,3,0.22) 55%, transparent 100%);
+      background: linear-gradient(to top, rgba(10,9,7,0.88) 0%, rgba(10,9,7,0.1) 55%, transparent 100%);
     }
-    .esp-info {
-      position: absolute; bottom: 0; left: 0; right: 0;
-      padding: 48px 64px;
-    }
+    .esp-info { position: absolute; bottom: 0; left: 0; right: 0; padding: 28px 24px; }
     .esp-name {
-      font-family: 'Cormorant Garamond', serif; font-size: clamp(28px, 3.5vw, 52px);
-      font-weight: 300; color: #fff; margin-bottom: 8px; line-height: 1.1;
-      letter-spacing: -0.01em;
+      font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 400;
+      color: #fff; margin-bottom: 6px; line-height: 1.2;
     }
     .esp-loc {
-      font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
-      color: var(--gold); margin-bottom: 18px; font-weight: 500;
+      font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 12px; font-weight: 500;
     }
-    /* Gold animated underline on venue name */
-    .esp-underline {
-      display: block; height: 1px; background: var(--gold);
-      width: 0; transition: width 0.8s cubic-bezier(0.16,1,0.3,1);
-      margin-bottom: 20px;
-    }
-    .esp-card.active .esp-underline { width: 72px; }
-    .esp-link {
-      font-size: 11px; color: var(--gold); letter-spacing: 2px;
-      text-transform: uppercase; transition: letter-spacing 0.25s;
-    }
-    .esp-link:hover { letter-spacing: 3px; }
-
-    /* Navigation */
-    .esp-nav {
-      display: flex; align-items: center; gap: 16px; padding: 24px 64px 48px;
-    }
+    .esp-link { font-size: 12px; color: var(--gold); letter-spacing: 1px; transition: letter-spacing 0.2s; }
+    .esp-card:hover .esp-link { letter-spacing: 2px; }
+    .esp-nav { display: flex; gap: 12px; padding: 32px 48px 0; }
     .esp-arrow {
-      width: 48px; height: 48px; border: 1px solid rgba(184,151,58,0.3);
-      border-radius: 50%; color: var(--gold);
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer; transition: border-color 0.3s, background 0.3s, transform 0.25s;
-      font-size: 18px; line-height: 1; background: none;
-      flex-shrink: 0;
+      width: 44px; height: 44px; border: 1px solid var(--border); color: var(--gold);
+      display: flex; align-items: center; justify-content: center; cursor: pointer;
+      transition: border-color 0.3s, background 0.3s; font-size: 20px; line-height: 1;
     }
-    .esp-arrow:hover {
-      border-color: var(--gold); background: rgba(184,151,58,0.1);
-      transform: scale(1.06);
-    }
-    /* Gold progress bar */
-    .esp-progress {
-      flex: 1; height: 1px; background: rgba(184,151,58,0.15);
-      position: relative; overflow: hidden;
-    }
-    .esp-progress-fill {
-      position: absolute; left: 0; top: 0; bottom: 0;
-      background: var(--gold);
-      transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
-    }
-    .esp-count {
-      font-family: 'Cormorant Garamond', serif; font-size: 13px;
-      color: rgba(255,255,255,0.35); white-space: nowrap;
-    }
+    .esp-arrow:hover { border-color: var(--gold); background: rgba(184,151,58,0.08); }
 
     /* === COMO FUNCIONA === */
     .processo { background: var(--bg-light); padding: 80px 48px; }
@@ -550,10 +494,7 @@
       color: var(--text-dark); margin-bottom: 8px;
     }
     .step-desc { font-size: 12px; color: var(--text-muted); line-height: 1.65; max-width: 180px; margin: 0 auto; }
-    .esp-bg {
-      position: absolute; inset: 0; background-color: #2A2520;
-      background-size: cover; background-position: center; transition: transform 0.5s;
-    }
+
     /* === CTA STRIP — emotional fullscreen === */
     .cta-strip {
       position: relative;
@@ -666,9 +607,8 @@
       .servicos-hdr { padding: 0 32px 48px; }
       .serv-split { padding: 0 32px; gap: 48px; }
       .serv-nav { flex: 0 0 180px; }
-      .esp-hdr { padding: 32px 32px 28px; }
-      .esp-info { padding: 36px 32px; }
-      .esp-nav { padding: 20px 32px 36px; }
+      .esp-hdr, .esp-nav { padding-left: 32px; padding-right: 32px; }
+      .esp-track { padding: 0 32px; }
       .processo { padding: 64px 32px; }
       .cta-strip { padding: 88px 32px; }
       .footer { padding: 20px 32px; }
@@ -684,11 +624,11 @@
       .serv-nav { display: none; }
       .serv-panel { padding-bottom: 56px; }
       .serv-panel-img { aspect-ratio: 4/3; }
-      .esp-hdr { padding: 40px 24px 24px; }
-      .esp-track { height: 60vh; min-height: 380px; }
-      .esp-info { padding: 28px 24px; }
-      .esp-name { font-size: clamp(22px, 5vw, 36px); }
-      .esp-nav { padding: 16px 24px 32px; }
+      .espacos { padding: 56px 0; }
+      .esp-hdr { padding: 0 24px; }
+      .esp-track { padding: 0 24px; }
+      .esp-card { flex: 0 0 220px; height: 320px; }
+      .esp-nav { padding: 20px 24px 0; }
       .processo { padding: 56px 24px; }
       .steps-grid { grid-template-columns: 1fr; gap: 24px 0; }
       .step-connector { display: none; }
@@ -814,10 +754,10 @@
 <!-- HERO -->
 <section class="hero" id="inicio" aria-label="Início">
   <div class="hero-slides" id="heroSlides" aria-hidden="true">
-    <div class="hero-slide active kb-a" style="background-image:url('images/hero/hero-index.jpg'),url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=1920&auto=format&fit=crop&q=85')"></div>
-    <div class="hero-slide kb-b" style="background-image:url('images/servicos/casamentos.jpg'),url('https://images.unsplash.com/photo-1519741497674-611481863552?w=1920&auto=format&fit=crop&q=85')"></div>
-    <div class="hero-slide kb-c" style="background-image:url('images/galeria/evento-01.jpg'),url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1920&auto=format&fit=crop&q=85')"></div>
-    <div class="hero-slide kb-d" style="background-image:url('images/galeria/evento-06.jpg'),url('https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=1920&auto=format&fit=crop&q=85')"></div>
+    <div class="hero-slide active kb-a" style="background-image:url('images/hero/hero-index.jpg'),url('images/galeria/evento-09.jpg')"></div>
+    <div class="hero-slide kb-b" style="background-image:url('images/galeria/evento-01.jpg'),url('images/galeria/evento-09.jpg')"></div>
+    <div class="hero-slide kb-c" style="background-image:url('images/galeria/evento-09.jpg'),url('images/galeria/evento-01.jpg')"></div>
+    <div class="hero-slide kb-d" style="background-image:url('images/galeria/evento-11.jpg'),url('images/galeria/evento-01.jpg')"></div>
   </div>
   <div class="hero-overlay"></div>
   <canvas class="hero-grain" id="heroGrain" aria-hidden="true"></canvas>
@@ -949,85 +889,74 @@
     <span class="eyebrow" data-anim="up">Onde Celebramos</span>
     <h2 data-anim="up">Espaços Parceiros</h2>
   </div>
-  <div class="esp-track" id="espTrack" role="region" aria-label="Slider de espaços parceiros">
-    <div class="esp-card active" role="group" aria-label="1 de 7 — Palácio da Igreja Velha">
-      <div class="esp-bg" style="background-image:url('images/espacos/Pal%C3%A1cio-da-Igreja-Velha.jpg'),url('https://images.unsplash.com/photo-1505843513577-22bb7d21e455?w=1400&auto=format&fit=crop&q=85')"></div>
+  <div class="esp-track" id="espTrack" role="list">
+    <div class="esp-card" role="listitem">
+      <div class="esp-bg" style="background-image:url('images/espacos/Pal%C3%A1cio-da-Igreja-Velha.jpg'),url('https://images.unsplash.com/photo-1505843513577-22bb7d21e455?w=600&auto=format&fit=crop&q=85')" role="img" aria-label="Palácio da Igreja Velha"></div>
       <div class="esp-overlay"></div>
       <div class="esp-info">
         <h3 class="esp-name">Palácio da Igreja Velha</h3>
         <p class="esp-loc">Vila Nova de Famalicão</p>
-        <span class="esp-underline"></span>
         <a href="https://www.palacioigrejavelha.com" target="_blank" rel="noopener" class="esp-link">Ver Espaço →</a>
       </div>
     </div>
-    <div class="esp-card" role="group" aria-label="2 de 7 — Lameiras Eventos">
-      <div class="esp-bg" style="background-image:url('images/espacos/Lameiras-Eventos.jpeg'),url('https://images.unsplash.com/photo-1583037189850-1921ae7c6c22?w=1400&auto=format&fit=crop&q=85')"></div>
+    <div class="esp-card" role="listitem">
+      <div class="esp-bg" style="background-image:url('images/espacos/Lameiras-Eventos.jpeg'),url('https://images.unsplash.com/photo-1583037189850-1921ae7c6c22?w=600&auto=format&fit=crop&q=85')" role="img" aria-label="Lameiras Eventos"></div>
       <div class="esp-overlay"></div>
       <div class="esp-info">
         <h3 class="esp-name">Lameiras Eventos</h3>
         <p class="esp-loc">Barcelos</p>
-        <span class="esp-underline"></span>
         <a href="https://www.lameiraseventos.com" target="_blank" rel="noopener" class="esp-link">Ver Espaço →</a>
       </div>
     </div>
-    <div class="esp-card" role="group" aria-label="3 de 7 — Quinta de Caslopo">
-      <div class="esp-bg" style="background-image:url('images/espacos/Quinta-de-Caslopo.jpg'),url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1400&auto=format&fit=crop&q=85')"></div>
+    <div class="esp-card" role="listitem">
+      <div class="esp-bg" style="background-image:url('images/espacos/Quinta-de-Caslopo.jpg'),url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&auto=format&fit=crop&q=85')" role="img" aria-label="Quinta de Caslopo"></div>
       <div class="esp-overlay"></div>
       <div class="esp-info">
         <h3 class="esp-name">Quinta de Caslopo</h3>
         <p class="esp-loc">Barcelos</p>
-        <span class="esp-underline"></span>
         <a href="https://www.quintadecaslopo.com" target="_blank" rel="noopener" class="esp-link">Ver Espaço →</a>
       </div>
     </div>
-    <div class="esp-card" role="group" aria-label="4 de 7 — Quinta Cardeal">
-      <div class="esp-bg" style="background-image:url('images/espacos/Quinta-cardeal.jpeg'),url('https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=1400&auto=format&fit=crop&q=85')"></div>
+    <div class="esp-card" role="listitem">
+      <div class="esp-bg" style="background-image:url('images/espacos/Quinta-cardeal.jpeg'),url('https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=600&auto=format&fit=crop&q=85')" role="img" aria-label="Quinta Cardeal"></div>
       <div class="esp-overlay"></div>
       <div class="esp-info">
         <h3 class="esp-name">Quinta Cardeal</h3>
         <p class="esp-loc">Vila do Conde</p>
-        <span class="esp-underline"></span>
         <a href="https://www.quintacardeal.com" target="_blank" rel="noopener" class="esp-link">Ver Espaço →</a>
       </div>
     </div>
-    <div class="esp-card" role="group" aria-label="5 de 7 — Quinta das Camélias">
-      <div class="esp-bg" style="background-image:url('images/espacos/Quinta-das-Cam%C3%A9lias.jpg'),url('https://images.unsplash.com/photo-1586611292717-f828b167408c?w=1400&auto=format&fit=crop&q=85')"></div>
+    <div class="esp-card" role="listitem">
+      <div class="esp-bg" style="background-image:url('images/espacos/Quinta-das-Cam%C3%A9lias.jpg'),url('https://images.unsplash.com/photo-1586611292717-f828b167408c?w=600&auto=format&fit=crop&q=85')" role="img" aria-label="Quinta das Camélias"></div>
       <div class="esp-overlay"></div>
       <div class="esp-info">
         <h3 class="esp-name">Quinta das Camélias</h3>
         <p class="esp-loc">Vila Nova de Gaia</p>
-        <span class="esp-underline"></span>
         <a href="https://www.quintadascamelias.com" target="_blank" rel="noopener" class="esp-link">Ver Espaço →</a>
       </div>
     </div>
-    <div class="esp-card" role="group" aria-label="6 de 7 — Quinta do Colégio">
-      <div class="esp-bg" style="background-image:url('images/espacos/Quinta-do-Col%C3%A9gio.jpg'),url('https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=1400&auto=format&fit=crop&q=85')"></div>
+    <div class="esp-card" role="listitem">
+      <div class="esp-bg" style="background-image:url('images/espacos/Quinta-do-Col%C3%A9gio.jpg'),url('https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=600&auto=format&fit=crop&q=85')" role="img" aria-label="Quinta do Colégio"></div>
       <div class="esp-overlay"></div>
       <div class="esp-info">
         <h3 class="esp-name">Quinta do Colégio</h3>
         <p class="esp-loc">Vila do Conde</p>
-        <span class="esp-underline"></span>
         <a href="https://www.quintadocolegio.com" target="_blank" rel="noopener" class="esp-link">Ver Espaço →</a>
       </div>
     </div>
-    <div class="esp-card" role="group" aria-label="7 de 7 — Quinta do Covelo">
-      <div class="esp-bg" style="background-image:url('images/espacos/Quinta-do-covelo.jpg'),url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1400&auto=format&fit=crop&q=85')"></div>
+    <div class="esp-card" role="listitem">
+      <div class="esp-bg" style="background-image:url('images/espacos/Quinta-do-covelo.jpg'),url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&auto=format&fit=crop&q=85')" role="img" aria-label="Quinta do Covelo"></div>
       <div class="esp-overlay"></div>
       <div class="esp-info">
         <h3 class="esp-name">Quinta do Covelo</h3>
         <p class="esp-loc">Vila Nova de Famalicão</p>
-        <span class="esp-underline"></span>
         <a href="https://www.quintadocovelo.com.pt" target="_blank" rel="noopener" class="esp-link">Ver Espaço →</a>
       </div>
     </div>
   </div>
   <div class="esp-nav">
-    <button class="esp-arrow" id="espPrev" aria-label="Espaço anterior">←</button>
-    <div class="esp-progress" aria-hidden="true">
-      <div class="esp-progress-fill" id="espFill"></div>
-    </div>
-    <span class="esp-count" id="espCount" aria-live="polite">1 / 7</span>
-    <button class="esp-arrow" id="espNext" aria-label="Espaço seguinte">→</button>
+    <button class="esp-arrow" id="espPrev" aria-label="Anterior">←</button>
+    <button class="esp-arrow" id="espNext" aria-label="Seguinte">→</button>
   </div>
 </section>
 
@@ -1445,52 +1374,12 @@
     });
   }, 2500);
 
-  // ESPAÇOS — Immersive fullscreen slider
-  (function() {
-    var cards  = Array.from(document.querySelectorAll('.esp-card'));
-    var fill   = document.getElementById('espFill');
-    var count  = document.getElementById('espCount');
-    var total  = cards.length;
-    var cur    = 0;
-
-    function update() {
-      if (fill)  fill.style.width  = ((cur + 1) / total * 100).toFixed(1) + '%';
-      if (count) count.textContent = (cur + 1) + ' / ' + total;
-    }
-
-    function goTo(next) {
-      var prev = cur;
-      cur = ((next % total) + total) % total;
-      cards[prev].classList.remove('active');
-      cards[cur].classList.add('active');
-      update();
-    }
-
-    document.getElementById('espPrev').addEventListener('click', function() { goTo(cur - 1); });
-    document.getElementById('espNext').addEventListener('click', function() { goTo(cur + 1); });
-
-    // Swipe support
-    var touchX = 0;
-    var espTrack = document.getElementById('espTrack');
-    if (espTrack) {
-      espTrack.addEventListener('touchstart', function(e) { touchX = e.touches[0].clientX; }, { passive: true });
-      espTrack.addEventListener('touchend', function(e) {
-        var dx = e.changedTouches[0].clientX - touchX;
-        if (Math.abs(dx) > 48) { dx < 0 ? goTo(cur + 1) : goTo(cur - 1); }
-      }, { passive: true });
-    }
-
-    // Keyboard
-    document.addEventListener('keydown', function(e) {
-      var focused = document.activeElement;
-      if (focused && (focused.id === 'espPrev' || focused.id === 'espNext')) {
-        if (e.key === 'ArrowLeft') goTo(cur - 1);
-        if (e.key === 'ArrowRight') goTo(cur + 1);
-      }
-    });
-
-    update();
-  }());
+  // ESPAÇOS NAV
+  var espTrack = document.getElementById('espTrack');
+  if (espTrack) {
+    document.getElementById('espPrev').addEventListener('click', function() { espTrack.scrollBy({ left: -320, behavior: 'smooth' }); });
+    document.getElementById('espNext').addEventListener('click', function() { espTrack.scrollBy({ left: 320, behavior: 'smooth' }); });
+  }
 
   // CTA PARALLAX
   (function() {
