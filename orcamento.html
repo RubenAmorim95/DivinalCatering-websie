@@ -265,81 +265,79 @@
       .form-row { grid-template-columns: 1fr; gap: 0; }
     }
 
-        /* === INTRO OVERLAY === */
-    .intro-overlay {
+    /* === INTRO OVERLAY — diamond cinematic reveal === */
+    #introOverlay {
       position: fixed; inset: 0; z-index: 9999;
-      background: var(--bg-dark);
-      display: flex; align-items: center; justify-content: center;
-      overflow: hidden;
+      background: #0C0B09; overflow: hidden;
     }
-    .intro-overlay.gone { display: none; }
-    .intro-inner {
-      display: flex; flex-direction: column; align-items: center; gap: 0;
-      text-align: center;
+    #introContent {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      display: flex; flex-direction: column; align-items: center;
+      text-align: center; pointer-events: none; white-space: nowrap;
     }
-    .intro-gem {
-      font-size: 32px; color: var(--gold); line-height: 1;
-      margin-bottom: 28px; opacity: 0;
-      animation: introGemIn 0.65s cubic-bezier(0.16,1,0.3,1) 0.1s forwards;
+    #introGemEl {
+      font-size: 24px; color: #C9A84C; line-height: 1;
+      margin-bottom: 22px;
+      opacity: 0; transform: scale(0.3); filter: blur(4px);
+      transition: opacity 0.4s cubic-bezier(0.16,1,0.3,1),
+                  transform 0.5s cubic-bezier(0.16,1,0.3,1),
+                  filter 0.4s ease;
     }
-    @keyframes introGemIn {
-      from { opacity: 0; transform: scale(0.4); filter: blur(6px); }
-      to   { opacity: 1; transform: scale(1);   filter: blur(0); }
+    #introName {
+      display: flex; align-items: center; gap: 14px;
+      margin-bottom: 14px;
     }
-    .intro-wordmark {
+    #introDivinal, #introCatering {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(28px, 3.2vw, 44px); font-weight: 300;
-      color: #fff; text-transform: uppercase; opacity: 0;
-      animation: introWordIn 0.9s cubic-bezier(0.16,1,0.3,1) 0.38s forwards;
+      font-size: 16px; font-weight: 300;
+      letter-spacing: 6px; text-transform: uppercase; color: #fff;
+      opacity: 0;
+      transition: opacity 0.5s ease-out, transform 0.5s cubic-bezier(0.16,1,0.3,1);
     }
-    @keyframes introWordIn {
-      from { opacity: 0; letter-spacing: 0.02em; margin-right: -0.02em; filter: blur(5px); }
-      to   { opacity: 1; letter-spacing: 0.38em; margin-right: -0.38em; filter: blur(0); }
-    }
-    .intro-wordmark b { color: var(--gold); font-weight: 300; margin: 0 14px; opacity: 0.8; }
-    .intro-rule { display: flex; align-items: center; gap: 10px; margin: 24px 0 18px; }
-    .intro-rule-l, .intro-rule-r { height: 1px; background: var(--gold); width: 0; }
-    .intro-rule-l { animation: introRuleL 0.55s cubic-bezier(0.16,1,0.3,1) 0.88s forwards; }
-    .intro-rule-r { animation: introRuleR 0.55s cubic-bezier(0.16,1,0.3,1) 0.88s forwards; }
-    @keyframes introRuleL { to { width: 80px; } }
-    @keyframes introRuleR { to { width: 80px; } }
-    .intro-rule-dot {
-      width: 4px; height: 4px; border-radius: 50%;
-      background: var(--gold); opacity: 0;
-      animation: introFade 0.3s ease 1.0s forwards;
-    }
-    .intro-tagline {
+    #introDivinal  { transform: translateX(10px); }
+    #introCatering { transform: translateX(-10px); }
+    #introSepGem { font-size: 10px; color: #C9A84C; opacity: 0.7; flex-shrink: 0; }
+    #introSub {
       font-family: 'Jost', sans-serif; font-size: 11px;
-      letter-spacing: 5px; text-transform: uppercase;
-      color: rgba(255,255,255,0.28); opacity: 0;
-      animation: introTagIn 0.5s cubic-bezier(0.16,1,0.3,1) 1.0s forwards;
+      letter-spacing: 3px; text-transform: uppercase;
+      color: rgba(201,168,76,0.7);
+      opacity: 0; transition: opacity 0.5s ease-out;
     }
-    @keyframes introFade  { to { opacity: 0.7; } }
-    @keyframes introTagIn {
-      from { opacity: 0; transform: translateY(7px); }
-      to   { opacity: 1; transform: translateY(0); }
+    #introDiamondSvg {
+      position: absolute; top: 50%; left: 50%;
+      margin: -12px 0 0 -12px;
+      transform-origin: center; opacity: 0; pointer-events: none;
     }
-    @keyframes introCurtain {
-      from { transform: translateY(0); }
-      to   { transform: translateY(-100%); }
+    #introDiamondPoly { fill: #C9A84C; }
+    .intro-piece {
+      position: absolute; inset: 0;
+      background: #0C0B09; opacity: 0; pointer-events: none;
     }
-    .intro-overlay.leaving {
-      animation: introCurtain 0.75s cubic-bezier(0.7,0,0.3,1) forwards;
-    }
+    #introPieceTop    { clip-path: polygon(0% 0%, 100% 0%, 50% 50%); }
+    #introPieceRight  { clip-path: polygon(100% 0%, 100% 100%, 50% 50%); }
+    #introPieceBottom { clip-path: polygon(0% 100%, 100% 100%, 50% 50%); }
+    #introPieceLeft   { clip-path: polygon(0% 0%, 0% 100%, 50% 50%); }
   </style>
 </head>
 <body>
-<div class="intro-overlay" id="introOverlay" aria-hidden="true">
-  <div class="intro-inner">
-    <div class="intro-gem">✦</div>
-    <div class="intro-wordmark">Divinal <b>·</b> Catering</div>
-    <div class="intro-rule">
-      <div class="intro-rule-l"></div>
-      <div class="intro-rule-dot"></div>
-      <div class="intro-rule-r"></div>
+<div id="introOverlay" aria-hidden="true">
+  <div id="introContent">
+    <div id="introGemEl">✦</div>
+    <div id="introName">
+      <span id="introDivinal">DIVINAL</span>
+      <span id="introSepGem">✦</span>
+      <span id="introCatering">CATERING</span>
     </div>
-    <div class="intro-tagline">Desde 2010 · Barcelos, Portugal</div>
+    <div id="introSub">DESDE 2010 · BARCELOS, PORTUGAL</div>
   </div>
+  <svg id="introDiamondSvg" viewBox="-12 -12 24 24" width="24" height="24" aria-hidden="true">
+    <polygon id="introDiamondPoly" points="0,-12 12,0 0,12 -12,0"/>
+  </svg>
+  <div class="intro-piece" id="introPieceTop"></div>
+  <div class="intro-piece" id="introPieceRight"></div>
+  <div class="intro-piece" id="introPieceBottom"></div>
+  <div class="intro-piece" id="introPieceLeft"></div>
 </div>
 
 <!-- NAV -->
@@ -504,16 +502,74 @@
 
 <script>
 (function () {
-  // INTRO OVERLAY
+  // INTRO OVERLAY — diamond cinematic reveal
   (function() {
     var ov = document.getElementById('introOverlay');
     if (!ov) return;
-    if (sessionStorage.getItem('dc_intro')) { ov.classList.add('gone'); return; }
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduced || sessionStorage.getItem('dc_intro')) { ov.style.display = 'none'; return; }
     sessionStorage.setItem('dc_intro', '1');
+
+    var gem    = document.getElementById('introGemEl');
+    var divEl  = document.getElementById('introDivinal');
+    var catEl  = document.getElementById('introCatering');
+    var subEl  = document.getElementById('introSub');
+    var ctEl   = document.getElementById('introContent');
+    var svgEl  = document.getElementById('introDiamondSvg');
+    var polyEl = document.getElementById('introDiamondPoly');
+    var pT = document.getElementById('introPieceTop');
+    var pR = document.getElementById('introPieceRight');
+    var pB = document.getElementById('introPieceBottom');
+    var pL = document.getElementById('introPieceLeft');
+    function raf2(fn) { requestAnimationFrame(function() { requestAnimationFrame(fn); }); }
+
     setTimeout(function() {
-      ov.classList.add('leaving');
-      setTimeout(function() { ov.classList.add('gone'); }, 750);
-    }, 1350);
+      gem.style.opacity = '1'; gem.style.transform = 'scale(1)'; gem.style.filter = 'blur(0)';
+      setTimeout(function() {
+        gem.style.transition = 'transform 0.15s cubic-bezier(0.33,1,0.68,1)';
+        gem.style.transform  = 'scale(1.15)';
+        setTimeout(function() {
+          gem.style.transition = 'transform 0.15s cubic-bezier(0.55,0,1,0.45)';
+          gem.style.transform  = 'scale(1)';
+        }, 150);
+      }, 300);
+    }, 400);
+
+    setTimeout(function() {
+      divEl.style.opacity = '1'; divEl.style.transform = 'translateX(0)';
+      catEl.style.opacity = '1'; catEl.style.transform = 'translateX(0)';
+      setTimeout(function() { subEl.style.opacity = '1'; }, 150);
+    }, 900);
+
+    setTimeout(function() {
+      ctEl.style.transition = 'opacity 0.25s ease-out'; ctEl.style.opacity = '0';
+      svgEl.style.opacity = '1'; svgEl.style.transition = 'none'; svgEl.style.transform = 'scale(1)';
+      raf2(function() {
+        var vw = window.innerWidth, vh = window.innerHeight;
+        var scaleFactor = Math.ceil(Math.sqrt(vw * vw + vh * vh) / 2 / 12) + 6;
+        svgEl.style.transition = 'transform 0.6s cubic-bezier(0.4,0,0.2,1)';
+        svgEl.style.transform  = 'scale(' + scaleFactor + ')';
+        setTimeout(function() {
+          polyEl.style.transition = 'fill 0.35s ease-in'; polyEl.style.fill = '#0C0B09';
+        }, 200);
+      });
+    }, 1400);
+
+    setTimeout(function() {
+      [pT, pR, pB, pL].forEach(function(p) { p.style.opacity = '1'; });
+      svgEl.style.opacity = '0'; svgEl.style.transition = 'none';
+      raf2(function() {
+        [pT, pR, pB, pL].forEach(function(p) {
+          p.style.transition = 'transform 0.6s cubic-bezier(0.4,0,1,1)';
+        });
+        pT.style.transform = 'translateY(-100vh)';
+        pR.style.transform = 'translateX(100vw)';
+        pB.style.transform = 'translateY(100vh)';
+        pL.style.transform = 'translateX(-100vw)';
+      });
+    }, 2000);
+
+    setTimeout(function() { ov.remove(); }, 2700);
   }());
 
   'use strict';
