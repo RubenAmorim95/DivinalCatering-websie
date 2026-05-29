@@ -328,7 +328,6 @@
       padding: 0 48px;
       display: flex; gap: 72px; align-items: flex-start;
     }
-    .serv-single { max-width: 860px; }
     .serv-nav {
       flex: 0 0 220px;
       position: sticky; top: 100px;
@@ -776,19 +775,80 @@
 <section class="servicos" id="servicos" aria-label="Os nossos serviços">
   <div class="servicos-hdr" data-anim="up">
     <span class="eyebrow">O Que Fazemos</span>
-    <h2 class="gradient-heading">Casamentos</h2>
-    <p>O dia mais especial da sua vida merece o catering perfeito. Menus personalizados, serviço impecável e uma experiência gastronómica verdadeiramente inesquecível.</p>
+    <h2 class="gradient-heading">Serviços</h2>
+    <p>De casamentos íntimos a grandes eventos corporativos, adaptamo-nos a cada momento com elegância e profissionalismo.</p>
   </div>
 
-  <div class="serv-split serv-single">
+  <div class="serv-split">
+    <nav class="serv-nav" id="servNav" aria-label="Navegação de serviços">
+      <span class="serv-ghost-num" id="servGhostNum" aria-hidden="true">01</span>
+      <div class="serv-indicator" id="servIndicator" aria-hidden="true"></div>
+      <div class="serv-nav-item active" data-idx="0"><span class="serv-nav-num">01</span><span class="serv-nav-name">Casamentos</span></div>
+      <div class="serv-nav-item" data-idx="1"><span class="serv-nav-num">02</span><span class="serv-nav-name">Batizados</span></div>
+      <div class="serv-nav-item" data-idx="2"><span class="serv-nav-num">03</span><span class="serv-nav-name">Corporativos</span></div>
+      <div class="serv-nav-item" data-idx="3"><span class="serv-nav-num">04</span><span class="serv-nav-name">Cocktails</span></div>
+      <div class="serv-nav-item" data-idx="4"><span class="serv-nav-num">05</span><span class="serv-nav-name">Comunhões</span></div>
+      <div class="serv-nav-item" data-idx="5"><span class="serv-nav-num">06</span><span class="serv-nav-name">Festas Privadas</span></div>
+    </nav>
+
     <div class="serv-panels">
       <article class="serv-panel" data-idx="0">
         <div class="serv-panel-img">
-          <img src="images/galeria/evento-01.jpg" alt="Casamento — mesa posta com cristaleria e flores silvestres" loading="lazy">
+          <img src="images/galeria/evento-01.jpg" alt="Casamentos — mesa rústica com cristaleria e flores silvestres" loading="lazy">
         </div>
         <span class="serv-panel-tag">Eventos Especiais</span>
         <h3 class="serv-panel-name">Casamentos</h3>
-        <p class="serv-panel-desc">Criamos experiências gastronómicas verdadeiramente inesquecíveis. Desde os aperitivos ao jantar, cada detalhe é pensado ao pormenor — menus personalizados, apresentação impecável e um serviço discreto e elegante que honra o vosso grande dia.</p>
+        <p class="serv-panel-desc">O dia mais especial da sua vida merece o catering perfeito. Criamos experiências gastronómicas verdadeiramente inesquecíveis, com menus personalizados e um serviço impecável do início ao fim.</p>
+        <a href="orcamento.html" class="serv-panel-cta">Pedir Orçamento</a>
+      </article>
+
+      <article class="serv-panel" data-idx="1">
+        <div class="serv-panel-img">
+          <img src="https://images.unsplash.com/photo-1578836537282-3171d77f8632?w=1000&auto=format&fit=crop&q=80" alt="Batizados — celebração familiar" loading="lazy">
+        </div>
+        <span class="serv-panel-tag">Família</span>
+        <h3 class="serv-panel-name">Batizados</h3>
+        <p class="serv-panel-desc">Celebre a chegada do novo membro da família com um ambiente caloroso e uma mesa memorável. Cada detalhe pensado para criar memórias que durarão para sempre.</p>
+        <a href="orcamento.html" class="serv-panel-cta">Pedir Orçamento</a>
+      </article>
+
+      <article class="serv-panel" data-idx="2">
+        <div class="serv-panel-img">
+          <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?w=1000&auto=format&fit=crop&q=80" alt="Eventos Corporativos — jantar de gala" loading="lazy">
+        </div>
+        <span class="serv-panel-tag">Empresas</span>
+        <h3 class="serv-panel-name">Eventos Corporativos</h3>
+        <p class="serv-panel-desc">Conferências, gala dinners e team buildings com a sofisticação que a sua empresa merece. Serviço profissional, apresentação impecável e sabores que impressionam.</p>
+        <a href="orcamento.html" class="serv-panel-cta">Pedir Orçamento</a>
+      </article>
+
+      <article class="serv-panel" data-idx="3">
+        <div class="serv-panel-img">
+          <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1000&auto=format&fit=crop&q=80" alt="Cocktails e Receções — finger food e canapés" loading="lazy">
+        </div>
+        <span class="serv-panel-tag">Receções</span>
+        <h3 class="serv-panel-name">Cocktails &amp; Receções</h3>
+        <p class="serv-panel-desc">Passas e finger food selecionados com rigor, apresentados com o cuidado estético que nos define. Um cocktail que se torna, por si só, parte da experiência.</p>
+        <a href="orcamento.html" class="serv-panel-cta">Pedir Orçamento</a>
+      </article>
+
+      <article class="serv-panel" data-idx="4">
+        <div class="serv-panel-img">
+          <img src="https://images.unsplash.com/photo-1490730141103-6cac27aaab94?w=1000&auto=format&fit=crop&q=80" alt="Comunhões — mesa elegante com flores brancas e velas" loading="lazy">
+        </div>
+        <span class="serv-panel-tag">Fé &amp; Família</span>
+        <h3 class="serv-panel-name">Comunhões</h3>
+        <p class="serv-panel-desc">Momentos de fé e família celebrados com sabor, elegância e atenção a cada detalhe. Um dia inesquecível começa com uma mesa perfeita.</p>
+        <a href="orcamento.html" class="serv-panel-cta">Pedir Orçamento</a>
+      </article>
+
+      <article class="serv-panel" data-idx="5">
+        <div class="serv-panel-img">
+          <img src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=1000&auto=format&fit=crop&q=80" alt="Festas Privadas — celebração elegante" loading="lazy">
+        </div>
+        <span class="serv-panel-tag">Celebrações</span>
+        <h3 class="serv-panel-name">Festas Privadas</h3>
+        <p class="serv-panel-desc">Aniversários, reuniões familiares e celebrações especiais com o nosso toque de distinção. Porque cada festa deve ser vivida sem preocupações.</p>
         <a href="orcamento.html" class="serv-panel-cta">Pedir Orçamento</a>
       </article>
     </div>
